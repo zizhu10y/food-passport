@@ -1,0 +1,1712 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#4a1f24">
+<title>美食护照 Food Passport</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="美食护照">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f4ecdc;--paper2:#ebdfc6;--paper3:#e2d3b5;
+  --ink:#5b4030;--ink2:#8a6d55;--faint:#c4ad8f;
+  --gold:#c9a24a;--cover:#4a1f24;--red:#b5483b;
+  --tw:'Special Elite','American Typewriter','Courier New',monospace;
+  --hd:'ZCOOL XiaoWei','Songti SC','STSong','Noto Serif SC',serif;
+  --bd:'Songti SC','STSong','Noto Serif SC','PingFang SC',serif;
+  --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .24  0 0 0 0 .14  0 0 0 .11 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:#d9cbb0 var(--noise);color:var(--ink);font-family:var(--bd);font-size:15px;line-height:1.6;min-height:100vh}
+button{font:inherit;color:inherit}
+a{color:inherit}
+.tw{font-family:var(--tw)}
+.page{max-width:620px;margin:0 auto;min-height:100vh;background:var(--paper) var(--noise);padding:18px 16px 110px;box-shadow:0 0 0 1px #cdbb9a,0 10px 40px rgba(60,40,20,.18);position:relative;overflow-x:hidden}
+.page::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 0,rgba(255,250,235,.55),transparent 60%),radial-gradient(ellipse at 50% 120%,rgba(170,130,80,.12),transparent 60%)}
+.page>*{position:relative}
+h1,h2,h3{font-family:var(--hd);font-weight:400;margin:0}
+.small{font-size:12px;letter-spacing:.12em;color:var(--ink2)}
+.muted{color:var(--ink2)}
+.poem{font-family:var(--tw);color:var(--ink2);font-size:14px;margin:6px 0 0}
+hr.dash{border:0;border-top:1.5px dashed var(--faint);margin:22px 0}
+
+/* ---------- cover ---------- */
+.cover{min-height:100vh;display:grid;place-items:center;padding:24px;background:#2a1215}
+.book{width:min(360px,88vw);aspect-ratio:5/7;border-radius:10px 16px 16px 10px;position:relative;color:#d9b660;
+  background:
+   repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px),
+   repeating-linear-gradient(-45deg,rgba(0,0,0,.08) 0 1px,transparent 1px 3px),
+   radial-gradient(ellipse at 30% 20%,#64303a,transparent 70%),var(--cover);
+  box-shadow:inset 10px 0 18px rgba(0,0,0,.35),inset -2px 0 0 rgba(255,255,255,.06),0 20px 50px rgba(0,0,0,.5);
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:40px 24px 30px;text-align:center}
+.book::before{content:"";position:absolute;left:14px;top:0;bottom:0;width:2px;background:rgba(0,0,0,.25);box-shadow:1px 0 0 rgba(255,255,255,.05)}
+.foil{background:linear-gradient(100deg,#b8913e 0%,#f3dc96 35%,#c99a43 55%,#f0d488 75%,#a9832f 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 1px 0 rgba(0,0,0,.15)}
+.book h1{font-size:44px;letter-spacing:.2em;line-height:1.2}
+.book .en{font-family:var(--tw);letter-spacing:.35em;font-size:15px;margin-top:4px}
+.book .rep{font-family:var(--tw);letter-spacing:.25em;font-size:11px;opacity:.85}
+.emblem{width:118px;height:118px}
+.openbtn{margin-top:22px;background:none;border:1.5px solid #c9a24a;color:#e7c873;border-radius:999px;padding:9px 22px;font-family:var(--tw);letter-spacing:.15em;cursor:pointer}
+.openbtn:hover{background:rgba(201,162,74,.12)}
+.book .cnt{font-family:var(--tw);font-size:11px;letter-spacing:.15em;opacity:.7;margin-top:10px}
+.cover.leaving .book{animation:flip .6s ease-in forwards;transform-origin:left center}
+@keyframes flip{to{transform:perspective(900px) rotateY(-100deg);opacity:0}}
+
+/* ---------- headers ---------- */
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.topbar a{text-decoration:none;font-family:var(--tw);font-size:13px;border-bottom:1px dashed var(--faint)}
+.hd{text-align:center;padding:8px 0 4px}
+.hd h1{font-size:34px;letter-spacing:.15em}
+.sum{margin-top:10px;font-size:14px}
+.sum b{font-family:var(--tw);font-size:17px}
+.rg{font-size:15px;margin:22px 0 8px;display:flex;align-items:center;gap:8px;color:var(--ink2)}
+.rg::after{content:"";flex:1;border-top:1.5px dashed var(--faint)}
+
+/* ---------- country cards ---------- */
+.cgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.ccard{display:block;text-decoration:none;background:rgba(255,252,243,.55);border:1px solid #dccbab;border-left:5px solid var(--c);border-radius:6px;padding:10px 12px;position:relative;overflow:hidden;transition:transform .15s}
+.ccard:active{transform:scale(.98)}
+.ccard .fl{font-size:24px;line-height:1}
+.ccard .nm{font-family:var(--hd);font-size:19px;margin-top:4px}
+.ccard .en{font-family:var(--tw);font-size:10.5px;letter-spacing:.14em;color:var(--ink2)}
+.ccard .pg{font-family:var(--tw);font-size:13px;margin-top:4px}
+.bar{height:5px;background:var(--paper3);border-radius:3px;overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;background:var(--c,var(--ink));border-radius:3px;opacity:.75}
+.ccard .ghost{position:absolute;right:-14px;bottom:-16px;width:66px;opacity:.5;transform:rotate(-14deg)}
+.ccard.special{--c:#6d5a8a}
+
+/* ---------- country page ---------- */
+.chd{text-align:center;padding:4px 0 6px}
+.chd .fl{font-size:40px;line-height:1}
+.chd h1{font-size:34px;letter-spacing:.12em;margin-top:4px}
+.chd .en{font-family:var(--tw);letter-spacing:.3em;font-size:12px;color:var(--ink2)}
+.chd .prog{font-family:var(--tw);margin-top:10px}
+.chd .prog b{font-size:22px;color:var(--c)}
+.chd .bar{max-width:240px;margin:6px auto 0}
+.syd{display:inline-block;margin-top:10px;font-size:13px;background:rgba(255,252,243,.6);border:1px dashed var(--faint);border-radius:6px;padding:4px 10px}
+.dgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+@media(min-width:520px){.dgrid{grid-template-columns:repeat(3,1fr)}}
+.dish{display:block;width:100%;text-align:left;background:rgba(255,252,243,.5);border:1px solid #dccbab;border-radius:8px;padding:8px 8px 10px;position:relative;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.dish:hover{box-shadow:0 4px 14px rgba(90,60,30,.12)}
+.dish:active{transform:scale(.98)}
+.dish .iw{aspect-ratio:6/5;display:grid;place-items:center;overflow:hidden;border-radius:4px}
+.dish .iw img{width:100%;height:100%;object-fit:cover;border-radius:3px}
+.dish .dn{font-family:var(--hd);font-size:16px;margin-top:4px;line-height:1.3}
+.dish .de{font-family:var(--tw);font-size:10.5px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dish.locked .dn{color:var(--ink2)}
+.dish.locked .iw{background:repeating-linear-gradient(0deg,transparent 0 13px,rgba(150,120,80,.07) 13px 14px)}
+.dish .ms{position:absolute;top:2px;right:2px;width:46px;pointer-events:none}
+.dish .cnt{position:absolute;bottom:8px;right:8px;font-family:var(--tw);font-size:11px;color:var(--ink2)}
+.dish .ic{font-size:11px;opacity:.8}
+.dish.challenge{outline:2px dashed var(--red);outline-offset:2px}
+
+/* ---------- illustration ---------- */
+.ill{width:100%;height:auto;display:block;overflow:visible}
+.ill .ln{stroke:var(--ink);stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.locked .ill .col,.ill.locked .col{display:none}
+.locked .ill .ln,.ill.locked .ln{stroke:var(--faint);stroke-dasharray:2.4 2.6}
+.ill .rv{stroke-dasharray:1 1;stroke-dashoffset:0}
+.anim .ill .rv{animation:paint 2.2s ease-in-out .35s both}
+.anim .ill .ln{animation:inkin .8s ease both}
+@keyframes paint{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes inkin{from{stroke:var(--faint);opacity:.6}to{opacity:1}}
+
+/* ---------- visa / stamps ---------- */
+.visa{margin-top:26px;border-top:1.5px dashed var(--faint);padding-top:14px}
+.visa h3{font-size:17px;text-align:center}
+.visa .vsub{text-align:center;font-family:var(--tw);font-size:11px;letter-spacing:.2em;color:var(--ink2)}
+.stamps{display:flex;flex-wrap:wrap;justify-content:center;gap:0 2px;margin-top:10px;min-height:90px;background:repeating-linear-gradient(0deg,transparent 0 27px,rgba(150,120,80,.08) 27px 28px);border-radius:6px;padding:8px}
+.stamps .st{width:96px;mix-blend-mode:multiply;cursor:pointer}
+.empty{text-align:center;color:var(--ink2);font-family:var(--tw);font-size:13px;padding:24px 8px}
+.stamp{display:block;width:100%;height:auto;overflow:visible}
+
+/* ---------- tags ---------- */
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:12px;padding:1px 8px;border-radius:999px;background:var(--t,#e7dcc4);border:1px solid rgba(91,64,48,.18)}
+.chip{font-size:13px;padding:4px 11px;border-radius:999px;border:1.3px solid var(--faint);background:transparent;cursor:pointer}
+.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip.no.on{background:#a8493d;border-color:#a8493d}
+
+/* ---------- buttons/forms ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1.5px solid var(--ink);background:transparent;border-radius:999px;padding:8px 18px;cursor:pointer;font-size:15px;text-decoration:none}
+.btn.pri{background:var(--ink);color:var(--paper)}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff8ee}
+.btn.sm{font-size:13px;padding:4px 12px}
+.btn:active{transform:scale(.97)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+label.f{display:block;margin-top:10px;font-size:13px;color:var(--ink2)}
+.inp,select.inp,textarea.inp{width:100%;font:inherit;font-size:16px;color:var(--ink);background:rgba(255,252,243,.75);border:1px solid #d4c19f;border-bottom:2px solid var(--ink2);border-radius:4px;padding:7px 9px;margin-top:3px}
+textarea.inp{font-family:var(--tw);font-size:12px;min-height:110px}
+.seg{display:flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden;margin-top:4px}
+.seg button{flex:1;border:0;background:transparent;padding:7px;cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--paper)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;background:rgba(40,25,15,.45);display:flex;align-items:flex-end;justify-content:center;z-index:30;animation:fade .2s}
+.modal[hidden]{display:none}
+.sheet{background:var(--paper) var(--noise);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:16px 16px 0 0;padding:20px 18px 28px;position:relative;animation:up .25s ease}
+@media(min-width:640px){.modal{align-items:center}.sheet{border-radius:12px}}
+.sheet .x{position:absolute;right:10px;top:8px;border:0;background:none;font-size:26px;cursor:pointer;color:var(--ink2);line-height:1}
+@keyframes fade{from{opacity:0}}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.dm-ill{max-width:280px;margin:0 auto;position:relative}
+.dm-ill img{width:100%;border-radius:6px;box-shadow:0 2px 10px rgba(80,50,20,.18)}
+.dm h2{font-size:28px;text-align:center;margin-top:6px}
+.dm .en{text-align:center;font-family:var(--tw);color:var(--ink2)}
+.kv{display:grid;grid-template-columns:72px 1fr;gap:6px 10px;margin-top:14px;font-size:14px}
+.kv dt{color:var(--ink2)}
+.kv dd{margin:0}
+.fact{margin-top:14px;padding:10px 12px;border-left:3px solid var(--gold);background:rgba(201,162,74,.08);font-size:14px}
+.recs{list-style:none;padding:0;margin:10px 0 0}
+.recs li{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--faint);font-size:13.5px}
+.recs li .s{width:46px;flex:none}
+.recs li .t{flex:1}
+.recs li button{border:0;background:none;color:var(--ink2);cursor:pointer;font-size:12px}
+.preview{margin-top:8px;max-width:220px}
+.preview img{width:100%;border-radius:6px}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;justify-content:center;pointer-events:none}
+.nav[hidden]{display:none}
+.nav div{pointer-events:auto;max-width:620px;width:100%;display:flex;background:rgba(236,224,200,.96);backdrop-filter:blur(6px);border-top:1.5px solid #cdb995;padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+.nav a{flex:1;text-align:center;text-decoration:none;font-size:12px;padding:4px 0;border-radius:8px;color:var(--ink2)}
+.nav a span{display:block;font-size:20px;line-height:1.2}
+.nav a.on{color:var(--ink);background:rgba(91,64,48,.08);font-weight:600}
+
+/* ---------- challenge ---------- */
+.panel{background:rgba(255,252,243,.55);border:1px solid #dccbab;border-radius:10px;padding:14px;margin-top:14px}
+.panel h3{font-size:16px;margin-bottom:6px}
+.draw{text-align:center}
+.draw .card{max-width:320px;margin:14px auto 0;padding:14px;border:1.5px dashed var(--ink2);border-radius:12px;background:rgba(255,252,243,.7)}
+.draw .card.flipin{animation:flipin .45s ease}
+@keyframes flipin{from{transform:rotateY(90deg) scale(.9);opacity:.2}}
+.banner{display:flex;gap:10px;align-items:center;background:rgba(181,72,59,.08);border:1.5px dashed var(--red);border-radius:10px;padding:10px 12px;margin-top:14px;font-size:14px}
+.banner .t{flex:1}
+
+/* ---------- search ---------- */
+.res{list-style:none;padding:0;margin:10px 0 0}
+.res li{display:flex;gap:10px;align-items:center;padding:8px;border-bottom:1px dashed var(--faint);cursor:pointer;border-radius:6px}
+.res li:hover{background:rgba(255,252,243,.6)}
+.res .th{width:56px;flex:none}
+.res .t{flex:1}
+.res .t b{font-family:var(--hd);font-weight:400;font-size:17px}
+
+/* ---------- stats ---------- */
+.bigline{font-family:var(--tw);font-size:20px;text-align:center;line-height:1.6;margin:18px 0 6px}
+.bigline b{font-size:30px;color:var(--red)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.stat{text-align:center;background:rgba(255,252,243,.55);border:1px solid #dccbab;border-radius:8px;padding:10px 4px}
+.stat b{display:block;font-family:var(--tw);font-size:22px}
+.stat span{font-size:12px;color:var(--ink2)}
+.ach{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--faint)}
+.ach .ic{font-size:26px;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:2px dashed var(--faint);filter:grayscale(1);opacity:.55;flex:none}
+.ach.done .ic{filter:none;opacity:1;border:2px solid var(--gold);background:rgba(201,162,74,.12)}
+.ach .t{flex:1}
+.ach .t b{font-family:var(--hd);font-weight:400;font-size:16px}
+.ach .t div{font-size:12.5px;color:var(--ink2)}
+.ach .n{font-family:var(--tw);font-size:13px}
+table.ct{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+table.ct td{padding:5px 4px;border-bottom:1px dashed var(--faint)}
+table.ct td:last-child,table.ct td:nth-child(2){text-align:right;font-family:var(--tw)}
+
+/* ---------- fx ---------- */
+.fx{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;z-index:50}
+.fx .big{width:min(64vw,260px);animation:drop .5s cubic-bezier(.3,1.5,.5,1) both;mix-blend-mode:multiply}
+.fx .dong{position:absolute;font-family:var(--hd);font-size:34px;color:var(--red);animation:dong .9s ease .3s both;transform:translate(90px,-110px)}
+.fx.out{animation:fxout .5s ease forwards}
+@keyframes drop{0%{transform:scale(2.6) rotate(var(--r));opacity:0}55%{transform:scale(.9) rotate(var(--r));opacity:1}100%{transform:scale(1) rotate(var(--r));opacity:1}}
+@keyframes dong{0%{opacity:0;transform:translate(90px,-90px) scale(.6)}40%{opacity:1;transform:translate(90px,-115px) scale(1.1)}100%{opacity:0;transform:translate(90px,-130px)}}
+@keyframes fxout{to{opacity:0}}
+.thud{animation:thud .35s ease .22s}
+@keyframes thud{25%{transform:translate(2px,3px)}50%{transform:translate(-2px,-1px)}75%{transform:translate(1px,1px)}}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:9px 16px;border-radius:999px;font-size:14px;z-index:60;box-shadow:0 6px 20px rgba(0,0,0,.25);animation:up .25s ease;max-width:90vw;text-align:center}
+.shops{margin-top:26px;border-top:1.5px dashed var(--faint);padding-top:14px}
+.shops h3{font-size:17px;text-align:center}
+.shop{display:flex;gap:10px;align-items:flex-start;padding:9px 2px;border-bottom:1px dashed var(--faint);font-size:14px}
+.shop .r{flex:none;width:52px;text-align:center;font-family:var(--tw)}
+.shop .r b{display:block;font-size:18px;color:var(--c,var(--ink))}
+.shop .r span{font-size:10.5px;color:var(--ink2)}
+.shop .t{flex:1;min-width:0}
+.shop .t b{font-family:var(--hd);font-weight:400;font-size:16px}
+.shop .t .a{font-size:12.5px;color:var(--ink2)}
+.shop .t .n{font-size:12.5px;margin-top:2px}
+.shop .t .tags{margin-top:4px}
+.shop a.map{flex:none;font-size:12px;text-decoration:none;border:1px solid var(--faint);border-radius:999px;padding:2px 9px;margin-top:3px}
+.shop .warn{color:#a8493d}
+.armed{color:#a8493d !important;border-color:#a8493d !important;font-weight:600}
+.goldbadge{display:inline-block;background:linear-gradient(135deg,#e9cf7a,#b8902f);color:#4a3410;border-radius:999px;padding:0 8px;font-size:11.5px;font-weight:600}
+
+/* installed app: keep content clear of the notch / home indicator */
+.page{padding-top:max(18px,env(safe-area-inset-top))}
+.cover{padding-top:max(24px,env(safe-area-inset-top));padding-bottom:max(24px,env(safe-area-inset-bottom))}
+</style>
+</head>
+<body>
+<!-- shared SVG filters: pencil grain, hand-wobble line, stamp ink -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="grain" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.15" numOctaves="2" seed="3" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.7 1.5" result="a"/>
+      <feComposite in="SourceGraphic" in2="a" operator="in"/>
+    </filter>
+    <filter id="wob" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="turbulence" baseFrequency="0.035" numOctaves="2" seed="7" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="ink0" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="11" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.4 2.0" result="a"/><feComposite in="SourceGraphic" in2="a" operator="in" result="c"/><feTurbulence type="turbulence" baseFrequency=".05" seed="2" result="t"/><feDisplacementMap in="c" in2="t" scale="2.6" xChannelSelector="R" yChannelSelector="G"/></filter>
+    <filter id="ink1" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="23" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.6 2.15" result="a"/><feComposite in="SourceGraphic" in2="a" operator="in" result="c"/><feTurbulence type="turbulence" baseFrequency=".045" seed="9" result="t"/><feDisplacementMap in="c" in2="t" scale="3" xChannelSelector="R" yChannelSelector="G"/></filter>
+    <filter id="ink2" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="41" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.9" result="a"/><feComposite in="SourceGraphic" in2="a" operator="in" result="c"/><feTurbulence type="turbulence" baseFrequency=".06" seed="17" result="t"/><feDisplacementMap in="c" in2="t" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+    <filter id="ink3" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" seed="57" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.8 2.3" result="a"/><feComposite in="SourceGraphic" in2="a" operator="in" result="c"/><feTurbulence type="turbulence" baseFrequency=".05" seed="31" result="t"/><feDisplacementMap in="c" in2="t" scale="3.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+    <clipPath id="cL" clipPathUnits="userSpaceOnUse"><rect x="-10" y="-10" width="60" height="120"/></clipPath>
+    <clipPath id="cR" clipPathUnits="userSpaceOnUse"><rect x="50" y="-10" width="60" height="120"/></clipPath>
+  </defs>
+</svg>
+
+<div id="app"></div>
+<nav class="nav" id="nav" hidden><div>
+  <a href="#/" data-nav="index"><span>🛂</span>护照</a>
+  <a href="#/challenge" data-nav="challenge"><span>🎲</span>挑战</a>
+  <a href="#/find" data-nav="find"><span>🔍</span>识别</a>
+  <a href="#/stats" data-nav="stats"><span>📊</span>统计</a>
+</div></nav>
+<div class="modal" id="modal" hidden><div class="sheet"><button class="x" data-act="close" aria-label="关闭">×</button><div id="mbody"></div></div></div>
+
+<script>
+/* =====================================================================
+   DATA
+   ===================================================================== */
+const K={ // soft colored-pencil palette
+  bowl:'#a9c1cf',bowlp:'#c9b6d6',clay:'#c99a7c',dark:'#7d6a5e',plate:'#ece3cf',board:'#c9a57a',steamer:'#d6bd8a',kraft:'#e6d6b5',paper:'#f4ecdc',
+  soup:'#e8c98f',clear:'#ecd9b0',redsoup:'#d98a62',noodle:'#f3e3b5',rice:'#f8f2e2',white:'#faf6ec',
+  beef:'#b47a5e',pork:'#d9a28c',chicken:'#ecd2a2',green:'#9db58a',herb:'#8fae7e',lime:'#c8d68a',egg:'#f0cd6a',
+  bread:'#ddb07a',crust:'#cf9a5c',dough:'#f1e2c4',tofu:'#f3e7c9',chili:'#cf6f5a',curry:'#e1a650',yellow:'#efd27c',
+  orange:'#e9a46a',pink:'#e8b1a3',salmon:'#eda489',tuna:'#cf7a76',nori:'#56634f',choc:'#8a6048',cream:'#f1e2c4',
+  tomato:'#d9826a',purple:'#a99bc0',cheese:'#f2d98a',sauce:'#b8604a',brown:'#a87454',mango:'#f2b85a',pistachio:'#a9c08a',
+  honey:'#e2b25e',avocado:'#b3c47e',corn:'#f0d277',cucumber:'#b9d1a0',carrot:'#eaa067',bean:'#c99a6a',sprout:'#eee6c6',
+  lemon:'#f1df84',tea:'#d9b48a',ricepaper:'#efe6d2',falafel:'#b7895a',hummus:'#ecd3a8',gcurry:'#bcc68e',
+  olive:'#a7a45e',coconut:'#f6efe0',sesame:'#e9d7a8'
+};
+
+const COUNTRIES=[
+ {id:'CN',zh:'中国',en:'CHINA',flag:'🇨🇳',region:'东亚',ink:'#b5483b',shape:'circle',poem:'Steam rises, and someone is waiting for you.',syd:['Haymarket / Chinatown','Eastwood','Burwood']},
+ {id:'JP',zh:'日本',en:'JAPAN',flag:'🇯🇵',region:'东亚',ink:'#a4466a',shape:'oval',poem:'Small things, made carefully.',syd:['Haymarket','Chatswood']},
+ {id:'KR',zh:'韩国',en:'KOREA',flag:'🇰🇷',region:'东亚',ink:'#3f5f8f',shape:'hex',poem:'Red, warm, and a little loud.',syd:['Strathfield','Eastwood']},
+ {id:'VN',zh:'越南',en:'VIETNAM',flag:'🇻🇳',region:'东南亚',ink:'#3e7a58',shape:'rect',poem:'A bowl of broth can hold a whole morning.',syd:['Cabramatta','Bankstown','Marrickville']},
+ {id:'TH',zh:'泰国',en:'THAILAND',flag:'🇹🇭',region:'东南亚',ink:'#7b4f96',shape:'cog',poem:'Sour, sweet, salty, hot — all at once.',syd:['Haymarket (Thai Town)']},
+ {id:'MY',zh:'马来西亚',en:'MALAYSIA',flag:'🇲🇾',region:'东南亚',ink:'#2c6e86',shape:'octa',poem:'Some days taste like the sea.',syd:['Haymarket','Chatswood']},
+ {id:'ID',zh:'印度尼西亚',en:'INDONESIA',flag:'🇮🇩',region:'东南亚',ink:'#8a6a1e',shape:'hex',poem:'Seventeen thousand islands, one sambal.',syd:['Kingsford','Kensington']},
+ {id:'PH',zh:'菲律宾',en:'PHILIPPINES',flag:'🇵🇭',region:'东南亚',ink:'#2a5a9a',shape:'circle',poem:'Rice with everything, and everyone at the table.',syd:['Blacktown','Rooty Hill']},
+ {id:'IN',zh:'印度',en:'INDIA',flag:'🇮🇳',region:'南亚',ink:'#c4762b',shape:'circle',poem:'Spices remember where they came from.',syd:['Harris Park']},
+ {id:'NP',zh:'尼泊尔',en:'NEPAL',flag:'🇳🇵',region:'南亚',ink:'#a0384f',shape:'octa',poem:'Mountains taste like ginger and warm broth.',syd:['Harris Park','Kogarah','Rockdale']},
+ {id:'LB',zh:'黎巴嫩',en:'LEBANON',flag:'🇱🇧',region:'中东',ink:'#5f7f33',shape:'rect',poem:'Bread, olive oil, and good company.',syd:['Lakemba','Punchbowl']},
+ {id:'TR',zh:'土耳其',en:'TÜRKIYE',flag:'🇹🇷',region:'中东',ink:'#9c3434',shape:'oval',poem:'The night market smells of charcoal.',syd:['Auburn']},
+ {id:'GR',zh:'希腊',en:'GREECE',flag:'🇬🇷',region:'欧洲',ink:'#2f5f9e',shape:'hex',poem:'Sun on the table, lemon on everything.',syd:['Marrickville','Earlwood']},
+ {id:'IT',zh:'意大利',en:'ITALY',flag:'🇮🇹',region:'欧洲',ink:'#8a4f2a',shape:'cog',poem:'Slow afternoons, long noodles.',syd:['Leichhardt','Haberfield']},
+ {id:'FR',zh:'法国',en:'FRANCE',flag:'🇫🇷',region:'欧洲',ink:'#4a4f8f',shape:'oval',poem:'Butter, patience, and a long lunch.'},
+ {id:'ES',zh:'西班牙',en:'SPAIN',flag:'🇪🇸',region:'欧洲',ink:'#b5602f',shape:'rect',poem:'Dinner at ten, and nobody minds.',syd:['Liverpool St (Spanish Quarter)']},
+ {id:'MX',zh:'墨西哥',en:'MEXICO',flag:'🇲🇽',region:'美洲',ink:'#b8447a',shape:'octa',poem:'Lime, chili, and a little sunshine.',syd:['Newtown']},
+ {id:'AU',zh:'澳大利亚',en:'AUSTRALIA',flag:'🇦🇺',region:'大洋洲',ink:'#9a6b2f',shape:'cog',poem:'A sausage on bread, sun on the back of your neck.',syd:['Bunnings 门口','街角面包店']},
+];
+const CMAP=Object.fromEntries(COUNTRIES.map(c=>[c.id,c]));
+const REGIONS=['东亚','东南亚','南亚','中东','欧洲','美洲','大洋洲'];
+const ASIA=['CN','JP','KR','VN','TH','MY','ID','PH','IN','NP'];
+
+// [id, country, 中文, English, template, colors "main,second,accent,vessel", toppings, flavors, ingredients, fact, tags(c=平价 h=可在家做), aliases]
+const RAW=[
+['mapo','CN','麻婆豆腐','Mapo Tofu','curry','redsoup,-,-,bowlp','cube*6:tofu,dot*3:green,sesame*6:dark','麻 辣 咸','嫩豆腐、牛肉末、郫县豆瓣酱、花椒、蒜苗','据说清末成都一位脸上有麻子的陈婆婆创制，"麻"也正好是它的灵魂。','ch','麻婆 mapo 麻辣豆腐'],
+['xlb','CN','小笼包','Xiaolongbao','bao','dough,-,-,steamer','','鲜 咸','面皮、猪肉馅、皮冻、姜丝、香醋','汤汁来自凝固在馅里的皮冻，咬前先开个小口。','c','小笼 汤包 xlb xiao long bao soup dumpling'],
+['jianbing','CN','煎饼果子','Jianbing','flat','egg,sauce,-,-','leaf*5:green,sesame*8:dark','咸 香 微辣','绿豆面糊、鸡蛋、薄脆、甜面酱、葱花、香菜','天津人的早餐，"果子"指里面夹的油条或薄脆。','ch','煎饼 jian bing chinese crepe'],
+['lanzhou','CN','兰州牛肉面','Lanzhou Beef Noodles','bowl','clear,noodle,-,bowl','slice*3:beef,cube*3:white,dot*5:chili,leaf*3:green','鲜 辣 咸','手拉面、牛骨清汤、白萝卜、辣椒油、香菜蒜苗','讲究"一清二白三红四绿五黄"：汤清、萝卜白、辣油红、香菜绿、面黄。','c','牛肉面 拉面 兰州拉面 beef noodle lamian'],
+['jiaozi','CN','饺子','Jiaozi','dumpling','dough,-,-,plate','','鲜 咸','面皮、猪肉、白菜或韭菜、醋、蒜','北方过年必吃，形状像元宝，寓意招财。冷冻饺子是家厨章的入门款。','ch','水饺 饺子 锅贴 dumpling dumplings potsticker'],
+['roujiamo','CN','肉夹馍','Roujiamo','burger','bread,beef,green,-','sesame*6:dark','咸 香','白吉馍、腊汁肉、青椒、香菜','常被叫作"中国汉堡"，其实是"肉夹于馍中"的简称。','c','肉夹馍 chinese burger rou jia mo'],
+
+['ramen','JP','拉面','Ramen','bowl','soup,noodle,-,bowlp','slice*2:pork,egg*1:egg,sheet*1:nori,dot*5:green','鲜 咸 奶香','碱水面、豚骨或酱油汤底、叉烧、溏心蛋、海苔、葱','源自中国汤面，二战后在日本发展出上百种地方风味。','c','拉麺 日式拉面 ramen tonkotsu 豚骨'],
+['sushi','JP','握寿司','Nigiri Sushi','sushi','rice,salmon,tuna,board','','鲜 酸 清淡','醋饭、三文鱼、金枪鱼、山葵、酱油','最早的寿司是用米饭发酵保存鱼，米饭本来是要扔掉的。','','寿司 握寿司 sushi nigiri'],
+['onigiri','JP','饭团','Onigiri','onigiri','rice,nori,-,-','sesame*7:dark','咸 清淡','米饭、海苔、梅干或三文鱼、盐','便利店饭团的包装设计成拆开时海苔才碰到米饭，保持酥脆。','ch','饭团 御饭团 onigiri rice ball'],
+['katsucurry','JP','日式咖喱猪排饭','Katsu Curry','curry','curry,rice,-,plate','wedge*3:crust,cube*3:carrot,cube*2:yellow','咸 甜 微辣','米饭、炸猪排、日式咖喱块、土豆、胡萝卜','咖喱是明治时期经英国海军传入日本的，所以日式咖喱偏甜偏稠。','ch','咖喱猪排 日式咖喱 咖喱饭 katsu curry'],
+['takoyaki','JP','章鱼烧','Takoyaki','balls','crust,sauce,white,kraft','sesame*8:green','鲜 咸 甜','面糊、章鱼块、天妇罗碎、章鱼烧酱、蛋黄酱、木鱼花','1935 年诞生于大阪，最初里面放的是牛筋和魔芋。','c','章鱼小丸子 章鱼丸 takoyaki'],
+['okonomiyaki','JP','大阪烧','Okonomiyaki','flat','crust,sauce,-,plate','sesame*8:green,dot*4:pink','咸 甜 鲜','面糊、卷心菜、猪五花、大阪烧酱、蛋黄酱、海苔粉','名字的意思是"喜欢什么就烤什么"。','ch','御好烧 日式煎饼 okonomiyaki'],
+
+['bibimbap','KR','石锅拌饭','Bibimbap','bowl','rice,-,-,dark','egg*1:egg,leaf*2:green,slice*2:carrot,dot*3:chili,cube*2:beef,slice*2:sprout','辣 甜 咸','米饭、牛肉、蕨菜、豆芽、胡萝卜、煎蛋、韩式辣酱','"拌"是精髓：吃之前要用力搅匀，石锅底的锅巴最香。','ch','拌饭 石锅拌饭 bibimbap'],
+['tteokbokki','KR','炒年糕','Tteokbokki','curry','redsoup,-,-,plate','stick*7:dough,cube*2:yellow,dot*3:green','辣 甜','年糕条、鱼饼、韩式辣酱、糖、葱、水煮蛋','最早是宫廷里用酱油炒的"宫中炒年糕"，辣酱版到 1950 年代才出现。','ch','炒年糕 辣炒年糕 tteokbokki ddeokbokki'],
+['kimchijjigae','KR','泡菜汤','Kimchi Jjigae','bowl','redsoup,-,-,dark','cube*4:tofu,slice*3:pork,leaf*2:green,dot*3:chili','酸 辣 咸','老泡菜、猪五花、豆腐、葱、辣椒粉','泡菜越酸越适合煮汤，所以韩国人家里常留一罐"老泡菜"。','ch','泡菜锅 泡菜汤 泡菜炖 kimchi stew kimchi jjigae'],
+['kfc','KR','韩式炸鸡','Korean Fried Chicken','fried','chili,-,-,kraft','sesame*10:white,dot*3:green','甜 辣 香','鸡块、淀粉面糊、韩式甜辣酱、蒜、芝麻','韩国人吃炸鸡要配啤酒，这个组合叫"chimaek"。','','炸鸡 韩国炸鸡 韩式炸鸡 korean fried chicken chimaek'],
+['kimbap','KR','紫菜包饭','Kimbap','maki','rice,nori,-,board','','咸 香 清淡','米饭、紫菜、鸡蛋、腌萝卜、菠菜、胡萝卜、火腿','韩国春游必带便当，米饭用香油和盐调味，不用醋。','ch','紫菜包饭 韩国寿司 kimbap gimbap'],
+['japchae','KR','杂菜粉条','Japchae','pasta','tea,-,-,plate','slice*3:carrot,leaf*3:green,slice*2:beef,sesame*6:white','甜 咸 香','红薯粉条、牛肉、菠菜、胡萝卜、洋葱、香油、酱油','17 世纪朝鲜王朝的宫廷菜，最早里面其实没有粉条。','h','杂菜 炒粉条 japchae'],
+
+['pho','VN','越南河粉','Phở','bowl','clear,noodle,-,bowl','slice*3:beef,leaf*3:herb,ring*1:lime,dot*3:chili,slice*1:sprout','鲜 清淡 微甜 香草','米粉、牛肉、牛骨汤、豆芽、九层塔、青柠','起源于 20 世纪初的越南北部，汤底要用牛骨和香料熬上好几个小时。','c','河粉 越南粉 牛肉粉 pho pho bo'],
+['banhmi','VN','越南法棍','Bánh Mì','roll','bread,pork,-,-','leaf*3:herb,slice*2:carrot,ring*1:cucumber,dot*2:chili','咸 酸 香草','法棍、猪肉或肉饼、肝酱、腌萝卜胡萝卜、香菜、辣椒','法国殖民时期留下的法棍，被越南人改成了更轻更脆的版本。','c','法包 越南面包 越南三明治 banh mi banhmi'],
+['bunbohue','VN','顺化牛肉粉','Bún Bò Huế','bowl','redsoup,white,-,bowlp','slice*3:beef,cube*2:brown,leaf*3:herb,ring*1:lime','辣 鲜 香茅','粗米粉、牛腱、猪血、香茅、虾酱、辣椒油','来自古都顺化，比河粉更辣更香，香茅味是它的标志。','c','顺化粉 香茅牛肉粉 bun bo hue'],
+['goicuon','VN','越南春卷','Gỏi Cuốn','spring','ricepaper,-,-,plate','shrimp*2:salmon,leaf*3:herb,shrimp*2:salmon,leaf*3:herb','清淡 香草 鲜','米纸、虾、米粉、生菜、薄荷、花生酱蘸料','不炸的"夏卷"，米纸泡水变软直接包，几乎零油。','ch','春卷 鲜春卷 夏卷 米纸卷 goi cuon summer roll'],
+['comtam','VN','碎米饭','Cơm Tấm','plate','rice,-,-,plate','slice*2:sauce,egg*1:egg,ring*2:cucumber,cube*2:tomato','咸 甜 烟熏','碎米、炭烤猪排、煎蛋、鱼露、腌菜','碎米原本是碾米时的次品，穷人买来吃，后来反而成了西贡招牌。','c','碎米饭 猪扒饭 com tam broken rice'],
+['banhxeo','VN','越南煎饼','Bánh Xèo','taco','yellow,sprout,-,-','shrimp*2:salmon,leaf*3:herb,slice*2:sprout','香 咸 鲜','米浆、黄姜粉、椰奶、虾、猪肉、豆芽、生菜','"xèo" 是面糊倒进热锅时发出的滋滋声。','ch','越南煎饼 越式煎饼 banh xeo'],
+
+['tomyum','TH','冬阴功','Tom Yum Goong','bowl','redsoup,-,-,bowl','shrimp*3:salmon,leaf*3:herb,ring*1:lime,dot*3:chili,cube*2:white','酸 辣 鲜 香草','大虾、香茅、南姜、青柠叶、草菇、辣椒、青柠汁','"冬阴"是酸辣，"功"是虾，合起来就是酸辣虾汤。','c','冬阴功 冬荫功 酸辣虾汤 tom yum tomyam tom yam'],
+['padthai','TH','泰式炒河粉','Pad Thai','pasta','orange,-,-,plate','shrimp*2:salmon,sesame*7:bean,leaf*2:green,ring*1:lime','甜 酸 咸','河粉、虾、鸡蛋、豆芽、花生碎、罗望子酱、青柠','1930 年代泰国政府推广的"国菜"，用来推广米粉。','ch','泰式炒粉 炒河粉 pad thai padthai'],
+['greencurry','TH','泰式绿咖喱','Green Curry','curry','gcurry,rice,-,bowlp','slice*3:chicken,cube*3:purple,leaf*3:herb,dot*2:chili','辣 奶香 香草','青咖喱酱、椰奶、鸡肉、泰国茄子、九层塔、青辣椒','颜色来自新鲜青辣椒，它其实是泰国咖喱里最辣的一种。','ch','绿咖喱 青咖喱 green curry gaeng keow wan'],
+['somtam','TH','青木瓜沙拉','Som Tam','salad','-,-,-,clay','slice*6:cucumber,cube*3:tomato,sesame*7:bean,dot*3:chili,ring*1:lime','酸 辣 甜','青木瓜丝、小番茄、长豆角、花生、虾米、鱼露、青柠、辣椒','用石臼"捣"出来的沙拉，"som"是酸，"tam"是捣。','ch','青木瓜沙拉 木瓜沙拉 som tam papaya salad'],
+['mangorice','TH','芒果糯米饭','Mango Sticky Rice','plate','rice,-,-,plate','wedge*4:mango,sesame*7:dark','甜 奶香','糯米、熟芒果、椰浆、盐、绿豆或芝麻','芒果季（4-5 月）是泰国人吃它的最好时节，椰浆里要加一点盐。','c','芒果糯米饭 芒果饭 mango sticky rice'],
+['krapow','TH','打抛猪饭','Pad Kra Pao','plate','rice,-,-,plate','cube*5:brown,egg*1:egg,leaf*3:herb,dot*2:chili','辣 咸 香草','猪肉末、打抛叶（圣罗勒）、辣椒、蒜、鱼露、煎蛋','泰国上班族的头号快餐，点单时常加一句"加个煎蛋"。','ch','打抛 打抛猪 打抛饭 泰式罗勒 pad kra pao krapow'],
+
+['laksa','MY','叻沙','Laksa','bowl','orange,noodle,-,bowlp','shrimp*2:salmon,cube*3:bread,egg*1:egg,leaf*2:herb,dot*3:chili','辣 奶香 鲜','黄面米粉、咖喱椰奶汤、虾、豆卜、鱼饼、蛋、辣椒酱','娘惹菜的代表，悉尼人对它的爱可以排进前三。','c','叻沙 喇沙 咖喱叻沙 laksa curry laksa'],
+['nasilemak','MY','椰浆饭','Nasi Lemak','plate','rice,-,-,green','egg*1:egg,slice*3:cucumber,sesame*7:bean,dot*4:chili,cube*2:sauce','香 辣 咸','椰浆米饭、参巴辣椒酱、炸江鱼仔、花生、黄瓜、水煮蛋','传统上用香蕉叶包着卖，被称为马来西亚的"国民早餐"。','ch','椰浆饭 椰奶饭 nasi lemak'],
+['satay','MY','沙爹','Satay','skewer','brown,sauce,-,plate','','甜 香 烟熏','鸡肉或牛肉、黄姜、香茅、炭火、花生酱、黄瓜洋葱','一般十串起点，配花生酱和压缩饭团一起吃。','c','沙爹 沙嗲 烤肉串 satay sate'],
+['ckt','MY','炒粿条','Char Kway Teow','pasta','bean,-,-,plate','shrimp*2:salmon,leaf*3:green,slice*3:sprout,slice*2:pink','咸 香 烟熏','宽米粉、虾、腊肠、蛤、豆芽、韭菜、黑酱油、猪油','好吃的关键是"锅气"——大火快炒带出的那股焦香。','c','炒粿条 炒贵刁 char kway teow ckt'],
+['roticanai','MY','马来飞饼','Roti Canai','flat','bread,-,-,plate','sesame*10:crust','香 奶香 咸','面团、酥油、咖喱汁蘸料','面团被甩到几乎透明再折起来煎，所以一层层的酥。','c','印度煎饼 飞饼 甩饼 roti canai roti prata'],
+['hainan','MY','海南鸡饭','Hainanese Chicken Rice','plate','rice,-,-,plate','slice*4:chicken,ring*2:cucumber,leaf*2:herb,dot*2:chili','鲜 清淡','白切鸡、鸡油饭、黄瓜、辣椒酱、姜蓉、黑酱油','名字来自海南，但其实是在南洋（马来西亚、新加坡）发扬光大的。','c','海南鸡 海南鸡饭 chicken rice hainanese'],
+
+['butterchicken','IN','黄油鸡','Butter Chicken','curry','orange,rice,-,clay','cube*5:chicken,dot*3:white,leaf*2:herb','奶香 微甜 微辣','鸡肉、番茄、黄油、奶油、葫芦巴叶、香料','1950 年代德里一家餐厅用剩下的烤鸡和番茄黄油酱"救"出来的菜。','h','黄油鸡 牛油鸡 butter chicken murgh makhani'],
+['dosa','IN','马萨拉多萨','Masala Dosa','roll','yellow,curry,-,plate','leaf*2:herb,dot*3:green','香 酸 微辣','发酵米豆面糊、土豆咖喱馅、椰子酱、扁豆汤','面糊要发酵一夜，所以带一点点酸，非常脆。','c','多萨 印度薄饼 dosa masala dosa'],
+['biryani','IN','印度香饭','Biryani','plate','yellow,-,-,clay','slice*3:chicken,egg*1:egg,leaf*3:herb,sesame*7:white','香 辣 咸','巴斯马蒂米、鸡肉或羊肉、酸奶、藏红花、炸洋葱、香料','米和肉分层焖熟，每一粒米都要粒粒分明。','c','印度香饭 比尔亚尼 羊肉饭 biryani'],
+['samosa','IN','咖喱角','Samosa','tri','crust,green,-,plate','','香 辣','面皮、土豆、豌豆、孜然、香菜、薄荷酸辣酱','在中东和中亚也有，叫法不同，但三角形不变。','ch','咖喱角 萨莫萨 三角饺 samosa'],
+['chana','IN','鹰嘴豆咖喱','Chana Masala','curry','brown,rice,-,bowl','pea*8:bean,leaf*2:herb','辣 香 咸','鹰嘴豆、洋葱、番茄、姜蒜、印度综合香料','超市一罐鹰嘴豆就能做，是最适合"家厨章"的菜之一。','ch','鹰嘴豆咖喱 鹰嘴豆 chana masala chole'],
+['lassi','IN','芒果拉西','Mango Lassi','cup','mango,-,pink,-','leaf*1:herb','甜 奶香 酸','酸奶、芒果、牛奶、糖、豆蔻','在炎热的旁遮普地区，拉西是消暑神器。','ch','拉西 酸奶饮料 lassi mango lassi'],
+
+['falafel','LB','法拉费','Falafel','balls','falafel,-,cream,plate','leaf*3:herb','香 咸 香草','鹰嘴豆、香菜、欧芹、洋葱、孜然、芝麻酱','是素食者的"肉丸"，外脆里绿。','ch','法拉费 炸豆丸子 鹰嘴豆丸子 falafel'],
+['hummus','LB','鹰嘴豆泥','Hummus','dip','hummus,olive,bread,plate','pea*4:bean,dot*3:chili','咸 香','鹰嘴豆、芝麻酱、柠檬汁、蒜、橄榄油','黎巴嫩和以色列曾为"谁做出最大一盘鹰嘴豆泥"争过吉尼斯纪录。','ch','鹰嘴豆泥 胡姆斯 hummus'],
+['shawarma','LB','沙威玛','Shawarma','wrap','bread,-,-,kraft','slice*3:chicken,leaf*2:herb,cube*2:tomato,ring*1:white','香 咸 酸','薄饼、腌鸡肉或羊肉、蒜酱、腌菜、薯条','肉一层层叠在立着的烤架上慢慢转着烤，和土耳其烤肉是亲戚。','c','沙威玛 中东卷饼 鸡肉卷 shawarma'],
+['manoushe','LB','扎塔尔饼','Man’oushe','flat','bread,herb,-,-','sesame*12:dark,leaf*2:green','香 咸 香草','面饼、扎塔尔香料（百里香、芝麻、漆树粉）、橄榄油','黎巴嫩人的早餐，街角面包房现烤，便宜又香。','ch','扎塔尔 中东披萨 manoushe manakish zaatar'],
+['tabbouleh','LB','塔布勒沙拉','Tabbouleh','salad','-,-,-,bowl','leaf*10:herb,cube*4:tomato,dot*3:white','酸 香草','欧芹、碎小麦、番茄、薄荷、洋葱、柠檬汁、橄榄油','主角其实是欧芹，不是小麦，正宗的几乎是一碗绿色。','ch','塔布勒 欧芹沙拉 tabbouleh'],
+['knafeh','LB','克纳菲','Knafeh','flat','orange,cheese,-,plate','sesame*12:pistachio','甜 奶香','细面丝或粗粒小麦粉、白奶酪、糖浆、开心果','热的时候吃，奶酪能拉出长长的丝。','','克纳菲 奶酪甜点 knafeh kunafa'],
+
+['doner','TR','土耳其烤肉卷','Döner Kebab','wrap','bread,-,-,kraft','slice*4:beef,leaf*2:green,cube*2:tomato,ring*1:purple','咸 香 烟熏','薄饼、旋转烤肉、生菜、番茄、洋葱、酸奶酱、辣酱','"döner" 意思是"旋转"，卷饼版其实在柏林的土耳其移民手中发扬光大。','c','烤肉卷 土耳其烤肉 旋转烤肉 kebab kebap doner döner hsp'],
+['lahmacun','TR','土耳其薄饼','Lahmacun','flat','bread,redsoup,-,-','cube*7:brown,leaf*3:herb,ring*1:lemon','咸 香 微辣','超薄面饼、羊肉或牛肉末、番茄、洋葱、辣椒、欧芹、柠檬','吃法是挤上柠檬汁、放上沙拉，然后卷起来吃。','c','土耳其披萨 土耳其薄饼 lahmacun'],
+['pide','TR','船形披萨','Pide','roll','crust,cheese,-,board','cube*4:brown,egg*1:egg','咸 奶香','面团、奶酪、肉末或菠菜、鸡蛋','两边捏起来像一条小船，中间的蛋黄一定要戳破搅开。','c','船饼 土耳其船 pide'],
+['baklava','TR','果仁蜜饼','Baklava','slice','honey,pistachio,crust,plate','sesame*8:pistachio','甜 香','酥皮、开心果或核桃、黄油、糖浆','据说一块好果仁蜜饼要叠 40 层以上的薄酥皮。','','巴克拉瓦 果仁千层酥 蜜饼 baklava'],
+['gozleme','TR','土耳其煎饼','Gözleme','roll','dough,green,-,board','dot*5:white','咸 奶香','薄面饼、菠菜、羊奶酪、土豆或肉末','悉尼周末集市几乎都有一个现做土耳其煎饼的摊位。','ch','土耳其煎饼 菠菜芝士饼 gozleme gözleme'],
+['simit','TR','芝麻圈','Simit','ring','crust,-,-,-','sesame*16:sesame','香 微甜','面团、糖蜜、芝麻','伊斯坦布尔街头推车卖的"土耳其贝果"，配红茶当早餐。','ch','芝麻圈 土耳其贝果 simit'],
+
+['gyros','GR','希腊烤肉卷','Gyros','wrap','bread,-,-,kraft','slice*3:pork,cube*2:tomato,ring*1:purple,dot*3:white','咸 酸 香草','皮塔饼、旋转烤猪肉或鸡肉、酸奶黄瓜酱、番茄、洋葱、薯条','希腊版卷饼，必配 tzatziki 酸奶黄瓜酱，里面还会塞薯条。','c','希腊卷 希腊烤肉 gyros gyro'],
+['souvlaki','GR','希腊烤肉串','Souvlaki','skewer','pork,white,-,plate','','咸 香草 烟熏','猪肉或鸡肉块、橄榄油、柠檬、牛至、酸奶黄瓜酱','希腊最普及的街头快餐，便宜、管饱。','c','烤肉串 希腊串 souvlaki'],
+['moussaka','GR','慕萨卡','Moussaka','slice','purple,brown,cream,plate','','咸 奶香','茄子、肉末番茄酱、白酱、肉桂','一层茄子一层肉一层白酱，像希腊版千层面。','h','慕萨卡 茄子千层 moussaka'],
+['spanakopita','GR','菠菜派','Spanakopita','slice','green,cream,crust,plate','','咸 奶香 香草','菲达奶酪、菠菜、葱、莳萝、千层酥皮','面包店早餐常客，边走边吃，掉一身酥皮渣。','ch','菠菜派 希腊派 spanakopita'],
+['horiatiki','GR','希腊沙拉','Greek Salad','salad','-,-,-,bowl','cube*4:tomato,ring*3:cucumber,cube*2:white,dot*4:dark,ring*1:purple','酸 咸','番茄、黄瓜、红洋葱、卡拉马塔橄榄、菲达奶酪、牛至、橄榄油','正宗的希腊沙拉没有生菜，奶酪是一整块放在最上面。','ch','希腊沙拉 greek salad horiatiki'],
+['loukoumades','GR','希腊蜂蜜球','Loukoumades','balls','honey,honey,-,plate','sesame*8:dark','甜 香','面团、蜂蜜糖浆、肉桂、核桃碎','据说古代奥运会的胜利者吃的就是它的前身。','ch','蜂蜜球 希腊甜甜圈 loukoumades'],
+
+['margherita','IT','玛格丽特披萨','Pizza Margherita','flat','crust,tomato,-,board','pea*5:cream,leaf*4:herb','咸 酸 奶香','面饼、番茄酱、马苏里拉奶酪、罗勒、橄榄油','据说是为玛格丽特王后而做，红白绿正好是意大利国旗。','ch','披萨 比萨 pizza margherita'],
+['carbonara','IT','卡邦尼意面','Carbonara','pasta','cheese,-,-,plate','cube*5:pork,sesame*10:dark','咸 奶香','意面、蛋黄、佩科里诺奶酪、腌猪颊肉、黑胡椒','正宗做法里没有奶油，奶香全靠蛋黄和奶酪。','ch','卡邦尼 卡波纳拉 培根意面 carbonara'],
+['lasagna','IT','千层面','Lasagna','slice','tomato,cream,cheese,plate','','咸 奶香 酸','面片、肉酱、白酱、帕玛森奶酪','一盘可以吃三天，第二天加热的比第一天还好吃。','h','千层面 lasagna lasagne'],
+['risotto','IT','意式烩饭','Risotto','curry','cream,-,-,bowlp','cube*4:brown,leaf*2:herb,sesame*7:cheese','鲜 奶香','意大利短米、高汤、黄油、帕玛森、蘑菇或藏红花','要一勺一勺地加高汤并不停搅拌，米粒里的淀粉才会绵密。','h','烩饭 意大利饭 意式炖饭 risotto'],
+['tiramisu','IT','提拉米苏','Tiramisu','slice','tea,cream,choc,plate','','甜 奶香','手指饼干、浓缩咖啡、马斯卡彭、可可粉','意大利语意思是"带我走"或"让我开心起来"。','h','提拉米苏 tiramisu'],
+['gelato','IT','意式冰淇淋','Gelato','cone','pistachio,pink,lemon,-','','甜 奶香','牛奶、糖、坚果或水果','比普通冰淇淋空气更少、温度更高，所以口感更密、味道更浓。','c','冰淇淋 雪糕 意大利冰淇淋 gelato'],
+
+['tacos','MX','塔可','Tacos al Pastor','taco','corn,brown,-,-','cube*3:mango,leaf*3:herb,ring*1:lime,dot*2:chili','辣 酸 香','玉米饼、烤猪肉、菠萝、洋葱、香菜、青柠、莎莎酱','"al pastor" 意为"牧羊人式"，技法来自黎巴嫩移民带去的烤肉。','c','塔可 塔克 墨西哥夹饼 taco tacos'],
+['burrito','MX','墨西哥卷饼','Burrito','roll','dough,brown,-,-','cube*3:tomato,leaf*2:green,dot*3:white','咸 辣 香','面粉饼、米饭、豆子、肉、莎莎酱、奶酪、酸奶油','西班牙语里意思是"小驴子"，大概因为它装得很多。','c','卷饼 墨西哥卷 burrito'],
+['quesadilla','MX','芝士薄饼','Quesadilla','tri','crust,tomato,-,board','','咸 奶香','面饼、奶酪、鸡肉或蘑菇、莎莎酱','名字来自 queso（奶酪），最简单的版本只有饼和奶酪。','ch','芝士饼 奶酪饼 墨西哥薄饼 quesadilla'],
+['guacamole','MX','牛油果酱','Guacamole','dip','avocado,-,crust,bowl','cube*3:tomato,dot*3:white,leaf*1:herb','酸 咸','牛油果、青柠、洋葱、番茄、香菜、辣椒、盐','阿兹特克人几百年前就在吃，名字意思是"牛油果酱汁"。','ch','牛油果酱 鳄梨酱 guacamole guac'],
+['elote','MX','墨西哥烤玉米','Elote','corn','corn,white,-,-','sesame*14:chili','甜 咸 辣 烟熏','玉米、蛋黄酱、奶酪碎、辣椒粉、青柠','街头推车卖的烤玉米，抹满酱和奶酪。','ch','烤玉米 墨西哥玉米 elote street corn'],
+['churros','ES','吉事果','Churros','sticks','crust,choc,-,-','sesame*12:white','甜 香','面糊、糖、肉桂、热巧克力蘸酱','西班牙人的早餐，蘸一杯浓稠的热巧克力；后来传到墨西哥也大受欢迎。','c','吉事果 吉士果 西班牙油条 churro churros'],
+
+// ---- 第二批 ----
+['malatang','CN','麻辣烫','Malatang','bowl','redsoup,noodle,-,bowl','cube*3:tofu,leaf*3:green,slice*2:beef,stick*2:dough,dot*3:chili','麻 辣 鲜','自选蔬菜、丸子、豆腐、粉丝、麻辣骨汤','按重量称价，自己夹多少付多少，是悉尼留学生的续命神器。','c','麻辣烫 麻辣香锅 malatang mala'],
+['dandan','CN','担担面','Dan Dan Noodles','bowl','redsoup,noodle,-,bowlp','cube*5:brown,leaf*3:green,sesame*6:bean','麻 辣 香','细面、芽菜肉臊、芝麻酱、红油、花椒、葱','以前小贩挑着担子沿街叫卖，所以叫"担担面"。','ch','担担面 dandan dan dan noodles'],
+['congyou','CN','葱油拌面','Scallion Oil Noodles','pasta','noodle,-,-,plate','leaf*6:green,sesame*5:dark','咸 香','细面、小葱、生抽、老抽、糖、猪油','上海弄堂里的家常味，熬一锅葱油能拌好几天面。','ch','葱油面 葱油拌面 scallion oil noodles'],
+['tomatoegg','CN','番茄炒蛋','Tomato & Egg','plate','rice,-,-,plate','wedge*4:tomato,cube*4:egg,leaf*2:green','酸 甜 咸','番茄、鸡蛋、糖、盐、葱花','无数留学生学会的第一道菜。到底放不放糖，是永恒的争论。','ch','番茄炒蛋 西红柿炒鸡蛋 tomato egg'],
+
+['udon','JP','乌冬面','Udon','bowl','clear,white,-,bowl','wedge*2:crust,slice*2:pink,dot*4:green','鲜 清淡','粗乌冬面、鲣鱼昆布高汤、天妇罗、葱、鱼板','香川县人均吃乌冬全日本第一，被称为"乌冬县"。','ch','乌冬 乌冬面 udon'],
+['gyudon','JP','牛丼','Gyudon','bowl','rice,-,-,bowlp','slice*5:beef,ring*2:white,dot*3:pink,egg*1:egg','咸 甜','米饭、薄切牛肉、洋葱、酱油、味醂、红姜','连锁店让它成了日本最便宜的一顿饱饭之一。','ch','牛丼 牛肉饭 吉野家 gyudon beef bowl'],
+['gyoza','JP','日式煎饺','Gyoza','dumpling','crust,-,-,plate','','鲜 咸 香','饺子皮、猪肉、卷心菜、韭菜、蒜、醋酱油','和中国锅贴同源，日本人常拿它配白饭一起吃。','ch','日式煎饺 煎饺 gyoza'],
+['dorayaki','JP','铜锣烧','Dorayaki','burger','crust,brown,-,-','','甜','面粉、鸡蛋、蜂蜜、红豆沙','名字来自形状像铜锣，也是哆啦A梦最爱吃的点心。','c','铜锣烧 哆啦a梦 dorayaki'],
+
+['bulgogi','KR','韩式烤牛肉','Bulgogi','plate','-,-,-,plate','slice*7:beef,leaf*3:green,ring*2:white,sesame*6:white','甜 咸 香','薄切牛肉、梨汁、酱油、蒜、香油、洋葱','腌料里的梨汁能让牛肉变得特别嫩。','h','烤牛肉 韩式烤牛肉 bulgogi'],
+['samgyeopsal','KR','烤五花肉','Samgyeopsal','plate','-,-,-,plate','slice*6:pork,leaf*4:green,cube*2:white,dot*2:chili','咸 香 烟熏','猪五花、生菜、蒜、包饭酱、泡菜','生菜包一片肉、一瓣蒜、一点酱，一口塞进去才是正确吃法。','','烤五花 五花肉 韩国烤肉 samgyeopsal'],
+['ramyeon','KR','韩国泡面','Ramyeon','bowl','redsoup,noodle,-,honey','egg*1:egg,leaf*3:green,sheet*1:cheese','辣 咸','方便面、辣汤包、鸡蛋、葱、芝士片','韩国人均泡面消费量世界第一，加一片芝士是常见的升级吃法。','ch','韩国泡面 辛拉面 ramyeon ramyun shin ramen'],
+['hotteok','KR','韩式糖饼','Hotteok','flat','crust,honey,-,-','sesame*10:bean','甜 香','糯米面团、红糖、肉桂、坚果','冬天街头的暖手小吃，咬下去小心糖浆烫嘴。','c','糖饼 韩国糖饼 hotteok'],
+
+['bunthitnuong','VN','烤肉米线','Bún Thịt Nướng','bowl','white,noodle,-,bowl','slice*3:sauce,leaf*3:herb,slice*2:carrot,sesame*6:bean','甜 酸 香草','米线、炭烤猪肉、生菜、香草、花生、鱼露汁','一碗"干"的米线，要把鱼露汁倒进去拌着吃。','c','烤肉米线 越南米线 bun thit nuong'],
+['caphe','VN','越南冰咖啡','Cà Phê Sữa Đá','cup','choc,-,cream,-','','甜 奶香','浓缩咖啡、炼乳、冰块','用小铝滴壶慢慢滴出来，炼乳的甜刚好压住咖啡的苦。','ch','越南咖啡 冰咖啡 ca phe sua da vietnamese coffee'],
+['banhcuon','VN','越南粉卷','Bánh Cuốn','spring','ricepaper,-,-,plate','cube*4:brown,leaf*4:herb,sesame*6:crust','鲜 清淡','米浆薄皮、猪肉末、木耳、炸葱酥、鱼露汁','米浆蒸成薄如纸的皮再卷进肉馅，有点像广东肠粉。','c','粉卷 越南粉卷 banh cuon'],
+['che','VN','越南三色甜汤','Chè Ba Màu','cup','pink,-,green,-','','甜 奶香','红豆、绿豆、椰奶、碎冰、绿色珍多','一层层颜色像彩虹，夏天的解暑神器。','ch','越南甜品 三色冰 甜汤 che ba mau'],
+
+['massaman','TH','马沙文咖喱','Massaman Curry','curry','curry,rice,-,clay','cube*4:beef,cube*3:yellow,sesame*6:bean','甜 奶香 香','牛肉、土豆、花生、椰奶、肉桂、豆蔻','带着波斯和印度香料的影子，曾被评为"世界最美味食物"第一名。','ch','马沙文 玛莎曼 massaman curry'],
+['boatnoodle','TH','泰式船面','Boat Noodles','bowl','brown,noodle,-,bowlp','slice*3:beef,leaf*3:herb,dot*3:chili,sesame*4:crust','鲜 辣 香草','细米粉、浓郁牛肉汤、肉丸、空心菜、炸猪皮','以前在曼谷运河的小船上卖，为了不洒出来碗做得特别小。','c','船面 船粉 boat noodles kuay teow reua'],
+['thaitea','TH','泰式奶茶','Thai Milk Tea','cup','orange,-,white,-','','甜 奶香','泰国红茶、炼乳、淡奶、冰','那抹橙色是街头一眼就认得出的颜色。','ch','泰式奶茶 泰奶 thai tea cha yen'],
+['mooping','TH','泰式烤猪肉串','Moo Ping','skewer','sauce,white,-,plate','','甜 咸 烟熏','猪颈肉、椰奶、蒜、香菜根、糯米饭','曼谷上班族的早餐：几串烤肉配一小包糯米饭，边走边吃。','c','烤猪肉串 泰式烤肉 moo ping'],
+
+['meegoreng','MY','马来炒面','Mee Goreng Mamak','pasta','orange,-,-,plate','shrimp*1:salmon,cube*3:tofu,leaf*3:green,egg*1:egg,ring*1:lime','辣 甜 咸','黄面、豆腐、虾、蛋、番茄酱、辣椒酱、青柠','"嘛嘛档"的招牌，24 小时都能吃到。','ch','马来炒面 嘛嘛炒面 mee goreng'],
+['bakkutteh','MY','肉骨茶','Bak Kut Teh','bowl','brown,-,-,clay','slice*4:pork,cube*3:tofu,leaf*2:green','鲜 咸 香','猪排骨、当归、川芎、八角、蒜、酱油','名字里有"茶"，汤里却没有茶——是配着功夫茶一起喝。','c','肉骨茶 bak kut teh bkt'],
+['tehtarik','MY','拉茶','Teh Tarik','mug','tea,-,-,-','','甜 奶香','红茶、炼乳','两个杯子来回高高拉起倒茶，拉出一层绵密的泡沫。','ch','拉茶 teh tarik pulled tea'],
+['cendol','MY','煎蕊','Cendol','bowl','coconut,-,-,bowlp','stick*4:green,pea*4:bean,dot*3:brown','甜 奶香','椰奶、碎冰、绿色米粉条、红豆、椰糖浆','绿色的"虫"其实是用班兰叶汁做的米粉条。','c','煎蕊 珍多 cendol'],
+
+['nasigoreng','ID','印尼炒饭','Nasi Goreng','plate','orange,-,-,plate','egg*1:egg,shrimp*2:salmon,ring*2:cucumber,wedge*2:crust,dot*3:chili','甜 咸 辣','米饭、甜酱油、参巴辣椒、虾酱、煎蛋、虾片','甜酱油 kecap manis 是它和中式炒饭最大的区别。','ch','印尼炒饭 nasi goreng'],
+['rendang','ID','仁当牛肉','Beef Rendang','curry','brown,rice,-,clay','cube*6:beef,leaf*2:herb','辣 香 奶香','牛肉、椰奶、辣椒、香茅、南姜、姜黄','用椰奶慢炖几个小时直到收干，越放越好吃。','h','仁当 巴东牛肉 rendang'],
+['gadogado','ID','加多加多','Gado-Gado','salad','-,-,-,bowl','egg*1:egg,leaf*4:green,cube*3:tofu,slice*2:sprout,dot*4:bean','甜 香 咸','水煮蔬菜、豆腐、天贝、鸡蛋、花生酱、虾片','名字的意思是"大杂烩"，什么菜都淋上花生酱。','ch','加多加多 印尼沙拉 gado gado'],
+['bakso','ID','印尼肉丸汤','Bakso','bowl','clear,noodle,-,bowl','pea*5:brown,leaf*3:green,dot*3:chili','鲜 咸','牛肉丸、米粉或黄面、清汤、炸葱酥、辣酱','推着小车边敲碗边叫卖，是印尼最常见的街头汤。','c','肉丸汤 印尼肉丸 bakso'],
+['martabak','ID','印尼甜煎饼','Martabak Manis','slice','bread,choc,cheese,plate','','甜 奶香','厚煎饼、黄油、巧克力碎、花生、奶酪、炼乳','巧克力配奶酪是印尼人最爱的组合，第一次吃会很惊讶。','c','印尼煎饼 甜煎饼 martabak terang bulan'],
+['tempeh','ID','炸天贝','Tempeh Goreng','plate','-,-,-,plate','sheet*5:bean,dot*3:chili,leaf*2:herb','香 咸','发酵黄豆饼、蒜、香菜籽、盐','起源于爪哇，便宜的优质蛋白，素食者最爱。','ch','天贝 炸天贝 tempeh tempe'],
+
+['palakpaneer','IN','菠菜奶酪咖喱','Palak Paneer','curry','green,rice,-,clay','cube*6:white,dot*3:cream','香 奶香 咸','菠菜泥、印度奶酪、洋葱、姜蒜、香料、奶油','Paneer 是不会融化的印度鲜奶酪，煎过之后外香里嫩。','h','菠菜奶酪 palak paneer saag paneer'],
+['naan','IN','蒜香馕','Garlic Naan','flat','dough,-,-,board','sesame*10:crust,leaf*4:green','香 奶香','面粉、酸奶、黄油、蒜、香菜','贴在泥炉 tandoor 内壁上烤，所以会鼓起焦焦的泡。','c','馕 印度烤饼 naan garlic naan'],
+['tandoori','IN','唐杜里烤鸡','Tandoori Chicken','fried','chili,-,-,plate','ring*2:white,ring*1:lime,leaf*3:herb','辣 烟熏 香','鸡腿、酸奶、红辣椒粉、姜蒜、香料','颜色很红，其实没那么辣——红色来自克什米尔辣椒粉。','','唐杜里 坦都里 烤鸡 tandoori chicken'],
+['panipuri','IN','印度脆球','Pani Puri','balls','crust,-,-,plate','pea*5:bean,leaf*3:herb','酸 辣 香草','空心脆球、土豆、鹰嘴豆、罗望子水、薄荷水','要一口一个整个塞进嘴里，不然汁会喷出来。','c','脆球 pani puri golgappa'],
+
+['fattoush','LB','法图什沙拉','Fattoush','salad','-,-,-,bowl','cube*4:tomato,ring*3:cucumber,wedge*4:crust,leaf*4:herb','酸 香草','生菜、番茄、黄瓜、萝卜、炸皮塔饼片、漆树粉、柠檬','剩下的皮塔饼烤脆了扔进去，不浪费的智慧。','ch','法图什 面包沙拉 fattoush'],
+['kafta','LB','烤肉肠','Kafta','skewer','brown,white,-,plate','','香 咸 烟熏','牛羊肉末、洋葱、欧芹、七香粉','肉末捏在扁签子上烤，配大蒜酱和皮塔饼。','c','卡夫塔 烤肉肠 kafta kofta'],
+['babaghanoush','LB','烤茄子泥','Baba Ghanoush','dip','bean,olive,bread,plate','dot*3:tomato,leaf*2:herb','烟熏 咸','烤茄子、芝麻酱、柠檬、蒜、橄榄油','茄子直接放火上烤到皮焦黑，烟熏味就是这么来的。','ch','茄子泥 baba ghanoush mutabal'],
+['kibbeh','LB','基贝','Kibbeh','balls','brown,-,-,plate','leaf*3:herb,pea*3:white','香 咸','碎小麦、牛羊肉、洋葱、松子、香料','外壳是碎小麦和肉泥，里面再包一层炒肉馅，形状像橄榄球。','','基贝 炸肉丸 kibbeh kibbe'],
+
+['menemen','TR','土耳其炒蛋','Menemen','curry','egg,-,-,dark','wedge*3:tomato,slice*3:green,leaf*2:herb','咸 香','鸡蛋、番茄、青椒、洋葱、橄榄油','到底放不放洋葱，是土耳其人能吵一整天的话题。','ch','土耳其炒蛋 menemen'],
+['mercimek','TR','扁豆汤','Mercimek Çorbası','bowl','orange,-,-,bowl','ring*1:lemon,leaf*2:herb,sesame*6:chili','鲜 咸','红扁豆、洋葱、胡萝卜、黄油、孜然、柠檬','土耳其的国民汤，几乎每家餐厅都有，很便宜。','ch','扁豆汤 小扁豆汤 lentil soup mercimek'],
+['lokum','TR','土耳其软糖','Turkish Delight','plate','-,-,-,plate','cube*10:pink,cube*4:white,sesame*8:white','甜','糖、淀粉、玫瑰水、开心果、糖粉','在土耳其叫 lokum，已经有两百多年历史。','','土耳其软糖 lokum turkish delight'],
+['iskender','TR','伊斯坎德尔烤肉','İskender Kebap','plate','-,-,-,plate','slice*6:beef,wedge*3:bread,dot*4:tomato,pea*2:white','咸 奶香','烤肉片、皮塔饼块、番茄酱、热黄油、酸奶','上桌前要淋一勺滋滋响的热黄油。','','伊斯坎德尔 iskender kebab'],
+
+['pastitsio','GR','希腊通心粉派','Pastitsio','slice','noodle,brown,cream,plate','','咸 奶香','通心粉、肉酱、白酱、肉桂、奶酪','希腊版的"意面千层"，周日家庭聚餐常见。','h','通心粉派 pastitsio'],
+['tzatziki','GR','酸奶黄瓜酱','Tzatziki','dip','white,olive,bread,bowl','slice*3:cucumber,leaf*2:herb','酸 清淡 香草','希腊酸奶、黄瓜、蒜、莳萝、橄榄油','几乎配什么都行：烤肉、面包、薯条。','ch','酸奶黄瓜酱 tzatziki'],
+['gemista','GR','希腊酿番茄','Gemista','balls','tomato,-,-,plate','leaf*3:herb','鲜 酸 香草','番茄、青椒、米饭、香草、橄榄油','夏天番茄最甜时做：挖空塞进米饭再烤。','ch','酿番茄 gemista yemista'],
+['galaktoboureko','GR','希腊奶派','Galaktoboureko','slice','cream,cheese,crust,plate','','甜 奶香','酥皮、粗麦粉奶油馅、糖浆','名字里的"galakto"就是牛奶的意思。','','希腊奶派 galaktoboureko'],
+
+['aglio','IT','蒜香意面','Aglio e Olio','pasta','noodle,-,-,plate','slice*5:white,dot*4:chili,leaf*3:herb','咸 香 微辣','意面、蒜片、橄榄油、辣椒碎、欧芹','穷学生意面之王：一包面一头蒜，五分钟搞定。','ch','蒜香意面 蒜油意面 aglio e olio'],
+['bolognese','IT','肉酱意面','Spaghetti Bolognese','pasta','noodle,-,-,plate','cube*6:sauce,sesame*8:cheese,leaf*2:herb','咸 酸 鲜','意面、牛肉末、番茄、洋葱、胡萝卜、红酒','在博洛尼亚，当地人其实用宽面配肉酱。','ch','肉酱面 意大利肉酱面 bolognese spag bol'],
+['arancini','IT','西西里炸饭团','Arancini','balls','crust,-,-,plate','leaf*2:herb','咸 奶香','意式烩饭、马苏里拉奶酪、肉酱、面包糠','名字的意思是"小橘子"。','c','炸饭团 西西里饭团 arancini'],
+['focaccia','IT','佛卡夏','Focaccia','flat','bread,-,-,board','pea*6:crust,leaf*4:herb,sesame*8:white','咸 香','面粉、橄榄油、海盐、迷迭香','面团上要用手指戳出一个个小坑，让橄榄油留在里面。','ch','佛卡夏 focaccia'],
+
+['croissant','FR','可颂','Croissant','crescent','crust,-,-,plate','','香 奶香','面粉、大量黄油、酵母、牛奶','一个好可颂有几十层黄油和面团交替的酥层。','c','可颂 牛角包 croissant'],
+['jambonbeurre','FR','火腿黄油法棍','Jambon-Beurre','roll','bread,pink,-,board','','咸 奶香','法棍、黄油、火腿','法国人每年吃掉十几亿个，比汉堡还受欢迎。','c','火腿法棍 法棍三明治 jambon beurre baguette'],
+['crepe','FR','法式可丽饼','Crêpe','tri','dough,choc,-,plate','','甜 奶香','薄面糊、黄油、糖、巧克力酱或柠檬','2 月 2 日是"可丽饼节"，传说一手拿硬币一手翻饼能带来好运。','ch','可丽饼 法式薄饼 crepe'],
+['quiche','FR','法式咸派','Quiche Lorraine','slice','egg,cream,crust,plate','','咸 奶香','酥皮、鸡蛋、奶油、培根、奶酪','原版的洛林咸派其实不放奶酪。','h','咸派 法式咸派 quiche'],
+['onionsoup','FR','法式洋葱汤','French Onion Soup','bowl','brown,-,-,bowl','wedge*2:bread,sesame*8:cheese','咸 鲜 奶香','洋葱、牛肉高汤、法棍片、格鲁耶尔奶酪','洋葱要慢炒一个小时到焦糖色——穷人也能做的大菜。','ch','洋葱汤 法式洋葱汤 french onion soup'],
+['cremebrulee','FR','焦糖布丁','Crème Brûlée','curry','cheese,-,-,bowlp','leaf*1:herb,dot*3:pink','甜 奶香','奶油、蛋黄、糖、香草荚','表面那层脆糖要现烧，敲碎它的瞬间最快乐。','','焦糖布丁 法式焦糖炖蛋 creme brulee'],
+
+['paella','ES','西班牙海鲜饭','Paella','flat','yellow,-,-,dark','shrimp*4:salmon,ring*2:lemon,pea*4:green,slice*2:dark','鲜 香','西班牙米、藏红花、虾、青口、鸡肉、豌豆','锅底焦脆的锅巴叫 socarrat，是整锅的精华。','','海鲜饭 西班牙海鲜饭 paella'],
+['tortilla','ES','西班牙土豆饼','Tortilla Española','slice','egg,yellow,crust,plate','','咸 香','土豆、鸡蛋、洋葱、橄榄油','几个鸡蛋几颗土豆就能做，西班牙的家常第一菜。','ch','土豆饼 西班牙蛋饼 tortilla espanola spanish omelette'],
+['bravas','ES','辣酱土豆','Patatas Bravas','plate','-,-,-,plate','cube*9:yellow,dot*5:chili,dot*3:white','辣 咸 香','炸土豆块、辣番茄酱、蒜泥蛋黄酱','tapas 吧里最便宜也最常点的一道。','ch','辣酱土豆 西班牙土豆 patatas bravas'],
+['gazpacho','ES','西班牙冷汤','Gazpacho','bowl','tomato,-,-,bowl','cube*4:cucumber,cube*3:green,leaf*2:herb','酸 清淡','番茄、黄瓜、青椒、蒜、橄榄油、雪莉醋','安达卢西亚夏天"喝的沙拉"，冰着喝。','ch','冷汤 西班牙冷汤 gazpacho'],
+['croquetas','ES','西班牙可乐饼','Croquetas','fried','crust,-,-,plate','leaf*2:herb','咸 奶香','白酱、火腿碎、面包糠','外脆里面几乎是流动的奶油，西班牙奶奶的拿手菜。','c','可乐饼 炸丸子 croquetas croquette'],
+['gambas','ES','蒜香虾','Gambas al Ajillo','curry','honey,-,-,clay','shrimp*6:salmon,slice*3:white,dot*3:chili,leaf*2:herb','鲜 香 微辣','虾、大量蒜片、橄榄油、辣椒','吃完虾，剩下的蒜油一定要用面包蘸干净。','ch','蒜香虾 蒜蓉虾 gambas al ajillo garlic prawns'],
+
+['enchiladas','MX','辣酱卷饼','Enchiladas','roll','redsoup,cheese,-,plate','sesame*10:white,leaf*3:herb','辣 咸 奶香','玉米饼、鸡肉、红辣椒酱、奶酪、酸奶油','卷好后淋满辣椒酱再烤，名字的意思就是"被辣椒包裹的"。','h','辣酱卷饼 enchilada enchiladas'],
+['nachos','MX','玉米片','Nachos','tri','corn,tomato,-,plate','','咸 奶香 辣','玉米片、融化奶酪、牛油果酱、莎莎酱、墨西哥辣椒','1943 年一位叫 Nacho 的服务员临时拼出来的。','ch','玉米片 墨西哥玉米片 nachos'],
+['pozole','MX','玉米肉汤','Pozole','bowl','redsoup,-,-,clay','pea*6:white,slice*2:pork,leaf*3:green,ring*1:lime','辣 鲜','大颗玉米粒、猪肉、红辣椒汤、生菜、萝卜、青柠','墨西哥独立日的传统菜，玉米粒煮开后会像花一样绽开。','ch','玉米肉汤 pozole'],
+['horchata','MX','墨西哥米浆','Horchata','cup','cream,-,-,-','sesame*6:brown','甜 奶香','大米、肉桂、糖、牛奶','配辛辣的塔可刚好，米浆的甜能把辣压下去。','ch','米浆 墨西哥米浆 horchata'],
+
+// ---- 第三批 ----
+['soto','ID','黄姜鸡汤','Soto Ayam','bowl','yellow,noodle,-,bowl','slice*3:chicken,egg*1:egg,leaf*3:green,ring*1:lime','鲜 香','鸡肉、姜黄汤、米粉、鸡蛋、炸葱酥、青柠','印尼每个地方都有自己版本的 soto，多达几十种。','c','黄姜鸡汤 印尼鸡汤 soto ayam'],
+['esteler','ID','印尼什锦冰','Es Teler','cup','avocado,-,mango,-','','甜 奶香','牛油果、椰肉、菠萝蜜、椰奶、炼乳、碎冰','1980 年代雅加达一位学生做来参加比赛，结果拿了冠军。','ch','印尼刨冰 什锦冰 es teler'],
+['ratatouille','FR','普罗旺斯炖菜','Ratatouille','curry','tomato,-,-,clay','ring*4:green,ring*4:purple,ring*3:yellow,leaf*2:herb','鲜 酸 香草','茄子、西葫芦、番茄、彩椒、洋葱、橄榄油','本来是农民的蔬菜大杂烩，后来因为一部老鼠动画电影出了名。','ch','炖菜 普罗旺斯炖菜 料理鼠王 ratatouille'],
+['croque','FR','法式火腿芝士三明治','Croque Monsieur','burger','bread,pink,cheese,-','','咸 奶香','吐司、火腿、格鲁耶尔奶酪、白酱','上面再加一个煎蛋，就变成了"Croque Madame"。','ch','法式三明治 火腿芝士三明治 croque monsieur'],
+['padron','ES','烤小青椒','Pimientos de Padrón','plate','-,-,-,clay','chili*8:green,sesame*8:white','咸 香','小青椒、橄榄油、粗海盐','俗话说"有的辣有的不辣"——每一盘都是轮盘赌。','ch','烤青椒 烤小青椒 padron peppers pimientos'],
+['bocadillo','ES','西班牙火腿三明治','Bocadillo de Jamón','roll','bread,pink,-,board','dot*4:tomato','咸 香','法棍、西班牙火腿、番茄、橄榄油','西班牙学生的标准午饭，便宜又管饱。','c','西班牙三明治 火腿三明治 bocadillo jamon'],
+
+['adobo','PH','菲式阿多波','Chicken Adobo','curry','brown,rice,-,plate','slice*4:chicken,cube*3:white,leaf*2:green','咸 酸 香','鸡肉、醋、酱油、蒜、月桂叶、黑胡椒','醋和酱油一起炖，放好几天都不坏，是菲律宾的"国民菜"。','ch','阿多波 阿斗包 adobo chicken adobo'],
+['sinigang','PH','菲律宾酸汤','Sinigang','bowl','clear,-,-,bowl','slice*3:pork,cube*3:tomato,leaf*4:green,ring*1:white','酸 鲜','猪肉或虾、罗望子、番茄、空心菜、萝卜','用罗望子煮出的酸汤，是下雨天的安慰。','ch','酸汤 菲律宾酸汤 sinigang'],
+['lumpia','PH','菲式炸春卷','Lumpia','sticks','crust,sauce,-,plate','','香 咸','春卷皮、猪肉末、胡萝卜、洋葱、甜辣酱','派对上一定有一大盘，而且永远不够吃。','ch','菲律宾春卷 炸春卷 lumpia lumpiang shanghai'],
+['pancit','PH','菲式炒面','Pancit Canton','pasta','noodle,-,-,plate','slice*3:carrot,leaf*3:green,shrimp*2:salmon,ring*1:lime','咸 鲜','面条或米粉、蔬菜、虾或鸡肉、酱油、卡拉曼西青柠','生日一定要吃，长长的面条象征长寿，来自福建移民。','ch','菲律宾炒面 pancit canton bihon'],
+['halohalo','PH','哈罗哈罗','Halo-Halo','cup','purple,-,mango,-','','甜 奶香','碎冰、紫薯冰淇淋、炼乳、椰果、红豆、焦糖布丁','名字的意思是"混一混"，吃之前要搅得乱七八糟。','c','哈罗哈罗 菲律宾刨冰 halo halo'],
+['lechon','PH','菲式烤猪','Lechon','fried','honey,-,-,plate','leaf*2:green','咸 香 烟熏','整只猪、香茅、蒜、慢火炭烤','重点是那层烤得像玻璃一样脆的猪皮。','','烤乳猪 烤猪 lechon'],
+
+['momo','NP','尼泊尔饺子','Momo','bao','dough,-,-,steamer','','鲜 辣 香','面皮、鸡肉或牛肉末、洋葱、姜蒜、番茄辣酱','悉尼很多区都有 momo 店，十个一份，便宜又饱。','c','莫莫 尼泊尔饺子 momo momos'],
+['dalbhat','NP','扁豆饭套餐','Dal Bhat','plate','rice,-,-,dark','cube*3:green,dot*4:curry,leaf*2:herb,ring*1:lemon','咸 香','米饭、扁豆汤、咖喱蔬菜、腌菜','尼泊尔人一天两顿，饭和汤通常可以免费续。','ch','扁豆饭 达八 dal bhat'],
+['thukpa','NP','藏式汤面','Thukpa','bowl','clear,noodle,-,bowlp','slice*3:chicken,leaf*3:green,cube*3:tomato,dot*3:chili','鲜 辣','面条、骨汤、鸡肉、蔬菜、姜、辣椒','从西藏传过来的汤面，山区冬天必备。','ch','藏面 汤面 thukpa'],
+['sekuwa','NP','尼泊尔烤串','Sekuwa','skewer','brown,green,-,plate','','辣 香 烟熏','羊肉或鸡肉、姜蒜、孜然、喜马拉雅香料','传统上用柴火烤，烟熏味特别重。','c','尼泊尔烤串 烤串 sekuwa'],
+['chatamari','NP','尼泊尔米饼','Chatamari','flat','dough,-,-,plate','egg*1:egg,cube*4:brown,leaf*3:green,dot*3:chili','咸 香','米浆、鸡蛋、肉末、洋葱、香料','加德满都纽瓦尔人的"披萨"。','ch','米饼 尼泊尔披萨 chatamari'],
+['chiya','NP','尼泊尔香料茶','Masala Chiya','mug','tea,-,-,-','','甜 奶香 香','红茶、牛奶、姜、豆蔻、肉桂、糖','一天至少三杯，路边茶摊永远是聊天的地方。','ch','香料茶 尼泊尔奶茶 chiya chai masala tea'],
+
+['meatpie','AU','澳洲肉派','Meat Pie','flat','crust,-,-,plate','dot*4:tomato','咸 香','酥皮、牛肉末、肉汁、番茄酱','看球赛必备，平均每个澳洲人每年要吃十几个。','c','肉派 澳洲肉派 meat pie pie'],
+['sizzle','AU','香肠面包','Sausage Sizzle','roll','bread,brown,-,-','ring*3:white,dot*4:tomato','咸 香 烟熏','白面包片、烤香肠、洋葱、番茄酱','Bunnings 门口和投票站的周末限定，几块钱一个，还能做慈善。','c','香肠面包 sausage sizzle snag bunnings democracy sausage'],
+['lamington','AU','莱明顿蛋糕','Lamington','slice','choc,cream,choc,plate','sesame*14:coconut','甜','海绵蛋糕、巧克力酱、椰丝','以昆士兰总督 Lamington 勋爵命名，据说他本人并不喜欢。','ch','莱明顿 椰丝蛋糕 lamington'],
+['avotoast','AU','牛油果吐司','Smashed Avo Toast','flat','bread,avocado,-,plate','egg*1:egg,dot*4:chili,sesame*6:dark','咸 酸 清淡','酸种面包、牛油果、菲达奶酪、水波蛋、柠檬','有人开玩笑说年轻人买不起房，是因为吃了太多牛油果吐司。','ch','牛油果吐司 avo toast smashed avo'],
+['fairybread','AU','仙女面包','Fairy Bread','flat','dough,-,-,plate','sesame*6:pink,sesame*6:mango,sesame*6:bowl,sesame*4:green','甜','白面包、黄油、彩色糖粒','澳洲小孩生日派对的标配，简单到不能再简单。','ch','仙女面包 彩虹面包 fairy bread'],
+['pavlova','AU','帕夫洛娃','Pavlova','flat','white,cream,-,plate','wedge*3:mango,dot*5:pink,leaf*2:herb','甜 酸','蛋白霜、鲜奶油、百香果、草莓、猕猴桃','澳洲和新西兰为"到底谁发明的"已经吵了快一百年。','','帕夫洛娃 蛋白霜蛋糕 pavlova pav'],
+
+// ---- 第四批：各国代表菜 ----
+['pekingduck','CN','北京烤鸭','Peking Duck','plate','-,-,-,plate','slice*8:crust,sheet*2:dough,stick*3:cucumber,dot*3:sauce','咸 香 甜','烤鸭、荷叶饼、甜面酱、葱丝、黄瓜条','讲究"片鸭"：一只鸭要片出一百多片，每片都带皮带肉。','','烤鸭 北京烤鸭 peking duck roast duck'],
+['hotpot','CN','火锅','Hot Pot','bowl','redsoup,-,-,dark','slice*3:beef,cube*3:tofu,leaf*3:green,dot*5:chili,stick*1:dough','麻 辣 鲜','红油锅底、肥牛、毛肚、豆腐、蔬菜、香油蘸碟','重庆火锅起源于码头工人，用便宜的牛杂煮一锅又辣又暖的汤。','','火锅 重庆火锅 四川火锅 hot pot hotpot'],
+['kungpao','CN','宫保鸡丁','Kung Pao Chicken','plate','-,-,-,plate','cube*8:chicken,pea*5:bean,dot*5:chili,leaf*2:green','麻 辣 甜 咸','鸡丁、花生、干辣椒、花椒、葱段、糖醋汁','以清朝四川总督丁宝桢的官衔"宫保"命名。','h','宫保鸡丁 宫爆鸡丁 kung pao chicken gong bao'],
+['hongshaorou','CN','红烧肉','Red-Braised Pork','curry','sauce,rice,-,bowlp','cube*7:brown,leaf*2:green,egg*1:egg','咸 甜 香','五花肉、冰糖、酱油、料酒、八角、姜','苏东坡爱吃，杭州的"东坡肉"就是它的一支。','h','红烧肉 东坡肉 braised pork hong shao rou'],
+['friedrice','CN','扬州炒饭','Yangzhou Fried Rice','plate','cheese,-,-,plate','shrimp*2:salmon,cube*4:pink,pea*4:green,cube*3:egg','咸 鲜 香','隔夜米饭、鸡蛋、虾仁、火腿、青豆、葱','秘诀是用隔夜饭，米粒才能粒粒分明、"金包银"。','ch','炒饭 扬州炒饭 蛋炒饭 fried rice yangzhou'],
+['charsiu','CN','叉烧饭','Char Siu Rice','plate','rice,-,-,plate','slice*5:tuna,leaf*3:green,egg*1:egg','甜 咸 香','蜜汁叉烧、米饭、菜心、叉烧酱','"叉烧"原意是用叉子叉着肉在火上烧。','c','叉烧 叉烧饭 烧腊 char siu bbq pork'],
+['hargow','CN','虾饺','Har Gow','bao','ricepaper,-,-,steamer','','鲜 清淡','澄粉水晶皮、鲜虾、笋丁、猪油','早茶"四大天王"之首，好虾饺的皮要薄到能看见里面的虾。','','虾饺 早茶 点心 饮茶 dim sum har gow yum cha'],
+['claypot','CN','煲仔饭','Claypot Rice','bowl','rice,-,-,clay','slice*4:tuna,slice*2:pink,egg*1:egg,leaf*3:green','咸 香 烟熏','米饭、腊肠、腊肉、菜心、酱油、砂锅','精华是砂锅底那层焦香的锅巴。','','煲仔饭 腊味饭 claypot rice'],
+['suancaiyu','CN','酸菜鱼','Pickled Fish','bowl','yellow,-,-,bowlp','slice*5:white,leaf*4:green,dot*5:chili,sesame*6:dark','酸 辣 鲜','鱼片、酸菜、泡椒、花椒、蒜','近十年最火的川菜之一，悉尼的川菜馆几乎都有。','','酸菜鱼 酸菜鱼片 pickled fish suan cai yu'],
+['shengjian','CN','生煎包','Shengjian Bao','bao','dough,-,-,dark','','鲜 咸 香','发面皮、猪肉馅、皮冻、芝麻、葱花','底部煎得焦脆，上面撒芝麻葱花，咬开会爆汁。','c','生煎 生煎包 shengjian bao pan fried bun'],
+
+['tempura','JP','天妇罗','Tempura','fried','yellow,-,-,kraft','leaf*2:green','鲜 香 清淡','虾、蔬菜、薄面衣、天汁、萝卜泥','由 16 世纪的葡萄牙传教士传入日本。','','天妇罗 天麸罗 tempura'],
+['sukiyaki','JP','寿喜烧','Sukiyaki','curry','sauce,-,-,dark','slice*5:beef,cube*3:tofu,leaf*3:green,stick*2:white,egg*1:egg','甜 咸 鲜','和牛薄片、豆腐、大葱、香菇、魔芋丝、生鸡蛋','牛肉要蘸生蛋液吃，是日本人过年聚会的大餐。','','寿喜烧 寿喜锅 sukiyaki'],
+['karaage','JP','日式炸鸡块','Karaage','fried','crust,-,-,plate','ring*1:lemon,leaf*2:green','咸 香','鸡腿肉、酱油、姜、蒜、土豆淀粉','便当和居酒屋的常客，挤一点柠檬是灵魂。','ch','唐扬 唐扬炸鸡 日式炸鸡 karaage'],
+['sashimi','JP','刺身','Sashimi','plate','-,-,-,board','slice*4:salmon,slice*3:tuna,leaf*2:green,pea*1:green','鲜 清淡','三文鱼、金枪鱼、鲷鱼、萝卜丝、山葵、酱油','只靠刀工和新鲜度，不做任何烹饪，是对食材最大的信任。','','刺身 生鱼片 sashimi'],
+['soba','JP','荞麦面','Soba','pasta','tea,-,-,board','leaf*3:green,sheet*1:nori,dot*3:green','咸 清淡','荞麦面、蘸汁、葱、海苔、山葵','跨年夜要吃"年越荞麦"，祈求长寿、斩断厄运。','ch','荞麦面 蕎麦 soba zaru soba'],
+['unadon','JP','鳗鱼饭','Unadon','bowl','rice,-,-,dark','slice*4:sauce,sesame*6:green','甜 咸 烟熏','烤鳗鱼、蒲烧酱汁、米饭、山椒粉','日本人会在盛夏的"土用丑日"吃鳗鱼补体力。','','鳗鱼饭 鳗鱼 unadon unagi'],
+
+['naengmyeon','KR','冷面','Naengmyeon','bowl','clear,tea,-,bowl','egg*1:egg,slice*3:cucumber,slice*2:beef,cube*2:white','酸 甜 清淡','荞麦冷面、冰牛肉汤、梨片、黄瓜、水煮蛋','汤里常浮着冰碴，面太长要用剪刀剪开吃。','','冷面 韩国冷面 naengmyeon'],
+['budaejjigae','KR','部队锅','Budae Jjigae','bowl','redsoup,noodle,-,dark','slice*3:pink,cube*3:tofu,sheet*1:cheese,leaf*2:green','辣 咸','午餐肉、香肠、泡面、泡菜、年糕、芝士片','朝鲜战争后，用美军基地流出的午餐肉和香肠做成。','ch','部队锅 部队火锅 budae jjigae army stew'],
+['samgyetang','KR','参鸡汤','Samgyetang','bowl','clear,-,-,dark','slice*2:chicken,pea*3:pink,leaf*3:green,cube*1:yellow','鲜 清淡','整只童子鸡、人参、糯米、红枣、蒜','韩国人反而在最热的三伏天喝它，"以热治热"。','','参鸡汤 人参鸡汤 samgyetang'],
+['jajangmyeon','KR','韩式炸酱面','Jajangmyeon','bowl','choc,noodle,-,bowl','cube*4:brown,slice*3:cucumber','咸 甜','粗面、黑豆酱、猪肉丁、洋葱、黄瓜丝','4 月 14 日"黑色情人节"，单身的人会一起吃炸酱面。','ch','炸酱面 韩式炸酱面 jajangmyeon jjajangmyeon'],
+['kimchi','KR','韩国泡菜','Kimchi','plate','-,-,-,plate','leaf*8:chili,slice*3:tomato,sesame*6:white','酸 辣','大白菜、辣椒粉、鱼露、虾酱、蒜、萝卜','入冬全家一起腌的"越冬泡菜"已列入联合国非物质文化遗产。','h','泡菜 辣白菜 kimchi kimchee'],
+['pajeon','KR','海鲜葱饼','Haemul Pajeon','flat','crust,-,-,plate','leaf*6:green,shrimp*3:salmon,dot*3:chili','咸 鲜 香','面糊、大葱、鱿鱼、虾、酱油蘸汁','下雨天就想吃葱饼配米酒，据说是因为煎饼的声音像雨声。','ch','葱饼 海鲜煎饼 pajeon haemul pajeon'],
+
+['chagio','VN','越南炸春卷','Chả Giò','sticks','crust,orange,-,plate','leaf*3:herb','香 咸','米纸、猪肉、虾、木耳、粉丝、芋头、鱼露汁','南方叫 chả giò，北方叫 nem rán，蘸酸甜鱼露吃。','ch','炸春卷 越南炸春卷 cha gio nem ran spring roll'],
+['bunrieu','VN','蟹汤米线','Bún Riêu','bowl','redsoup,white,-,bowl','cube*4:orange,cube*2:tofu,wedge*2:tomato,leaf*3:herb','鲜 酸','米线、田蟹膏、番茄、豆腐、虾酱、香草','汤面上漂着的蟹肉"云朵"是用捣碎的田蟹做的。','c','蟹汤米线 蟹汤粉 bun rieu'],
+['phoga','VN','鸡肉河粉','Phở Gà','bowl','clear,noodle,-,bowlp','slice*4:chicken,leaf*3:herb,ring*1:lime,dot*2:chili','鲜 清淡 香草','米粉、鸡肉、鸡汤、葱、香菜、青柠','河粉的"清淡版"，河内人早餐的另一个选择。','c','鸡肉河粉 鸡粉 pho ga chicken pho'],
+
+['tomkha','TH','椰汁鸡汤','Tom Kha Gai','bowl','coconut,-,-,bowl','slice*3:chicken,cube*3:white,leaf*3:herb,dot*3:chili,ring*1:lime','酸 奶香 香草','鸡肉、椰奶、南姜、香茅、青柠叶、草菇','冬阴功的"温柔姐妹"，椰奶把辣和酸都包了起来。','ch','椰汁鸡汤 椰奶鸡汤 tom kha gai'],
+['khaosoi','TH','泰北咖喱面','Khao Soi','bowl','curry,noodle,-,bowlp','wedge*3:crust,slice*2:chicken,ring*1:lime,leaf*2:herb,dot*2:chili','辣 奶香','鸡蛋面、咖喱椰奶汤、鸡腿、炸面、腌菜、红葱','清迈的招牌，一碗里有软面和脆面两种口感。','c','泰北咖喱面 清迈咖喱面 khao soi'],
+['khaopad','TH','泰式炒饭','Khao Pad','plate','yellow,-,-,plate','egg*1:egg,cube*4:pink,ring*2:cucumber,ring*1:lime,leaf*2:green','咸 香','米饭、鸡蛋、虾或鸡肉、鱼露、洋葱、青柠','泰国最基础的快餐，上桌一定附一片青柠和黄瓜。','ch','泰式炒饭 khao pad thai fried rice'],
+['panang','TH','帕能咖喱','Panang Curry','curry','orange,rice,-,bowlp','slice*4:beef,leaf*3:herb,dot*3:chili','甜 奶香 辣','帕能咖喱酱、浓椰奶、牛肉、青柠叶、花生','比红咖喱更浓稠，几乎不加水，花生香很明显。','ch','帕能 帕能咖喱 红咖喱 panang curry red curry'],
+
+['asamlaksa','MY','亚参叻沙','Asam Laksa','bowl','redsoup,white,-,bowl','slice*3:white,ring*1:purple,leaf*3:herb,slice*2:mango','酸 辣 鲜','粗米粉、鲭鱼酸汤、罗望子、黄瓜、洋葱、菠萝、虾膏','槟城版叻沙，不放椰奶，用鱼和罗望子煮成酸辣汤。','c','亚参叻沙 槟城叻沙 asam laksa penang laksa'],
+['kaya','MY','咖椰吐司','Kaya Toast','burger','bread,#c9b46a,yellow,-','','甜 奶香','烤吐司、咖椰酱、冷黄油、半熟蛋','标准吃法：配两颗半熟蛋和一杯咖啡乌，是南洋茶室的早餐。','ch','咖椰吐司 加椰吐司 kaya toast'],
+['rojak','MY','罗惹','Rojak','salad','-,-,-,clay','cube*4:mango,cube*3:cucumber,wedge*2:crust,sesame*8:bean,dot*3:choc','甜 酸 辣','水果、黄瓜、油条、豆卜、虾膏酱、花生碎','马来语"rojak"意思是"大杂烩"，也用来形容混杂的东西。','ch','罗惹 rojak'],
+['wantanmee','MY','云吞面','Wantan Mee','pasta','tea,-,-,plate','slice*3:tuna,leaf*3:green,dot*4:dough','咸 甜','细蛋面、黑酱油、叉烧、云吞、菜心','马来西亚版多是"干捞"，用黑酱油拌着吃。','c','云吞面 干捞云吞面 wantan mee wonton noodles'],
+
+['sateayam','ID','印尼鸡肉沙爹','Sate Ayam','skewer','brown,choc,-,plate','','甜 香 烟熏','鸡肉、甜酱油、花生酱、红葱、米糕','印尼沙爹多用甜酱油腌，比马来西亚版更甜更黑。','c','鸡肉沙爹 印尼沙爹 sate ayam satay'],
+['nasipadang','ID','巴东饭','Nasi Padang','plate','rice,-,-,green','cube*3:beef,egg*1:egg,leaf*3:green,dot*4:chili,slice*2:curry','辣 香 咸','米饭、仁当、咖喱鸡、炸鸡蛋、木薯叶、参巴','店家会把十几种菜一次摆满桌，吃哪盘付哪盘。','c','巴东饭 nasi padang'],
+['miegorengid','ID','印尼炒面','Mie Goreng','pasta','tea,-,-,plate','egg*1:egg,slice*3:green,shrimp*2:salmon,wedge*2:crust','甜 咸 辣','黄面、甜酱油、虾、蔬菜、煎蛋、炸葱酥','Indomie 方便面版本红遍全世界，悉尼超市里随处可见。','ch','印尼炒面 营多面 indomie mie goreng'],
+['sopbuntut','ID','印尼牛尾汤','Sop Buntut','bowl','clear,-,-,bowl','cube*3:beef,slice*2:carrot,cube*2:yellow,leaf*3:green,ring*1:lime','鲜 清淡 香','牛尾、胡萝卜、土豆、丁香、肉豆蔻、炸葱酥','慢炖几个小时直到牛尾骨肉分离，是雅加达的招牌汤。','','牛尾汤 sop buntut oxtail soup'],
+
+['sisig','PH','铁板猪杂','Sisig','curry','brown,-,-,dark','egg*1:egg,cube*5:crust,dot*3:chili,ring*1:lime','咸 酸 香','猪脸肉、猪耳、洋葱、辣椒、卡拉曼西、鸡蛋','安吉利斯市的发明，滋滋作响的铁板上桌，是下酒菜之王。','','铁板猪杂 sisig'],
+['karekare','PH','花生酱炖牛尾','Kare-Kare','curry','orange,rice,-,clay','cube*4:beef,slice*3:green,cube*2:purple','香 奶香 咸','牛尾、花生酱、茄子、豆角、虾酱','汤汁本身很淡，全靠旁边那碟咸虾酱提味。','','花生炖牛尾 kare kare'],
+['tapsilog','PH','菲式早餐','Tapsilog','plate','rice,-,-,plate','egg*1:egg,slice*4:beef,ring*2:tomato','咸 甜','腌牛肉、蒜香炒饭、煎蛋','名字是 tapa（牛肉）、sinangag（蒜饭）、itlog（蛋）的缩写。','ch','菲律宾早餐 tapsilog silog'],
+['tinola','PH','姜汁鸡汤','Tinola','bowl','clear,-,-,bowl','slice*3:chicken,cube*3:green,leaf*3:green','鲜 清淡','鸡肉、姜、青木瓜、辣椒叶、鱼露','菲律宾国父黎刹在小说里写过这道汤，是很多人的家的味道。','ch','姜汁鸡汤 tinola'],
+['lecheflan','PH','菲式焦糖布丁','Leche Flan','flat','honey,egg,-,plate','','甜 奶香','蛋黄、炼乳、淡奶、焦糖','比西班牙布丁更浓更甜，派对和节日一定有。','ch','焦糖布丁 菲律宾布丁 leche flan'],
+
+['thali','IN','塔利套餐','Thali','plate','-,-,-,#cfc9bd','pea*4:curry,cube*3:green,dot*5:orange,wedge*2:bread,cube*2:white','香 辣 咸','米饭、印度饼、扁豆汤、两三种咖喱、酸奶、腌菜、甜点','一个大托盘里放满小碗，酸甜苦辣咸一次吃全。','c','塔利 印度套餐 thali'],
+['paratha','IN','帕拉塔饼','Paratha','flat','bread,-,-,plate','sesame*10:crust,dot*3:white','香 奶香','全麦面团、酥油、土豆或萝卜馅','北印度家庭早餐，配一块黄油和一杯奶茶。','ch','帕拉塔 印度抛饼 paratha aloo paratha'],
+['roganjosh','IN','咖喱羊肉','Rogan Josh','curry','sauce,rice,-,clay','cube*5:beef,leaf*2:herb','辣 香','羊肉、克什米尔辣椒、酸奶、豆蔻、丁香','来自克什米尔，颜色很红，但其实不太辣。','h','咖喱羊肉 rogan josh lamb curry'],
+['daltadka','IN','印度扁豆汤','Dal Tadka','curry','yellow,rice,-,bowl','dot*4:chili,leaf*3:herb,sesame*6:brown','咸 香','黄扁豆、酥油、孜然、蒜、干辣椒、香菜','最后浇一勺热油爆香料（tadka），是印度家家户户的日常。','ch','扁豆汤 达尔 dal tadka dal'],
+['chai','IN','印度香料奶茶','Masala Chai','mug','tea,-,-,-','','甜 奶香 香','红茶、牛奶、姜、豆蔻、糖','火车站的小贩用一次性小陶杯装，喝完就把杯子摔掉。','ch','印度奶茶 香料奶茶 masala chai chai'],
+['gulabjamun','IN','古拉布球','Gulab Jamun','balls','brown,honey,-,bowl','','甜 奶香','奶粉面团、玫瑰糖浆、豆蔻','泡在玫瑰糖浆里的炸奶球，甜到让人倒吸一口气。','c','古拉布球 炸奶球 gulab jamun'],
+
+['chowmeinnp','NP','尼泊尔炒面','Chowmein','pasta','noodle,-,-,plate','slice*3:carrot,leaf*3:green,cube*3:chicken','咸 辣','面条、鸡肉、卷心菜、胡萝卜、酱油、辣椒','从中国和西藏传来，悉尼的 momo 店几乎都有。','c','尼泊尔炒面 炒面 chowmein chow mein'],
+['selroti','NP','米甜甜圈','Sel Roti','ring','crust,-,-,-','','甜 香','米粉、糖、酥油、香蕉','德赛节和提哈尔节必做，手工一圈圈挤进油锅。','ch','米甜甜圈 sel roti'],
+['jujudhau','NP','国王酸奶','Juju Dhau','flat','white,cream,-,clay','','甜 奶香','水牛奶、糖、陶罐','巴克塔普尔的特产，"juju"在纽瓦尔语里是"国王"。','','国王酸奶 酸奶 juju dhau'],
+['choila','NP','香辣烤肉','Choila','plate','-,-,-,plate','cube*7:brown,dot*5:chili,leaf*3:green,sesame*6:dark','辣 烟熏 香','烤水牛肉或鸡肉、芥末油、葫芦巴籽、辣椒、姜蒜','纽瓦尔人节庆宴席必上的凉拌烤肉，配米片吃。','','尼泊尔烤肉 choila'],
+
+['shishtawook','LB','黎巴嫩烤鸡串','Shish Tawook','skewer','chicken,white,-,plate','','香 酸 烟熏','鸡胸肉、酸奶、柠檬、蒜、红椒粉','配一大坨蒜酱 toum，悉尼黎巴嫩餐馆必点。','c','烤鸡串 shish tawook taouk'],
+['ful','LB','蚕豆泥','Ful Medames','dip','bean,olive,bread,plate','pea*5:brown,cube*3:tomato,leaf*2:herb','咸 香','蚕豆、橄榄油、柠檬、蒜、孜然','整个中东最古老的早餐之一，可以追溯到古埃及。','ch','蚕豆泥 ful foul medames'],
+['mujaddara','LB','扁豆米饭','Mujaddara','plate','bean,-,-,plate','wedge*5:crust,leaf*2:herb','咸 香','扁豆、米饭或碎小麦、焦糖洋葱、橄榄油','被叫作"穷人的大餐"，最好吃的是上面炸得焦香的洋葱。','ch','扁豆饭 mujaddara mujadara'],
+['labneh','LB','浓缩酸奶','Labneh','dip','white,olive,bread,plate','sesame*10:dark,leaf*2:herb','酸 奶香','酸奶、盐、橄榄油、扎塔尔','把酸奶挂在布袋里滤一夜，就成了能抹面包的"酸奶奶酪"。','ch','浓缩酸奶 酸奶奶酪 labneh labne'],
+['warakenab','LB','葡萄叶卷','Warak Enab','sticks','olive,-,-,plate','ring*2:lemon','酸 香草','葡萄叶、米饭、番茄、欧芹、薄荷、柠檬','卷得越细越见功力，全家围坐一起卷是节日的场景。','h','葡萄叶卷 warak enab'],
+
+['kofte','TR','土耳其肉丸','Köfte','fried','brown,-,-,plate','ring*2:white,slice*2:green,cube*2:tomato','香 咸 烟熏','牛羊肉末、洋葱、欧芹、孜然、面包糠','土耳其各地有几百种不同的肉丸做法。','ch','土耳其肉丸 kofte köfte'],
+['manti','TR','土耳其小饺子','Mantı','dip','white,sauce,-,plate','pea*8:dough,sesame*8:chili,leaf*2:herb','咸 酸 奶香','迷你饺子、牛肉末、蒜味酸奶、辣椒黄油、薄荷','好的 mantı 要小到一个勺子能装下 40 个。','h','土耳其饺子 manti mantı'],
+['balikekmek','TR','鱼面包','Balık Ekmek','roll','bread,tea,-,-','leaf*3:green,ring*2:purple,ring*1:lemon','咸 鲜','烤鲭鱼、面包、生菜、洋葱、柠檬','伊斯坦布尔加拉塔桥边，渔船上现烤现卖。','c','鱼面包 鲭鱼三明治 balik ekmek'],
+['kahvalti','TR','土耳其早餐','Kahvaltı','plate','-,-,-,plate','egg*1:egg,cube*3:white,dot*5:dark,wedge*2:tomato,ring*2:cucumber,dot*3:honey','咸 香','奶酪、橄榄、番茄、黄瓜、鸡蛋、蜂蜜、奶油、面包、红茶','几十个小碟摆满一桌，周末能吃上两三个小时。','','土耳其早餐 kahvalti breakfast'],
+['turkishcoffee','TR','土耳其咖啡','Turkish Coffee','mug','choc,-,-,-','','甜 香','极细咖啡粉、水、糖、铜壶','喝完把杯子倒扣，有人会用杯底的咖啡渣算命。','ch','土耳其咖啡 turkish coffee'],
+['kumpir','TR','土耳其烤土豆','Kumpir','curry','yellow,-,-,kraft','dot*4:green,cube*4:pink,pea*3:dark,cube*3:carrot,dot*3:white','咸 奶香','大烤土豆、黄油、奶酪、玉米、橄榄、香肠、各种酱','伊斯坦布尔奥塔科伊海边的名物，配料能堆成小山。','ch','烤土豆 kumpir'],
+
+['kalamari','GR','炸鱿鱼圈','Kalamarakia','plate','-,-,-,plate','ring*9:crust,ring*1:lemon,leaf*2:herb','咸 鲜','鱿鱼、面粉、橄榄油、柠檬、盐','希腊海边小酒馆的标配。','ch','炸鱿鱼 鱿鱼圈 calamari kalamarakia'],
+['kleftiko','GR','希腊烤羊肉','Kleftiko','curry','tea,-,-,kraft','cube*4:beef,cube*4:yellow,ring*1:lemon,leaf*2:herb','咸 香草','羊腿、土豆、柠檬、蒜、牛至','名字来自山贼"klephts"，他们把羊肉埋在地下烤，免得被人看见烟。','h','烤羊肉 希腊烤羊 kleftiko lamb'],
+['dolmades','GR','希腊葡萄叶卷','Dolmades','sticks','olive,white,-,plate','ring*2:lemon','酸 香草','葡萄叶、米饭、莳萝、薄荷、柠檬','和黎巴嫩葡萄叶卷是表亲，希腊版常配酸奶酱。','ch','葡萄叶卷 dolmades dolmas'],
+['avgolemono','GR','柠檬鸡蛋汤','Avgolemono','bowl','lemon,-,-,bowl','slice*2:chicken,dot*4:white,leaf*2:herb','酸 鲜 奶香','鸡汤、鸡蛋、柠檬汁、米饭或小面','鸡蛋和柠檬让汤像奶油一样顺滑，希腊人感冒时会喝。','ch','柠檬鸡蛋汤 avgolemono'],
+['saganaki','GR','希腊煎奶酪','Saganaki','plate','-,-,-,dark','sheet*2:cheese,ring*1:lemon','咸 奶香','硬奶酪、面粉、橄榄油、柠檬','有的餐厅会点火烧着上桌，大喊一声"Opa!"','','煎奶酪 saganaki'],
+
+['pesto','IT','青酱意面','Pasta al Pesto','pasta','green,-,-,plate','leaf*4:herb,sesame*8:cheese,pea*3:cream','香 香草 咸','意面、罗勒、松子、帕玛森、蒜、橄榄油','来自热那亚，"pesto"意思是"捣碎"，传统要用石臼。','ch','青酱 青酱意面 pesto genovese'],
+['ossobuco','IT','米兰烩牛膝','Ossobuco','curry','sauce,yellow,-,plate','ring*2:cream,cube*3:carrot,leaf*3:herb','鲜 咸','牛小腿横切片、白葡萄酒、高汤、番茄、柠檬皮香草碎','名字意思是"有洞的骨头"，骨髓是最珍贵的一口，配藏红花烩饭。','','烩牛膝 ossobuco osso buco'],
+['ravioli','IT','意式饺子','Ravioli','plate','-,-,-,plate','sheet*6:cheese,dot*6:tomato,leaf*3:herb','咸 奶香','鸡蛋面皮、里科塔奶酪、菠菜、番茄酱或黄油鼠尾草','方形、圆形、半月形都有，馅料各地不同。','h','意式饺子 意大利饺子 ravioli'],
+['cannoli','IT','西西里奶酪卷','Cannoli','sticks','crust,-,-,plate','pea*6:white,sesame*8:pistachio','甜 奶香','炸面卷、里科塔奶酪、糖、开心果、巧克力碎','因为电影《教父》里的一句台词，在全世界都出了名。','','奶酪卷 cannoli'],
+['espresso','IT','意式浓缩咖啡','Espresso','mug','choc,-,-,-','','香','深烘咖啡豆、高压热水','意大利人站在吧台前一口喝完，几秒钟就走。','c','浓缩咖啡 意式咖啡 espresso caffe'],
+['bruschetta','IT','番茄烤面包','Bruschetta','plate','-,-,-,board','sheet*4:bread,cube*6:tomato,leaf*3:herb','酸 香 香草','烤面包片、番茄、蒜、罗勒、橄榄油','原本是农民用来试新榨橄榄油的吃法。','ch','番茄面包 bruschetta'],
+['caprese','IT','卡布里沙拉','Caprese','plate','-,-,-,plate','ring*4:tomato,ring*4:white,leaf*4:herb','酸 奶香 清淡','番茄、马苏里拉、罗勒、橄榄油、盐','和玛格丽特披萨一样，红白绿就是意大利国旗。','ch','卡布里沙拉 番茄芝士沙拉 caprese'],
+
+['bourguignon','FR','红酒炖牛肉','Bœuf Bourguignon','curry','sauce,-,-,dark','cube*5:beef,cube*3:carrot,cube*2:white,leaf*2:herb','鲜 咸 香','牛肉、勃艮第红酒、培根、蘑菇、洋葱、胡萝卜','法国家庭的周日大菜，要炖上三四个小时。','h','红酒炖牛肉 勃艮第炖牛肉 boeuf bourguignon'],
+['confit','FR','油封鸭','Confit de Canard','plate','-,-,-,plate','wedge*2:crust,cube*5:yellow,leaf*3:green','咸 香','鸭腿、鸭油、盐、百里香、大蒜','把鸭腿泡在自己的油里慢煮几小时，原本是保存肉的方法。','','油封鸭 鸭腿 duck confit confit de canard'],
+['macaron','FR','马卡龙','Macaron','burger','pink,cream,-,-','','甜','杏仁粉、蛋白、糖、奶油夹心','表面要光滑、底部要有一圈"裙边"，才算成功。','','马卡龙 macaron macarons'],
+['escargot','FR','法式焗蜗牛','Escargots','balls','tea,green,-,dark','','香 咸','蜗牛、黄油、蒜、欧芹','法国人每年要吃掉上万吨蜗牛。','','蜗牛 焗蜗牛 escargot escargots'],
+['steakfrites','FR','牛排薯条','Steak Frites','plate','-,-,-,plate','wedge*2:sauce,stick*6:yellow,leaf*2:green','咸 香','牛排、炸薯条、黄油或胡椒酱','巴黎小酒馆最常见的套餐，比利时人也说是他们的。','','牛排薯条 steak frites'],
+['bouillabaisse','FR','马赛鱼汤','Bouillabaisse','bowl','orange,-,-,bowlp','shrimp*3:salmon,slice*3:white,slice*2:dark,leaf*2:herb,wedge*1:bread','鲜 香','多种地中海鱼、番茄、藏红花、茴香、蒜泥蛋黄酱面包','原本是马赛渔民用卖不掉的杂鱼煮的，如今成了昂贵大菜。','','马赛鱼汤 bouillabaisse'],
+
+['jamon','ES','伊比利亚火腿','Jamón Ibérico','plate','-,-,-,board','slice*8:tuna,wedge*2:bread','咸 香','伊比利亚黑猪后腿、盐、几年的风干时间','最好的是吃橡果长大的黑猪，要风干三年以上。','','西班牙火腿 伊比利亚火腿 火腿 jamon iberico serrano'],
+['pulpo','ES','加利西亚章鱼','Pulpo a la Gallega','plate','-,-,-,board','ring*8:pink,sesame*10:chili,cube*4:yellow','鲜 咸','章鱼、土豆、橄榄油、烟熏红椒粉、粗盐','传统上装在木盘里，用牙签戳着吃。','','章鱼 加利西亚章鱼 pulpo a la gallega'],
+['cremacatalana','ES','加泰罗尼亚焦糖奶冻','Crema Catalana','flat','honey,egg,-,clay','','甜 奶香','牛奶、蛋黄、柠檬皮、肉桂、焦糖','和法式焦糖布丁很像，但用牛奶不用奶油，带柠檬和肉桂香。','ch','焦糖奶冻 crema catalana'],
+['pantomate','ES','番茄面包','Pan con Tomate','plate','-,-,-,board','sheet*3:bread,dot*6:tomato,slice*2:tuna','酸 咸 清淡','面包、熟番茄、蒜、橄榄油、盐','把番茄直接在烤面包上擦碎，加泰罗尼亚人每天都吃。','ch','番茄面包 pan con tomate pa amb tomaquet'],
+['fabada','ES','阿斯图里亚斯豆子炖','Fabada Asturiana','curry','cream,-,-,clay','pea*8:white,slice*3:sauce,slice*2:dark','咸 香 烟熏','大白豆、西班牙辣香肠、血肠、五花肉、藏红花','北部山区的冬日大菜，一碗下去能扛一整天。','h','豆子炖 fabada asturiana'],
+['sangria','ES','桑格利亚','Sangría','cup','sauce,-,mango,-','','甜 酸','红酒、水果、橙汁、糖、气泡水','当地人自己其实更常喝 tinto de verano，桑格利亚多半是招待客人的。','','桑格利亚 水果酒 sangria'],
+
+['tamales','MX','塔玛莱','Tamales','roll','corn,sauce,-,kraft','','咸 香','玉米面团、猪肉或鸡肉、辣椒酱、玉米叶','用玉米叶包着蒸，阿兹特克人几千年前就在吃。','h','塔玛莱 玉米粽 tamales tamal'],
+['mole','MX','莫雷酱鸡','Mole Poblano','curry','choc,rice,-,clay','slice*3:chicken,sesame*10:white','甜 辣 香','鸡肉、多种干辣椒、巧克力、坚果、香料','一锅莫雷酱可以用到二三十种原料，要熬上一整天。','','莫雷 莫雷酱 mole poblano'],
+['chilaquiles','MX','辣酱玉米片','Chilaquiles','curry','redsoup,-,-,plate','wedge*6:corn,egg*1:egg,dot*4:white,leaf*2:herb','辣 咸','炸玉米片、红或绿莎莎酱、煎蛋、奶酪、酸奶油','墨西哥人宿醉后的早餐首选，用前一天剩的玉米饼做。','ch','辣酱玉米片 chilaquiles'],
+['birria','MX','比利亚炖肉塔可','Birria Tacos','taco','crust,sauce,-,-','leaf*3:herb,ring*1:lime,ring*2:white','辣 鲜 香','慢炖牛肉或羊肉、辣椒、香料、玉米饼、蘸汤','把塔可蘸着炖肉的汤吃，这几年在悉尼也火了起来。','','比利亚 birria quesabirria'],
+['tresleches','MX','三奶蛋糕','Tres Leches','slice','cream,white,cream,plate','','甜 奶香','海绵蛋糕、炼乳、淡奶、鲜奶油','整个蛋糕泡在三种奶里，湿润却不会塌。','','三奶蛋糕 tres leches'],
+['chilesnogada','MX','核桃酱酿辣椒','Chiles en Nogada','plate','-,-,-,plate','chili*2:green,pea*3:white,dot*8:tomato,leaf*3:herb','甜 咸 奶香','波布拉诺辣椒、肉馅、核桃奶油酱、石榴籽、欧芹','绿白红三色对应墨西哥国旗，独立日前后才吃得到。','','核桃酱辣椒 chiles en nogada'],
+
+['hsp','AU','清真肉块薯条','Halal Snack Pack','fried','cheese,-,-,#cfc9bd','slice*5:beef,dot*6:white,dot*4:chili,dot*3:sauce','咸 辣 奶香','薯条、旋转烤肉、芝士、蒜蛋黄酱、辣酱、烧烤酱','悉尼和墨尔本的深夜神物，三种酱被叫作"holy trinity"。','c','清真快餐 snack pack hsp halal snack pack'],
+['vegemite','AU','维吉麦吐司','Vegemite Toast','flat','bread,choc,-,plate','dot*4:cheese','咸 鲜','吐司、黄油、维吉麦酱','要薄薄抹一层，抹得像黄油一样厚的人一定会被吓到。','ch','维吉麦 vegemite toast'],
+['fishchips','AU','炸鱼薯条','Fish and Chips','fried','crust,-,-,kraft','stick*5:yellow,ring*1:lemon','咸 香','炸鱼、薯条、柠檬、塔塔酱','在海边买一份坐沙滩上吃，小心海鸥来抢。','c','炸鱼薯条 fish and chips'],
+['timtam','AU','Tim Tam','Tim Tam','slice','choc,brown,choc,plate','','甜','巧克力饼干、巧克力奶油夹心、巧克力外衣','"Tim Tam Slam"：咬掉两头当吸管喝热饮，饼干会瞬间化掉。','c','timtam tim tam 巧克力饼干'],
+['anzac','AU','澳新军团饼干','ANZAC Biscuits','balls','crust,-,-,plate','sesame*8:sesame','甜 香','燕麦、椰丝、金色糖浆、黄油','一战时寄给前线士兵的饼干，不放蛋，能保存很久。','ch','澳新饼干 anzac biscuits'],
+['flatwhite','AU','馥芮白','Flat White','mug','tea,-,-,-','','奶香','浓缩咖啡、细腻奶泡','澳洲和新西兰都说是自己发明的，悉尼人每天离不开它。','ch','馥芮白 澳白 flat white'],
+['parmi','AU','帕米鸡排','Chicken Parmi','plate','-,-,-,plate','sheet*2:crust,dot*4:tomato,dot*4:cheese,stick*5:yellow,leaf*2:green','咸 奶香','炸鸡排、番茄酱、火腿、融化奶酪、薯条、沙拉','澳洲酒吧的国民菜，叫 parmi 还是 parma 能吵上半天。','','帕米鸡排 parmi parma chicken parmigiana'],
+
+// ---- 饮料 ----
+['hkmilktea','CN','港式奶茶','Hong Kong Milk Tea','mug','tea,-,-,-','','奶香 香','红茶、淡奶、糖','用布袋反复冲茶，袋子被染成褐色像丝袜，所以又叫"丝袜奶茶"。','c','港式奶茶 丝袜奶茶 hk milk tea'],
+['doujiang','CN','豆浆','Soy Milk','cup','#f3ead2,-,-,-','','甜 清淡','黄豆、水、糖','中国人喝了两千多年，配油条是最经典的早餐组合。','ch','豆浆 soy milk doujiang'],
+['matchadrink','JP','抹茶','Matcha','mug','green,-,-,-','','香 清淡','抹茶粉、热水、茶筅','茶道里要用竹茶筅打出细密泡沫，先吃一口和果子再喝。','ch','抹茶 抹茶拿铁 matcha'],
+['sikhye','KR','甜米露','Sikhye','cup','#efe6cf,-,-,-','','甜 清淡','米饭、麦芽、糖','韩国汗蒸房的标配饮料，杯底沉着一层软软的米粒。','ch','甜米露 食醯 sikhye'],
+['nuocmia','VN','甘蔗汁','Nước Mía','cup','#d9e3a8,-,lime,-','','甜 清淡','现榨甘蔗、金桔、冰','街边小车现榨，加一颗金桔，十几秒就是一杯。','c','甘蔗汁 甘蔗水 nuoc mia sugarcane juice'],
+['milodino','MY','美禄恐龙','Milo Dinosaur','cup','choc,-,cream,-','','甜 奶香','冰美禄、再堆一大勺美禄粉','嘛嘛档的经典，上面的美禄粉堆得像座小山。','c','美禄恐龙 美禄 milo dinosaur'],
+['wedangjahe','ID','印尼姜茶','Wedang Jahe','mug','honey,-,-,-','','甜 香','老姜、椰糖、香茅、肉桂','爪哇人晚上喝的暖身茶，"wedang"就是热饮的意思。','ch','姜茶 印尼姜茶 wedang jahe'],
+['calamansi','PH','卡拉曼西汁','Calamansi Juice','cup','lemon,-,green,-','','酸 甜','卡拉曼西小青柠、糖、冰','菲律宾家家常备的小青柠，挤一杯就是最家常的饮料。','ch','卡拉曼西 青柠汁 calamansi juice'],
+['limonana','LB','薄荷柠檬水','Lemonade with Mint','cup','lime,-,green,-','','酸 甜 香草','柠檬、新鲜薄荷、糖、冰','黎巴嫩餐馆里配烤肉最解腻的一杯。','ch','薄荷柠檬水 柠檬薄荷 lemonade mint'],
+['cay','TR','土耳其红茶','Çay','mug','sauce,-,-,-','','香','红茶、方糖、郁金香形小玻璃杯','土耳其人均喝茶量世界第一，一天十几杯很正常。','ch','土耳其红茶 土耳其茶 cay çay turkish tea'],
+['ayran','TR','艾兰酸奶','Ayran','cup','white,-,-,-','','酸 咸','酸奶、水、盐','咸味酸奶饮料，是吃烤肉卷时的标准搭配。','ch','艾兰 咸酸奶 ayran'],
+['frappe','GR','希腊冰咖啡','Greek Frappé','cup','tea,-,green,-','','甜 奶香','速溶咖啡、糖、水、冰、牛奶','1957 年在一个展会上被意外发明——有人用摇杯摇了速溶咖啡。','ch','希腊冰咖啡 frappe frappé'],
+['cafeaulait','FR','欧蕾咖啡','Café au Lait','mug','tea,-,-,-','','奶香','咖啡、热牛奶、大碗','法国人早餐用碗喝，方便把可颂泡进去。','ch','欧蕾 咖啡欧蕾 cafe au lait'],
+['chocolatecaliente','ES','西班牙热巧克力','Chocolate Caliente','mug','choc,-,-,-','','甜 奶香','浓巧克力、牛奶、玉米淀粉','浓稠得像布丁，专门用来蘸吉事果。','ch','热巧克力 chocolate caliente hot chocolate'],
+['jamaica','MX','洛神花水','Agua de Jamaica','cup','#b8485a,-,lime,-','','酸 甜','洛神花、糖、水、冰','墨西哥"agua fresca"三大经典口味之一，颜色像红宝石。','ch','洛神花水 agua de jamaica hibiscus'],
+];
+
+// 每个国家按代表程度排序；"|" 后面是饮料
+const ORDER={
+ CN:'pekingduck hotpot mapo xlb jiaozi kungpao lanzhou hongshaorou friedrice hargow charsiu dandan jianbing roujiamo malatang suancaiyu claypot shengjian tomatoegg congyou | hkmilktea doujiang',
+ JP:'sushi ramen tempura sashimi sukiyaki udon onigiri soba takoyaki okonomiyaki gyudon karaage katsucurry unadon gyoza dorayaki | matchadrink',
+ KR:'kimchi bibimbap bulgogi samgyeopsal kfc tteokbokki kimchijjigae naengmyeon samgyetang budaejjigae jajangmyeon kimbap japchae pajeon ramyeon hotteok | sikhye',
+ VN:'pho banhmi goicuon bunbohue bunthitnuong comtam chagio banhxeo bunrieu banhcuon phoga che | caphe nuocmia',
+ TH:'padthai tomyum greencurry somtam massaman krapow mangorice khaosoi tomkha panang khaopad boatnoodle mooping | thaitea',
+ MY:'nasilemak laksa roticanai satay ckt hainan asamlaksa bakkutteh meegoreng kaya wantanmee rojak cendol | tehtarik milodino',
+ ID:'nasigoreng rendang sateayam gadogado nasipadang bakso miegorengid soto tempeh sopbuntut martabak esteler | wedangjahe',
+ PH:'adobo lechon sinigang sisig karekare pancit lumpia tapsilog tinola halohalo lecheflan | calamansi',
+ IN:'butterchicken biryani dosa thali samosa chana naan tandoori palakpaneer roganjosh daltadka paratha panipuri gulabjamun | chai lassi',
+ NP:'momo dalbhat thukpa chowmeinnp sekuwa choila selroti chatamari jujudhau | chiya',
+ LB:'hummus shawarma falafel tabbouleh manoushe kibbeh fattoush babaghanoush shishtawook kafta ful labneh warakenab mujaddara knafeh | limonana',
+ TR:'doner kofte baklava lahmacun manti pide iskender menemen mercimek kahvalti simit gozleme balikekmek kumpir lokum | turkishcoffee cay ayran',
+ GR:'moussaka souvlaki gyros horiatiki spanakopita tzatziki dolmades kalamari pastitsio avgolemono kleftiko saganaki gemista loukoumades galaktoboureko | frappe',
+ IT:'margherita carbonara lasagna risotto tiramisu gelato bolognese pesto ossobuco ravioli caprese bruschetta arancini cannoli focaccia aglio | espresso',
+ FR:'croissant bourguignon crepe onionsoup ratatouille confit escargot macaron quiche cremebrulee steakfrites bouillabaisse croque jambonbeurre | cafeaulait',
+ ES:'paella jamon tortilla churros gazpacho bravas pulpo croquetas gambas pantomate fabada cremacatalana padron bocadillo | chocolatecaliente sangria',
+ MX:'tacos mole tamales guacamole enchiladas pozole chilaquiles burrito quesadilla elote birria chilesnogada tresleches nachos | horchata jamaica',
+ AU:'meatpie sizzle pavlova lamington fishchips vegemite timtam hsp parmi anzac avotoast fairybread | flatwhite',
+};
+const RANK={},DRINKS=new Set();
+for(const c in ORDER){const[f,d='']=ORDER[c].split('|');f.trim().split(/\s+/).forEach((id,i)=>RANK[id]=i);d.trim().split(/\s+/).filter(Boolean).forEach((id,i)=>{RANK[id]=i;DRINKS.add(id)})}
+const DISHES=RAW.map(r=>({id:r[0],c:r[1],zh:r[2],en:r[3],tpl:r[4],cols:r[5],tops:r[6],fl:r[7].split(' '),ing:r[8],fact:r[9],cheap:r[10].includes('c'),home:r[10].includes('h'),alias:r[11]}));
+DISHES.forEach(d=>d.drink=DRINKS.has(d.id));
+DISHES.sort((a,b)=>(RANK[a.id]??999)-(RANK[b.id]??999));
+const DMAP=Object.fromEntries(DISHES.map(d=>[d.id,d]));
+
+// Burwood 附近推荐：[店名, 评分, 评论数, 地址, 对应菜品 id, 备注]（Google Maps 评分，查询于 SHOPS_DATE）
+const SHOPS_DATE='2026-10-30';
+const SHOPS={
+ CN:[['Daniel Hotpot 大牛老火锅',4.9,1431,'242 Burwood Rd','hotpot','鲜切牛肉自助火锅'],
+     ['My Aunt’s Handmade Noodles 胖姨儿手工拉面',4.8,1209,'226 Burwood Rd','','油泼 biang biang 面，面可以免费续'],
+     ['巴蜀小面 Yummy Noodle King',4.8,414,'181C Burwood Rd','dandan','川味小面'],
+     ['Wonder Skewers',4.7,829,'177 Burwood Rd','','炭烤羊肉串、五花肉串'],
+     ['No.1 Malatang',4.7,682,'121-123 Burwood Rd','malatang','开到凌晨 2 点'],
+     ['Chungking Hotpot',4.7,355,'248 Burwood Rd','hotpot',''],
+     ['Six Po Hot Pot',4.6,1132,'146 Burwood Rd','hotpot','川味串串火锅'],
+     ['1912 Dumpling Bar 小籠館',4.6,642,'31 Belmore St','xlb jiaozi',''],
+     ['Traditional Cantonese Taste',4.4,742,'101 Burwood Rd','charsiu claypot','粤菜'],
+     ['Sydney Dumpling King',4.2,829,'183E Burwood Rd','jiaozi',''],
+     ['Taste of Shanghai',4.0,990,'Westfield Burwood','xlb shengjian','上海菜和点心'],
+     ['Royal Treasure Seafood',3.5,1435,'31 Belmore St, Level 2','hargow','Burwood 的早茶评分都偏低，这家评论最多']],
+ JP:[['Kanae Japanese Restaurant',4.9,171,'420 Burwood Rd','sushi sashimi','只做晚餐'],
+     ['Pepper Lunch',4.5,130,'163 Burwood Rd','','铁板饭'],
+     ['Kajiken 歌志軒油そば',4.4,108,'137 Burwood Rd','','油拌面专门店'],
+     ['Tomodachi',4.3,388,'78-82 Burwood Rd','','Time Out 推荐和牛三明治']],
+ KR:[['2135 Vibe',4.8,1752,'29-31 Morwick St','','开到凌晨 2 点'],
+     ['Gogido Park Bong Sook',4.8,341,'173 Burwood Rd','samgyeopsal bulgogi','韩式烤肉']],
+ VN:[['Pho Hanoi 1979',4.5,1389,'128 Burwood Rd','pho','北越做法'],
+     ['7 Am Banh Mi & Coffee House',4.8,234,'50A Burwood Rd','banhmi caphe',''],
+     ['Alo Ban',4.6,272,'27 The Boulevarde, Strathfield','',''],
+     ['Ha Thanh',4.6,145,'4 Unity Pl','','']],
+ TH:[['Doodee King',4.5,1070,'35A Burwood Rd','somtam','Time Out 推荐青木瓜沙拉、空心菜炒五花'],
+     ['Isan Tum Zaap',4.6,154,'Burwood 夜市 9 号摊位','somtam','下午 4 点才开']],
+ MY:[['北馬咖喱面 Curry Mee',4.7,410,'131 Parramatta Rd','laksa','开到凌晨 1 点'],
+     ['Ho Jiak Strathfield',4.2,906,'Strathfield Plaza 美食广场','','']],
+ ID:[['D’Penyetz & D’Cendol',4.5,685,'183C Burwood Rd','cendol','清真'],
+     ['Geprek in Sydney',4.5,425,'Burwood Chinatown 二楼','','印尼炸鸡']],
+ NP:[['Maicha',4.7,1061,'65 Burwood Rd','momo',''],
+     ['The Momos Hub',4.4,217,'18 George St','momo','']],
+ IN:[['The Taste of Village',4.5,829,'3 George St','','']],
+ LB:[['Jbeil Cuisine Enfield',4.4,485,'12 Coronation Pde, Enfield','','开车约 5 分钟'],
+     ['Massaya',4.1,531,'608 Liverpool Rd, Strathfield','falafel hummus','']],
+ TR:[['Sahara By The Park',4.3,1526,'Westfield Burwood 地面层','kahvalti pide','土耳其早餐很受欢迎']],
+ GR:[['Zeus Street Greek Concord',4.7,461,'45 Majors Bay Rd, Concord','gyros souvlaki','Burwood 本地没有，这家最近']],
+ IT:[['Pane e Vino Trattoria',4.7,851,'21 The Strand, Croydon','','在下一站 Croydon']],
+ MX:[['Mira La Vida Mexicana',4.9,196,'395 Burwood Rd, Belmore','tacos','往南要走一段'],
+     ['Taco Street North Strathfield',4.6,355,'165 Concord Rd','tacos','']],
+};
+// 每道菜的推荐店：id: [店名, 评分, 评论数, 地址, 备注]（Google Maps，查询于 SHOPS_DATE；Burwood 附近评分不够好时，换成坐火车方便的店）
+const PICKS={
+ hotpot:["Daniel Hotpot 大牛老火锅", 4.9, 1431, "242 Burwood Rd", ""],
+ mapo:["渝人码头 Chungking Szechuan Cuisine", 4.4, 1263, "91 Burwood Rd", "川菜馆"],
+ xlb:["1912 Dumpling Bar 小籠館", 4.6, 642, "31 Belmore St", ""],
+ jiaozi:["Sydney Dumpling King", 4.2, 829, "183E Burwood Rd", ""],
+ kungpao:["Taikoo Li Taste of Sichuan 太古里川小馆", 4.4, 790, "150 Burwood Rd", ""],
+ lanzhou:["Lanzhou Beef Noodles - Jinweide Halal", 4.6, 475, "258-264 Burwood Rd", ""],
+ hongshaorou:["The Grand Shanghai", 4.5, 103, "21/23 Belmore St", "上海菜"],
+ friedrice:["Traditional Cantonese Taste", 4.4, 742, "101 Burwood Rd", ""],
+ charsiu:["Traditional Cantonese Taste", 4.4, 742, "101 Burwood Rd", ""],
+ dandan:["巴蜀小面 Yummy Noodle King", 4.8, 414, "181C Burwood Rd", ""],
+ jianbing:["Da Jian Chen", 4.2, 353, "Burwood Chinatown", ""],
+ roujiamo:["Cheng’s Xi’an Traditional Foods", 4.5, 221, "258 Burwood Rd", ""],
+ malatang:["No.1 Malatang", 4.7, 682, "121-123 Burwood Rd", "开到凌晨 2 点"],
+ suancaiyu:["张记木桶鱼 Fish Barrel", 4.7, 1050, "39 Belmore St", ""],
+ claypot:["鱼火砂锅 Fish & Claypot", 4.8, 116, "Unity Pl", ""],
+ shengjian:["New Shanghai Ashfield", 4.4, 2683, "273 Liverpool Rd, Ashfield", "Burwood 本地没有好的生煎；Ashfield 坐火车 1 站"],
+ tomatoegg:["好滋味 Authentic Chinese Cuisine", 4.5, 106, "258 Burwood Rd", "家常菜馆；自己做也很简单"],
+ congyou:["The Grand Shanghai", 4.5, 103, "21/23 Belmore St", "上海菜，去之前确认菜单"],
+ hkmilktea:["Kowloon Cafe 九龍冰室", 4.2, 838, "27 Belmore St", ""],
+ sushi:["Kanae Japanese Restaurant", 4.9, 171, "420 Burwood Rd", "只做晚餐"],
+ sashimi:["Kanae Japanese Restaurant", 4.9, 171, "420 Burwood Rd", "只做晚餐"],
+ ramen:["Tenkomori Ramen", 4.3, 298, "Westfield Burwood 美食广场", ""],
+ sukiyaki:["Moyashi Japanese Hotpot", 4.3, 685, "Burwood Chinatown 一楼", "日式火锅"],
+ takoyaki:["Yatai Express", 4.5, 33, "Westfield Burwood（Coles 旁）", "评论不多"],
+ onigiri:["Yatai Express", 4.5, 33, "Westfield Burwood（Coles 旁）", "评论不多；便利店也有"],
+ pekingduck:["Fortune Village Chinese Restaurant", 4.6, 1015, "209 Clarence St, Sydney", "Burwood 没有专门的烤鸭店；Town Hall 站"],
+ hargow:["Diamond Territory 御宴", 4.3, 120, "405-411 Sussex St, Haymarket", "Burwood 早茶评分都在 4.0 以下；Town Hall 站"],
+ gyudon:["Pepper Lunch", 4.5, 130, "163 Burwood Rd", "铁板牛肉饭，最接近牛丼"],
+ katsucurry:["Katsu Haki", 4.4, 1039, "505 George St, Sydney", "Town Hall 站"],
+ unadon:["UMAYA World Square", 4.4, 1162, "99 Liverpool St, Sydney", "Museum / Town Hall 站"],
+ gyoza:["Tomodachi", 4.3, 388, "78-82 Burwood Rd", ""],
+ karaage:["Tomodachi", 4.3, 388, "78-82 Burwood Rd", ""],
+ matchadrink:["Pillar", 4.7, 257, "1 Unity Pl", "咖啡馆，点抹茶拿铁"],
+ dorayaki:["Fujimi Dorayaki", 3.8, 112, "501 George St, Sydney", "铜锣烧专门店，评分一般；Town Hall 站"],
+ udon:["Menya Chinatown", 4.4, 709, "8 Quay St, Haymarket", "Central 站"],
+ tempura:["Daruma", 4.6, 872, "8 Quay St, Haymarket", "日式居酒屋，去之前确认菜单；Central 站"],
+ okonomiyaki:["Daruma", 4.6, 872, "8 Quay St, Haymarket", "Central 站"],
+ soba:["Tomo Tomo Sydney", 4.9, 65, "265 Castlereagh St, Sydney", "荞麦面在悉尼少见，去之前确认菜单"],
+ kimchi:["Biwon Strathfield", 4.7, 2652, "42 The Boulevarde, Strathfield", "小菜就有泡菜；Strathfield 站旁"],
+ bibimbap:["Biwon Strathfield", 4.7, 2652, "42 The Boulevarde, Strathfield", "Strathfield 站旁"],
+ bulgogi:["Gogido Park Bong Sook", 4.8, 341, "173 Burwood Rd", "韩式烤肉"],
+ samgyeopsal:["Gogido Park Bong Sook", 4.8, 341, "173 Burwood Rd", "韩式烤肉"],
+ kfc:["2135 Vibe", 4.8, 1752, "29-31 Morwick St, Strathfield", "韩式酒馆，开到凌晨 2 点"],
+ tteokbokki:["Seoul&Cook", 4.7, 33, "Westfield Burwood", "评论不多"],
+ kimchijjigae:["Myeongdong", 4.3, 2868, "1 George St, North Strathfield", ""],
+ naengmyeon:["HAMJI PARK", 4.6, 510, "29 The Boulevarde, Strathfield", ""],
+ samgyetang:["Myeongdong", 4.3, 2868, "1 George St, North Strathfield", ""],
+ budaejjigae:["Jo Ja Ryong", 4.5, 982, "34 Churchill Ave, Strathfield", ""],
+ jajangmyeon:["Biwon Strathfield", 4.7, 2652, "42 The Boulevarde, Strathfield", "去之前确认菜单"],
+ kimbap:["Seoul&Cook", 4.7, 33, "Westfield Burwood", "评论不多"],
+ japchae:["Biwon Strathfield", 4.7, 2652, "42 The Boulevarde, Strathfield", ""],
+ pajeon:["Don Don Strathfield", 4.5, 852, "39 The Boulevarde, Strathfield", ""],
+ ramyeon:["Late Night Table", 4.3, 991, "5 George St, North Strathfield", ""],
+ hotteok:["Late Night Table", 4.3, 991, "5 George St, North Strathfield", "去之前确认菜单"],
+ pho:["Pho Hanoi 1979", 4.5, 1389, "128 Burwood Rd", "北越做法"],
+ phoga:["Pho Hanoi 1979", 4.5, 1389, "128 Burwood Rd", ""],
+ banhmi:["7 Am Banh Mi & Coffee House", 4.8, 234, "50A Burwood Rd", ""],
+ caphe:["7 Am Banh Mi & Coffee House", 4.8, 234, "50A Burwood Rd", ""],
+ banhxeo:["Ha Thanh", 4.6, 145, "4 Unity Pl", ""],
+ comtam:["Ha Thanh", 4.6, 145, "4 Unity Pl", ""],
+ bunrieu:["Ha Thanh", 4.6, 145, "4 Unity Pl", ""],
+ chagio:["Ha Thanh", 4.6, 145, "4 Unity Pl", ""],
+ bunthitnuong:["Pho Vien", 4.6, 95, "258 Burwood Rd", ""],
+ goicuon:["Pho Vien", 4.6, 95, "258 Burwood Rd", ""],
+ banhcuon:["Bánh Cuốn Bà Oanh Campsie", 4.4, 211, "279 Beamish St, Campsie", "粉卷专门店；坐 Burwood Rd 往南的公交可到"],
+ che:["Chè & Drinks MAY", 4.8, 104, "230 Cabramatta Rd W, Cabramatta", "甜品专门店；T2 线直达 Cabramatta 站"],
+ nuocmia:["iJuice Sugarcane Greenacre", 4.3, 282, "192 Waterloo Rd, Greenacre", "甘蔗汁专门店，开车更方便"],
+ sikhye:["Komart", 4.2, 1592, "24 George St, North Strathfield", "韩国超市，买瓶装的"],
+ padthai:["Doodee King", 4.5, 1070, "35A Burwood Rd", ""],
+ tomyum:["Doodee King", 4.5, 1070, "35A Burwood Rd", ""],
+ greencurry:["Doodee King", 4.5, 1070, "35A Burwood Rd", ""],
+ massaman:["Doodee King", 4.5, 1070, "35A Burwood Rd", ""],
+ krapow:["Doodee King", 4.5, 1070, "35A Burwood Rd", ""],
+ thaitea:["Doodee King", 4.5, 1070, "35A Burwood Rd", ""],
+ somtam:["Isan Tum Zaap", 4.6, 154, "Burwood 夜市 9 号摊位", "下午 4 点才开"],
+ mooping:["Isan Tum Zaap", 4.6, 154, "Burwood 夜市 9 号摊位", "伊桑烧烤摊，去之前确认"],
+ tomkha:["TROK9", 4.6, 55, "Murray Place Arcade, 127-133 Burwood Rd", ""],
+ panang:["TROK9", 4.6, 55, "Murray Place Arcade, 127-133 Burwood Rd", ""],
+ khaopad:["Chilli Basil Thai Noodle Bar", 4.2, 442, "132-134 Burwood Rd", ""],
+ boatnoodle:["Huamoom Thai Town", 4.6, 186, "429 Pitt St, Haymarket", "Central 站"],
+ mangorice:["Coco Town Thai Dessert", 5, 27, "Burwood Chinatown 一楼", "评论不多；城里的 Mango Coco（4.4，近 3,000 条）也很稳"],
+ bunbohue:["Pho Vien", 4.6, 95, "258 Burwood Rd", ""],
+ khaosoi:["KHAO SOI", 4.4, 1485, "73-75 Liverpool St, Sydney", "泰北咖喱面专门店；Town Hall 站"],
+ laksa:["北馬咖喱面 Curry Mee", 4.7, 410, "131 Parramatta Rd", "开到凌晨 1 点"],
+ nasilemak:["Ho Jiak Strathfield", 4.2, 906, "Strathfield Plaza 美食广场", ""],
+ roticanai:["Tasty of Penang", 4.2, 187, "Burwood Chinatown 一楼", ""],
+ satay:["Tasty of Penang", 4.2, 187, "Burwood Chinatown 一楼", ""],
+ asamlaksa:["Tasty of Penang", 4.2, 187, "Burwood Chinatown 一楼", "槟城菜"],
+ wantanmee:["Tasty of Penang", 4.2, 187, "Burwood Chinatown 一楼", ""],
+ rojak:["Tasty of Penang", 4.2, 187, "Burwood Chinatown 一楼", "去之前确认菜单"],
+ ckt:["House of Lim", 4.8, 38, "Burwood Chinatown 夜市", "评论不多"],
+ hainan:["House of Lim", 4.8, 38, "Burwood Chinatown 夜市", "评论不多"],
+ meegoreng:["Ho Jiak Strathfield", 4.2, 906, "Strathfield Plaza 美食广场", ""],
+ milodino:["Ho Jiak Strathfield", 4.2, 906, "Strathfield Plaza 美食广场", ""],
+ bakkutteh:["Ho Jiak Town Hall", 4.7, 2869, "125 York St, Sydney", "Burwood 附近没有肉骨茶专门店；Town Hall 站"],
+ kaya:["Nanyang Kopi", 4.5, 575, "77 Liverpool St, Sydney", "南洋咖啡店；Town Hall 站"],
+ tehtarik:["Nanyang Kopi", 4.5, 575, "77 Liverpool St, Sydney", "Town Hall 站"],
+ cendol:["D’Penyetz & D’Cendol", 4.5, 685, "183C Burwood Rd", ""],
+ nasigoreng:["D’Penyetz & D’Cendol", 4.5, 685, "183C Burwood Rd", ""],
+ gadogado:["D’Penyetz & D’Cendol", 4.5, 685, "183C Burwood Rd", "去之前确认菜单"],
+ miegorengid:["Geprek in Sydney", 4.5, 425, "Burwood Chinatown 一楼", ""],
+ rendang:["Pandawa Nasi Bungkus", 4.9, 13809, "220 Pitt St, Sydney", "印尼巴东菜，城里评分最高；Town Hall 站"],
+ nasipadang:["Pandawa Nasi Bungkus", 4.9, 13809, "220 Pitt St, Sydney", "Town Hall 站"],
+ tempeh:["Pandawa Nasi Bungkus", 4.9, 13809, "220 Pitt St, Sydney", "Town Hall 站"],
+ sateayam:["Temu Kangen Indonesian", 4.8, 770, "33 Ultimo Rd, Haymarket", "Central 站"],
+ soto:["Temu Kangen Indonesian", 4.8, 770, "33 Ultimo Rd, Haymarket", "Central 站"],
+ sopbuntut:["Temu Kangen Indonesian", 4.8, 770, "33 Ultimo Rd, Haymarket", "Central 站"],
+ esteler:["Temu Kangen Indonesian", 4.8, 770, "33 Ultimo Rd, Haymarket", "去之前确认菜单；Central 站"],
+ wedangjahe:["Temu Kangen Indonesian", 4.8, 770, "33 Ultimo Rd, Haymarket", "去之前确认菜单；Central 站"],
+ bakso:["Bakso Barokah", 4.9, 2519, "559 Elizabeth St, Surry Hills", "肉丸汤专门店；Central 站"],
+ martabak:["Rosebery Martabak", 4.4, 343, "341A Anzac Pde, Kingsford", "甜煎饼专门店；Central 转公交"],
+ adobo:["Takam, Filipino Food Forward", 4.7, 330, "324 Victoria St, Darlinghurst", "Burwood 附近没有好的菲律宾店；Kings Cross 站"],
+ sinigang:["Takam, Filipino Food Forward", 4.7, 330, "324 Victoria St, Darlinghurst", "Kings Cross 站"],
+ karekare:["Takam, Filipino Food Forward", 4.7, 330, "324 Victoria St, Darlinghurst", "Kings Cross 站"],
+ tinola:["Takam, Filipino Food Forward", 4.7, 330, "324 Victoria St, Darlinghurst", "去之前确认菜单；Kings Cross 站"],
+ pancit:["Takam, Filipino Food Forward", 4.7, 330, "324 Victoria St, Darlinghurst", "Kings Cross 站"],
+ sisig:["Hustlers.Syd", 4.8, 1145, "24 York St, Sydney", "Wynyard 站"],
+ lumpia:["Hustlers.Syd", 4.8, 1145, "24 York St, Sydney", "Wynyard 站"],
+ tapsilog:["Hustlers.Syd", 4.8, 1145, "24 York St, Sydney", "去之前确认菜单；Wynyard 站"],
+ lechon:["Smoky Cravings Parramatta", 4.3, 334, "20 Victoria Rd, Parramatta", "Parramatta 站"],
+ halohalo:["Meryenda Cafe", 4.6, 150, "18-32 Oxford St, Darlinghurst", "菲律宾甜品咖啡馆；Museum 站"],
+ lecheflan:["Meryenda Cafe", 4.6, 150, "18-32 Oxford St, Darlinghurst", "Museum 站"],
+ calamansi:["Meryenda Cafe", 4.6, 150, "18-32 Oxford St, Darlinghurst", "去之前确认菜单；Museum 站"],
+ butterchicken:["The Taste of Village", 4.5, 829, "3 George St, North Strathfield", ""],
+ biryani:["The Taste of Village", 4.5, 829, "3 George St, North Strathfield", ""],
+ naan:["The Taste of Village", 4.5, 829, "3 George St, North Strathfield", ""],
+ palakpaneer:["The Taste of Village", 4.5, 829, "3 George St, North Strathfield", ""],
+ roganjosh:["The Taste of Village", 4.5, 829, "3 George St, North Strathfield", ""],
+ dosa:["Dosa Hut Harris Park", 4.7, 19734, "69 Wigram St, Harris Park", "多萨专门店；Harris Park 站"],
+ thali:["Chatkazz Harris Park", 4.6, 21841, "14-20 Station St E, Harris Park", "Harris Park 站"],
+ samosa:["Chatkazz Harris Park", 4.6, 21841, "14-20 Station St E, Harris Park", "Harris Park 站"],
+ chana:["Chatkazz Harris Park", 4.6, 21841, "14-20 Station St E, Harris Park", "Harris Park 站"],
+ panipuri:["Chatkazz Harris Park", 4.6, 21841, "14-20 Station St E, Harris Park", "印度街头小吃店；Harris Park 站"],
+ gulabjamun:["Chatkazz Harris Park", 4.6, 21841, "14-20 Station St E, Harris Park", "Harris Park 站"],
+ chai:["Chatkazz Harris Park", 4.6, 21841, "14-20 Station St E, Harris Park", "Harris Park 站"],
+ tandoori:["Mitran Da Dhaba", 4.8, 3094, "104-108 Wigram St, Harris Park", "Harris Park 站"],
+ daltadka:["Mitran Da Dhaba", 4.8, 3094, "104-108 Wigram St, Harris Park", "Harris Park 站"],
+ paratha:["Mitran Da Dhaba", 4.8, 3094, "104-108 Wigram St, Harris Park", "Harris Park 站"],
+ lassi:["Mitran Da Dhaba", 4.8, 3094, "104-108 Wigram St, Harris Park", "Harris Park 站"],
+ momo:["Maicha", 4.7, 1061, "65 Burwood Rd", ""],
+ dalbhat:["Maicha", 4.7, 1061, "65 Burwood Rd", ""],
+ thukpa:["Maicha", 4.7, 1061, "65 Burwood Rd", ""],
+ chiya:["Maicha", 4.7, 1061, "65 Burwood Rd", ""],
+ chowmeinnp:["The Momos Hub", 4.4, 217, "18 George St, North Strathfield", ""],
+ sekuwa:["The Basantapur Nepalese Kitchen", 4.6, 54, "30 Churchill Ave, Strathfield", ""],
+ choila:["The Basantapur Nepalese Kitchen", 4.6, 54, "30 Churchill Ave, Strathfield", ""],
+ selroti:["The Basantapur Nepalese Kitchen", 4.6, 54, "30 Churchill Ave, Strathfield", "纽瓦尔小吃比较少见，去之前确认"],
+ chatamari:["The Basantapur Nepalese Kitchen", 4.6, 54, "30 Churchill Ave, Strathfield", "纽瓦尔小吃比较少见，去之前确认"],
+ jujudhau:["The Basantapur Nepalese Kitchen", 4.6, 54, "30 Churchill Ave, Strathfield", "纽瓦尔小吃比较少见，去之前确认"],
+ falafel:["Croydon Park Kebab House", 4.9, 179, "69 Georges River Rd, Croydon Park", ""],
+ hummus:["Jbeil Cuisine Enfield", 4.4, 485, "12 Coronation Pde, Enfield", ""],
+ tabbouleh:["Jbeil Cuisine Enfield", 4.4, 485, "12 Coronation Pde, Enfield", ""],
+ fattoush:["Jbeil Cuisine Enfield", 4.4, 485, "12 Coronation Pde, Enfield", ""],
+ kibbeh:["Jbeil Cuisine Enfield", 4.4, 485, "12 Coronation Pde, Enfield", ""],
+ babaghanoush:["Jbeil Cuisine Enfield", 4.4, 485, "12 Coronation Pde, Enfield", ""],
+ shishtawook:["Jbeil Cuisine Enfield", 4.4, 485, "12 Coronation Pde, Enfield", ""],
+ kafta:["Jbeil Cuisine Enfield", 4.4, 485, "12 Coronation Pde, Enfield", ""],
+ ful:["Jbeil Cuisine Enfield", 4.4, 485, "12 Coronation Pde, Enfield", "早餐时段"],
+ warakenab:["Jbeil Cuisine Enfield", 4.4, 485, "12 Coronation Pde, Enfield", ""],
+ mujaddara:["Jbeil Cuisine Enfield", 4.4, 485, "12 Coronation Pde, Enfield", "去之前确认菜单"],
+ limonana:["Jbeil Cuisine Enfield", 4.4, 485, "12 Coronation Pde, Enfield", ""],
+ shawarma:["Shareefs Concord", 4.4, 611, "61 Majors Bay Rd, Concord", ""],
+ manoushe:["Munoushee", 4.6, 444, "39 Majors Bay Rd, Concord", "扎塔尔饼专门店"],
+ labneh:["Lebanese Bakery Croydon Park", 4.6, 209, "125 Georges River Rd, Croydon Park", "点 labneh 馅的饼"],
+ knafeh:["Knafeh House", 4.8, 285, "315 Parramatta Rd", "克纳菲专门店"],
+ doner:["Auburn Kebab House", 4.4, 883, "77 Rawson St, Auburn", "Auburn 站"],
+ ayran:["Auburn Kebab House", 4.4, 883, "77 Rawson St, Auburn", "Auburn 站"],
+ baklava:["Gaziantep Sweets", 4.3, 818, "3-5 Station Rd, Auburn", "土耳其甜品店；Auburn 站"],
+ lokum:["Gaziantep Sweets", 4.3, 818, "3-5 Station Rd, Auburn", "Auburn 站"],
+ simit:["Menzil Turkish Bakehouse", 4.2, 130, "40 Auburn Rd, Auburn", "Auburn 站"],
+ cay:["Cay Turkish Tea Garden", 5, 24, "98 Station Rd, Auburn", "评论不多；Auburn 站"],
+ turkishcoffee:["Turkuaz Cafe Auburn", 4.4, 182, "31-35 Queen St, Auburn", "Auburn 站"],
+ kahvalti:["Sahara By The Park", 4.3, 1526, "Westfield Burwood 地面层", "土耳其早餐很受欢迎"],
+ pide:["Sahara By The Park", 4.3, 1526, "Westfield Burwood 地面层", ""],
+ kofte:["Sahara By The Park", 4.3, 1526, "Westfield Burwood 地面层", ""],
+ lahmacun:["Sahara By The Park", 4.3, 1526, "Westfield Burwood 地面层", ""],
+ iskender:["Sahara By The Park", 4.3, 1526, "Westfield Burwood 地面层", ""],
+ menemen:["Sahara By The Park", 4.3, 1526, "Westfield Burwood 地面层", "早餐时段"],
+ mercimek:["Sahara By The Park", 4.3, 1526, "Westfield Burwood 地面层", ""],
+ gozleme:["Sahara By The Park", 4.3, 1526, "Westfield Burwood 地面层", ""],
+ manti:["Sahara By The Park", 4.3, 1526, "Westfield Burwood 地面层", "去之前确认菜单"],
+ kumpir:["Sahara By The Park", 4.3, 1526, "Westfield Burwood 地面层", "去之前确认菜单"],
+ balikekmek:["Sahara By The Park", 4.3, 1526, "Westfield Burwood 地面层", "鱼面包在悉尼少见，去之前确认"],
+ gyros:["Zeus Street Greek Concord", 4.7, 461, "45 Majors Bay Rd, Concord", ""],
+ souvlaki:["Zeus Street Greek Concord", 4.7, 461, "45 Majors Bay Rd, Concord", ""],
+ horiatiki:["Zeus Street Greek Concord", 4.7, 461, "45 Majors Bay Rd, Concord", ""],
+ tzatziki:["Zeus Street Greek Concord", 4.7, 461, "45 Majors Bay Rd, Concord", ""],
+ moussaka:["Corinthian Rotisserie", 4.4, 754, "283 Marrickville Rd, Marrickville", "老牌希腊餐厅；坐公交约 30 分钟"],
+ pastitsio:["Corinthian Rotisserie", 4.4, 754, "283 Marrickville Rd, Marrickville", "坐公交约 30 分钟"],
+ kleftiko:["Corinthian Rotisserie", 4.4, 754, "283 Marrickville Rd, Marrickville", "坐公交约 30 分钟"],
+ avgolemono:["Corinthian Rotisserie", 4.4, 754, "283 Marrickville Rd, Marrickville", "坐公交约 30 分钟"],
+ gemista:["Corinthian Rotisserie", 4.4, 754, "283 Marrickville Rd, Marrickville", "去之前确认菜单；坐公交约 30 分钟"],
+ dolmades:["Corinthian Rotisserie", 4.4, 754, "283 Marrickville Rd, Marrickville", "坐公交约 30 分钟"],
+ kalamari:["Little Kalymnos Taverna", 4.5, 179, "221-235 Homer St, Earlwood", "坐公交约 30 分钟"],
+ saganaki:["Little Kalymnos Taverna", 4.5, 179, "221-235 Homer St, Earlwood", "坐公交约 30 分钟"],
+ spanakopita:["Hellenic Patisserie", 4.4, 420, "371 Illawarra Rd, Marrickville", "希腊糕点店；坐公交约 30 分钟"],
+ galaktoboureko:["Hellenic Patisserie", 4.4, 420, "371 Illawarra Rd, Marrickville", "坐公交约 30 分钟"],
+ frappe:["Hellenic Patisserie", 4.4, 420, "371 Illawarra Rd, Marrickville", "坐公交约 30 分钟"],
+ loukoumades:["Look Loukoumades", 5, 168, "101 The Crescent, Homebush West", "蜂蜜球专门店"],
+ margherita:["Pane e Vino Trattoria", 4.7, 851, "21 The Strand, Croydon", "Croydon 站，Burwood 下一站"],
+ carbonara:["Pane e Vino Trattoria", 4.7, 851, "21 The Strand, Croydon", "Croydon 站"],
+ bolognese:["Pane e Vino Trattoria", 4.7, 851, "21 The Strand, Croydon", "Croydon 站"],
+ pesto:["Pane e Vino Trattoria", 4.7, 851, "21 The Strand, Croydon", "Croydon 站"],
+ aglio:["Pane e Vino Trattoria", 4.7, 851, "21 The Strand, Croydon", "Croydon 站"],
+ caprese:["Pane e Vino Trattoria", 4.7, 851, "21 The Strand, Croydon", "Croydon 站"],
+ bruschetta:["Pane e Vino Trattoria", 4.7, 851, "21 The Strand, Croydon", "Croydon 站"],
+ focaccia:["Pane e Vino Trattoria", 4.7, 851, "21 The Strand, Croydon", "去之前确认菜单；Croydon 站"],
+ lasagna:["Filicudi Restaurant Five Dock", 4.6, 889, "11 Ramsay Rd, Five Dock", ""],
+ ravioli:["Filicudi Restaurant Five Dock", 4.6, 889, "11 Ramsay Rd, Five Dock", ""],
+ risotto:["Filicudi Restaurant Five Dock", 4.6, 889, "11 Ramsay Rd, Five Dock", ""],
+ ossobuco:["Filicudi Restaurant Five Dock", 4.6, 889, "11 Ramsay Rd, Five Dock", "去之前确认菜单"],
+ arancini:["Skinny Tony’s Really Italian", 4.6, 722, "20B Barnstaple Rd, Five Dock", ""],
+ tiramisu:["Eden Pasticceria Five Dock", 4.8, 374, "221 Great North Rd, Five Dock", "意式甜品店"],
+ cannoli:["Eden Pasticceria Five Dock", 4.8, 374, "221 Great North Rd, Five Dock", "意式甜品店"],
+ gelato:["Pure Gelato", 4.6, 308, "30-32A Brighton Ave, Croydon Park", ""],
+ espresso:["Pillar", 4.7, 257, "1 Unity Pl", ""],
+ flatwhite:["Pillar", 4.7, 257, "1 Unity Pl", ""],
+ croissant:["Buttercrumbs Croissant Five Dock", 4.8, 914, "189 Great North Rd, Five Dock", "可颂专门店"],
+ jambonbeurre:["Le MONDE Bakery-Cafe", 4.8, 769, "100 Bathurst St, Sydney", "法式面包店；Town Hall 站"],
+ croque:["Le MONDE Bakery-Cafe", 4.8, 769, "100 Bathurst St, Sydney", "Town Hall 站"],
+ quiche:["Le MONDE Bakery-Cafe", 4.8, 769, "100 Bathurst St, Sydney", "Town Hall 站"],
+ macaron:["Le MONDE Bakery-Cafe", 4.8, 769, "100 Bathurst St, Sydney", "去之前确认；Town Hall 站"],
+ cafeaulait:["Le MONDE Bakery-Cafe", 4.8, 769, "100 Bathurst St, Sydney", "Town Hall 站"],
+ bourguignon:["Bistro Papillon", 4.6, 1121, "98 Clarence St, Sydney", "法式小酒馆；Wynyard 站"],
+ confit:["Bistro Papillon", 4.6, 1121, "98 Clarence St, Sydney", "Wynyard 站"],
+ onionsoup:["Bistro Papillon", 4.6, 1121, "98 Clarence St, Sydney", "Wynyard 站"],
+ escargot:["Bistro Papillon", 4.6, 1121, "98 Clarence St, Sydney", "Wynyard 站"],
+ cremebrulee:["Bistro Papillon", 4.6, 1121, "98 Clarence St, Sydney", "Wynyard 站"],
+ ratatouille:["Bistro Papillon", 4.6, 1121, "98 Clarence St, Sydney", "去之前确认菜单；Wynyard 站"],
+ bouillabaisse:["Bistro Papillon", 4.6, 1121, "98 Clarence St, Sydney", "去之前确认菜单；Wynyard 站"],
+ steakfrites:["Bouillon L’Entrecôte", 4.7, 2283, "6 Loftus St, Sydney", "牛排薯条专门店；Circular Quay 站"],
+ crepe:["Four Frogs Crêperie Circular Quay", 4.3, 2729, "1 Macquarie Pl, Sydney", "可丽饼专门店；Circular Quay 站"],
+ paella:["Tapavino", 4.5, 1355, "6-8 Bulletin Pl, Sydney", "西班牙 tapas 吧；Circular Quay 站"],
+ jamon:["Tapavino", 4.5, 1355, "6-8 Bulletin Pl, Sydney", "Circular Quay 站"],
+ tortilla:["Tapavino", 4.5, 1355, "6-8 Bulletin Pl, Sydney", "Circular Quay 站"],
+ gambas:["Tapavino", 4.5, 1355, "6-8 Bulletin Pl, Sydney", "Circular Quay 站"],
+ pulpo:["Tapavino", 4.5, 1355, "6-8 Bulletin Pl, Sydney", "Circular Quay 站"],
+ croquetas:["Tapavino", 4.5, 1355, "6-8 Bulletin Pl, Sydney", "Circular Quay 站"],
+ bravas:["Tapavino", 4.5, 1355, "6-8 Bulletin Pl, Sydney", "Circular Quay 站"],
+ padron:["Tapavino", 4.5, 1355, "6-8 Bulletin Pl, Sydney", "Circular Quay 站"],
+ pantomate:["Tapavino", 4.5, 1355, "6-8 Bulletin Pl, Sydney", "Circular Quay 站"],
+ sangria:["Tapavino", 4.5, 1355, "6-8 Bulletin Pl, Sydney", "Circular Quay 站"],
+ gazpacho:["Letra House", 4.7, 334, "344 Kent St, Sydney", "去之前确认菜单；Wynyard 站"],
+ fabada:["Letra House", 4.7, 334, "344 Kent St, Sydney", "去之前确认菜单；Wynyard 站"],
+ cremacatalana:["Letra House", 4.7, 334, "344 Kent St, Sydney", "去之前确认菜单；Wynyard 站"],
+ bocadillo:["Letra House", 4.7, 334, "344 Kent St, Sydney", "去之前确认菜单；Wynyard 站"],
+ churros:["Churros 1500", 4.8, 301, "348-354 Sussex St, Sydney", "吉事果专门店；Town Hall 站"],
+ chocolatecaliente:["Churros 1500", 4.8, 301, "348-354 Sussex St, Sydney", "Town Hall 站"],
+ tacos:["Taco Street North Strathfield", 4.6, 355, "165 Concord Rd, North Strathfield", ""],
+ burrito:["Mira La Vida Mexicana", 4.9, 196, "395 Burwood Rd, Belmore", "往南要走一段，可坐公交"],
+ quesadilla:["Mira La Vida Mexicana", 4.9, 196, "395 Burwood Rd, Belmore", ""],
+ enchiladas:["Mira La Vida Mexicana", 4.9, 196, "395 Burwood Rd, Belmore", ""],
+ guacamole:["Mira La Vida Mexicana", 4.9, 196, "395 Burwood Rd, Belmore", ""],
+ nachos:["Mira La Vida Mexicana", 4.9, 196, "395 Burwood Rd, Belmore", ""],
+ elote:["Mira La Vida Mexicana", 4.9, 196, "395 Burwood Rd, Belmore", "去之前确认菜单"],
+ birria:["Papi’s Birria Tacos Darlinghurst", 4.7, 369, "147 Oxford St, Darlinghurst", "比利亚塔可专门店；Museum 站"],
+ mole:["Santa Catarina Oaxacan", 4.6, 898, "152-156 Clarence St, Sydney", "瓦哈卡菜；Wynyard 站"],
+ tamales:["Santa Catarina Oaxacan", 4.6, 898, "152-156 Clarence St, Sydney", "Wynyard 站"],
+ pozole:["Santa Catarina Oaxacan", 4.6, 898, "152-156 Clarence St, Sydney", "去之前确认菜单；Wynyard 站"],
+ chilaquiles:["Santa Catarina Oaxacan", 4.6, 898, "152-156 Clarence St, Sydney", "Wynyard 站"],
+ chilesnogada:["Santa Catarina Oaxacan", 4.6, 898, "152-156 Clarence St, Sydney", "季节性菜，去之前确认；Wynyard 站"],
+ tresleches:["Santa Catarina Oaxacan", 4.6, 898, "152-156 Clarence St, Sydney", "去之前确认菜单；Wynyard 站"],
+ horchata:["Santa Catarina Oaxacan", 4.6, 898, "152-156 Clarence St, Sydney", "Wynyard 站"],
+ jamaica:["Santa Catarina Oaxacan", 4.6, 898, "152-156 Clarence St, Sydney", "Wynyard 站"],
+ hsp:["Auburn Kebab House", 4.4, 883, "77 Rawson St, Auburn", "Burwood 附近没有评分好的 HSP；Auburn 站"],
+ fishchips:["Myssy’s Fresh & Cooked Seafood", 4.5, 340, "335 Liverpool Rd, Ashfield", ""],
+ parmi:["Royal Sheaf Hotel", 4.2, 394, "231 Burwood Rd", "酒吧"],
+ sizzle:["Bunnings Ashfield", 4, 3289, "Parramatta Rd & Frederick St, Ashfield", "周末门口才有，不是每周都有"],
+ meatpie:["The Pie Tin", 4.3, 1190, "1a Brown St, Newtown", "肉派专门店；Newtown 站"],
+ pavlova:["Flour and Stone", 4.6, 1387, "53 Riley St, Woolloomooloo", "招牌是莱明顿蛋糕；Museum 站步行"],
+ lamington:["Flour and Stone", 4.6, 1387, "53 Riley St, Woolloomooloo", "Museum 站步行"],
+ avotoast:["Antique Cherry Cafe", 4.5, 472, "5 Unity Pl", ""],
+ timtam:["Woolworths Burwood", 4, 1133, "Westfield Burwood", "超市饼干区"],
+ vegemite:["Woolworths Burwood", 4, 1133, "Westfield Burwood", "买一罐回家抹吐司"],
+ anzac:["Woolworths Burwood", 4, 1133, "Westfield Burwood", "超市饼干区，也可以自己烤"],
+ fairybread:["Woolworths Burwood", 4, 1133, "Westfield Burwood", "买面包、黄油和彩色糖粒回家做"],
+ doujiang:["Jin’s Grilled Meat Pie", 4.7, 490, "161 Burwood Rd", "北方早点店，去之前确认有没有豆浆"]
+};
+const shopsForDish=id=>Object.values(SHOPS).flat().filter(s=>s[4].split(' ').includes(id)).sort((a,b)=>b[1]-a[1]);
+const mapUrl=s=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(s[0]+' '+s[3]+' NSW');
+function shopRow(s){
+  const ds=s[4]?s[4].split(' ').filter(id=>DMAP[id]):[];
+  const thin=s[2]<100||s[1]<4;
+  return `<div class="shop"><div class="r"><b>${s[1].toFixed(1)}</b><span>${s[2].toLocaleString()} 条</span></div>
+   <div class="t"><b>${esc(s[0])}</b><div class="a">${esc(s[3])}</div>${s[5]?`<div class="n ${s[1]<4?'warn':''}">${esc(s[5])}</div>`:''}
+   ${ds.length?`<div class="tags">${ds.map(id=>`<button class="chip" style="font-size:12px;padding:1px 9px" data-act="dish" data-id="${id}">${esc(DMAP[id].zh)}</button>`).join('')}</div>`:''}</div>
+   <a class="map" href="${mapUrl(s)}" target="_blank" rel="noopener">地图 ↗</a></div>`;
+}
+const isTrip=note=>/站|公交|开车/.test(note||'');
+function countryShops(cid){
+  const m=new Map();
+  for(const d of DISHES.filter(d=>d.c===cid)){const p=PICKS[d.id];if(!p)continue;
+    const e=m.get(p[0])||{s:[p[0],p[1],p[2],p[3],'',''],ids:[],trip:false};
+    e.ids.push(d.id);e.trip=e.trip||isTrip(p[4]);
+    const hint=(p[4].match(/[^；]*(站|公交|开车)[^；]*$/)||[''])[0];if(hint&&!e.s[5])e.s[5]=hint;
+    m.set(p[0],e)}
+  for(const s of SHOPS[cid]||[]){const e=m.get(s[0]);
+    if(e){if(s[5])e.s[5]=s[5]+(e.s[5]&&!s[5].includes('站')?'；'+e.s[5]:'')}
+    else m.set(s[0],{s:s.slice(),ids:s[4]?s[4].split(' '):[],trip:false})}
+  return [...m.values()].map(e=>{e.s[4]=[...new Set(e.ids)].join(' ');return e});
+}
+function shopsHTML(cid){
+  const all=countryShops(cid).sort((a,b)=>a.trip-b.trip||b.s[1]-a.s[1]||b.s[2]-a.s[2]);
+  const near=all.filter(e=>!e.trip).map(e=>e.s),trip=all.filter(e=>e.trip).map(e=>e.s);
+  const list=[...near,...trip];
+  return `<section class="shops"><h3>📍 去哪吃</h3><div class="vsub">GOOGLE MAPS · ${SHOPS_DATE}</div>
+   ${near.length?`<p class="muted" style="font-size:13px;margin:10px 0 0">Burwood 附近</p>${near.map(shopRow).join('')}`:''}
+   ${trip.length?`<p class="muted" style="font-size:13px;margin:14px 0 0">🚆 稍远一点，坐车去（附近没有评分够好的）</p>${trip.map(shopRow).join('')}`:''}
+   ${list.length?'':`<div class="empty">Burwood 附近暂时没找到评分靠谱的店${CMAP[cid].syd?'，可以去 '+CMAP[cid].syd.map(esc).join(' / ')+' 看看':''}。</div>`}
+   ${list.length?`<p class="muted" style="font-size:12px;text-align:center;margin:8px 0 0">评分会变，去之前看一眼营业时间。</p>`:''}</section>`;
+}
+const TAGCOL={'酸':'#e3e8b0','甜':'#f2d0c8','辣':'#eab0a0','微辣':'#f0cfc0','咸':'#cfdde6','鲜':'#cfe6de','麻':'#d9cce6','香草':'#d4e3c4','奶香':'#f4ead0','烟熏':'#d8cbbd','清淡':'#e0ebf0','香':'#efdcbc'};
+const FLAVORS=['酸','甜','辣','咸','鲜','麻','香草','奶香','烟熏','清淡'];
+
+/* =====================================================================
+   STATE
+   ===================================================================== */
+const LS='foodPassport.v1';
+let S=load();
+function load(){try{const s=JSON.parse(localStorage.getItem(LS));if(s&&Array.isArray(s.records))return Object.assign({challenge:null,challengesDone:0},s)}catch(e){}return{records:[],challenge:null,challengesDone:0}}
+function save(){try{localStorage.setItem(LS,JSON.stringify(S));return true}catch(e){toast('⚠️ 存储空间满了：照片太多。可以先导出备份，再删掉几张照片。');return false}}
+
+/* Account sync: on claude.ai each viewer's stamps live in a private db subtree (data/users/<id>),
+   one document per stamp plus a "meta" doc. The local file has no window.claude and stays localStorage-only. */
+let REMOTE=null,syncState='local';
+const syncErr=()=>{syncState='error';toast('同步失败：这次的改动先存在这台设备上')};
+const remote={
+  put:r=>REMOTE?REMOTE.doc('r_'+r.id).set(r).catch(syncErr):null,
+  del:id=>REMOTE?REMOTE.doc('r_'+id).delete().catch(syncErr):null,
+  meta:()=>REMOTE?REMOTE.doc('meta').set({challenge:S.challenge||null,challengesDone:S.challengesDone||0}).catch(syncErr):null,
+};
+async function initSync(){
+  try{
+    if(!window.claude?.use)return;
+    const [db,user]=await Promise.all([claude.use('db'),claude.use('user')]);
+    const uid=db&&user?await user.id():null;
+    if(!uid)return;
+    const col=db.collection('data/users/'+uid);let first=true;
+    col.onSnapshot(async snap=>{
+      if(first){first=false;REMOTE=col;syncState='synced';
+        if(snap.empty&&S.records.length){ // first visit on this account: upload what this browser already has
+          for(const [k,r] of S.records.entries()){if(!r.t)r.t=k;await REMOTE.doc('r_'+r.id).set(r).catch(syncErr)}
+          await remote.meta();return}}
+      const recs=[];let meta=null;
+      for(const d of snap.docs){const v=d.data();if(d.id==='meta')meta=v;else if(d.id.startsWith('r_')&&v)recs.push({...v})}
+      recs.sort((a,b)=>(a.t||0)-(b.t||0));
+      const next={records:recs,challenge:meta?.challenge??null,challengesDone:meta?.challengesDone||0};
+      if(JSON.stringify(next)===JSON.stringify(S))return;
+      S=next;save();if(modal.hidden)route(true);
+    },()=>{REMOTE=null;syncState='error'});
+  }catch(e){}
+}
+
+const recsOf=id=>S.records.filter(r=>r.kind==='dish'&&r.dishId===id);
+const unlocked=id=>S.records.some(r=>r.kind==='dish'&&r.dishId===id);
+const photoOf=id=>{const r=recsOf(id).filter(r=>r.photo).pop();return r&&r.photo};
+function recCountries(r){return r.kind==='dish'?[DMAP[r.dishId].c]:r.kind==='fusion'?r.countries:[]}
+function visited(){const s=new Set();S.records.forEach(r=>recCountries(r).forEach(c=>s.add(c)));return s}
+function countryProgress(cid){const ds=DISHES.filter(d=>d.c===cid);return [ds.filter(d=>unlocked(d.id)).length,ds.length]}
+
+/* =====================================================================
+   UTIL
+   ===================================================================== */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today=()=>{const d=new Date();return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
+const uid=()=>Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-4);
+const money=n=>'$'+(Math.round(n*100)/100).toString();
+function seeded(str){let h=1779033703;for(const ch of str)h=Math.imul(h^ch.charCodeAt(0),3432918353),h=h<<13|h>>>19;return()=>{h=Math.imul(h^h>>>16,2246822507);h=Math.imul(h^h>>>13,3266489909);h^=h>>>16;return(h>>>0)/4294967296}}
+function toast(msg,ms=2600){const t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),ms)}
+const tagsHTML=fl=>`<div class="tags">${fl.map(t=>`<span class="tag" style="--t:${TAGCOL[t]||'#e7dcc4'}">${esc(t)}</span>`).join('')}</div>`;
+
+/* =====================================================================
+   ILLUSTRATIONS — colored-pencil style, drawn as SVG
+   Each shape: [elementStart, fill, flag]  flag: 'nl' no outline · 'st' colored stroke + outline · 'sn' colored stroke only
+   ===================================================================== */
+const E=(x,y,rx,ry,t='')=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"${t}`;
+const C=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}"`;
+const P=(d,t='')=>`<path d="${d}"${t}`;
+const R=(x,y,w,h,rx=0,t='')=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}"${t}`;
+const rot=(a,x,y)=>` transform="rotate(${Math.round(a)} ${x} ${y})"`;
+
+function topShapes(type,x,y,col,a){
+  x=Math.round(x);y=Math.round(y);const t=rot(a,x,y);
+  switch(type){
+    case'slice':return[[E(x,y,8,3.4,t),col]];
+    case'wedge':return[[P(`M${x-9} ${y+3} Q${x} ${y-7} ${x+9} ${y+3}Z`,t),col]];
+    case'leaf':return[[P(`M${x-6} ${y} Q${x} ${y-6} ${x+6} ${y} Q${x} ${y+5} ${x-6} ${y}Z`,t),col]];
+    case'dot':return[[C(x,y,2.4),col]];
+    case'pea':return[[C(x,y,3.6),col]];
+    case'sesame':return[[E(x,y,1.5,.8,t),col,'nl']];
+    case'egg':return[[C(x,y,7),K.white],[C(x,y,3.2),col]];
+    case'shrimp':return[[P(`M${x-7} ${y+2} Q${x-6} ${y-7} ${x+3} ${y-6} Q${x+8} ${y-3} ${x+6} ${y+3} Q${x+1} ${y-2} ${x-2} ${y+3}Z`,t),col]];
+    case'cube':return[[R(x-3,y-3,6.5,6.5,1,t),col]];
+    case'ring':return[[C(x,y,4.6),col],[C(x,y,2),'none']];
+    case'stick':return[[R(x-8,y-3,16,6.5,3,t),col]];
+    case'sheet':return[[R(x-5,y-8,10,15,1,t),col]];
+    case'chili':return[[P(`M${x-6} ${y+2} Q${x} ${y-3} ${x+6} ${y-2} Q${x+1} ${y+2} ${x-6} ${y+2}Z`,t),col]];
+  }
+  return[];
+}
+
+function flat(c,ring){
+  const sh=[];if(c.b)sh.push([E(60,63,56,24),c.b]);
+  sh.push([E(60,58,48,22),c.m]);if(c.s)sh.push([E(60,57,40,17),c.s]);
+  if(ring)sh.push([E(60,57,15,6.5),K.paper]);
+  let an;
+  if(ring){an=[];for(let i=0;i<16;i++){const t=i/16*Math.PI*2;an.push([60+Math.cos(t)*31,57+Math.sin(t)*13])}}
+  else an=[[44,52],[72,52],[60,62],[36,60],[84,60],[58,48],[48,66],[74,64],[30,54],[90,54],[66,57],[52,57]];
+  return{sh,an};
+}
+const TPL={
+  bowl:c=>({sh:[[E(60,86,17,3.5),c.b||K.bowl],[P('M12 46 Q14 84 60 86 Q106 84 108 46Z'),c.b||K.bowl],[P('M22 64 Q60 76 98 64'),'none'],[E(60,46,48,12),c.m||K.soup],
+    ...(c.s?[[P('M24 47 q5 -5 10 0 t10 0 t10 0 t10 0 t10 0 t10 0 t10 0'),c.s,'st'],[P('M32 52 q5 -4 10 0 t10 0 t10 0 t10 0 t10 0'),c.s,'st']]:[]),
+    [P('M48 28 q-4 -5 0 -10 t0 -10'),'none'],[P('M70 30 q-4 -5 0 -10 t0 -10'),'none']],
+    an:[[44,43],[74,43],[60,49],[34,47],[86,47],[58,39],[48,52],[72,52],[40,40],[80,40]]}),
+  plate:c=>({sh:[[E(60,66,54,20),c.b||K.plate],[E(60,64,42,14),'none'],...(c.m?[[P('M30 66 Q30 44 58 42 Q84 42 88 64 Q60 74 30 66Z'),c.m]]:[])],
+    an:[[50,50],[70,51],[60,58],[40,59],[80,58],[58,46],[24,68],[96,68],[48,64],[72,64]]}),
+  curry:c=>{const sh=[[E(60,62,54,22),c.b||K.plate],[E(60,60,46,17),c.m||K.curry],[P('M66 62 q8 -4 16 0'),'none']];
+    if(c.s)sh.push([P('M18 60 Q20 44 40 44 Q54 46 52 60 Q42 72 24 68 Q16 65 18 60Z'),c.s]);
+    return{sh,an:c.s?[[70,56],[86,60],[64,66],[78,67],[92,54],[66,50],[56,60],[80,50],[74,61]]:[[46,54],[70,54],[58,62],[36,62],[82,62],[58,50],[46,67],[74,67],[60,57]]}},
+  dumpling:c=>{const sh=[[E(60,68,54,18),c.b||K.plate],[E(18,82,11,4),K.sauce]];
+    for(const[x,y]of[[62,54],[36,62],[84,66]]){sh.push([P(`M${x-16} ${y+4} Q${x-12} ${y-16} ${x} ${y-16} Q${x+12} ${y-16} ${x+16} ${y+4} Q${x} ${y+9} ${x-16} ${y+4}Z`),c.m],[P(`M${x-6} ${y-14} l2 4 M${x} ${y-16} l0 5 M${x+6} ${y-14} l-2 4`),'none'])}
+    return{sh,an:[]}},
+  bao:c=>{const sh=[[P('M10 64 L10 80 Q60 96 110 80 L110 64Z'),c.b||K.steamer],[P('M10 72 Q60 88 110 72'),'none'],[E(60,64,50,14),'#ead7a8']];
+    for(const[x,y]of[[62,56],[36,62],[86,64],[58,72]]){sh.push([P(`M${x-14} ${y} Q${x-14} ${y-16} ${x} ${y-18} Q${x+14} ${y-16} ${x+14} ${y} Q${x} ${y+5} ${x-14} ${y}Z`),c.m],[P(`M${x-3} ${y-16} q3 -4 6 0 M${x-6} ${y-12} q2 4 0 8 M${x+6} ${y-12} q-2 4 0 8`),'none'])}
+    return{sh,an:[]}},
+  flat:c=>flat(c,false),
+  ring:c=>flat(c,true),
+  roll:c=>({sh:[...(c.b?[[E(60,80,54,10),c.b]]:[]),[P('M10 60 Q10 44 30 42 L90 40 Q110 42 110 58 Q110 72 90 74 L30 76 Q10 76 10 60Z'),c.m],...(c.s?[[P('M22 54 Q60 44 98 51 Q60 62 22 54Z'),c.s]]:[]),[P('M30 68 l8 -3 M52 70 l8 -3 M74 69 l8 -3'),'none']],
+    an:[[34,52],[50,50],[66,50],[82,50],[42,54],[74,53],[58,52],[90,51]]}),
+  wrap:c=>({sh:[[P('M26 50 Q24 22 60 18 Q96 22 94 50 Q60 42 26 50Z'),c.m]],fr:[[P('M34 94 L27 46 Q60 54 93 46 L86 94Z'),c.b||K.kraft],[P('M33 70 Q60 74 88 68 M40 86 L58 94'),'none']],
+    an:[[44,36],[60,31],[76,36],[52,42],[68,42],[60,25],[38,43],[82,43]]}),
+  taco:c=>({sh:[[E(60,86,40,5),K.plate],[P('M18 40 Q24 20 60 22 Q96 20 102 40 Q98 70 60 72 Q22 70 18 40Z'),c.s||K.green]],fr:[[P('M10 34 Q10 88 60 88 Q110 88 110 34 Q102 78 60 79 Q18 78 10 34Z'),c.m]],
+    an:[[36,32],[56,28],[76,30],[90,38],[30,44],[66,40],[46,42],[84,48],[60,54],[40,56]]}),
+  sushi:c=>{const sh=[[R(8,64,104,16,3),c.b||K.board],[P('M18 80 v6 M102 80 v6'),'none']];
+    [30,60,90].forEach((x,i)=>{sh.push([R(x-14,50,28,16,8),c.m],[P(`M${x-17} 54 Q${x-14} 40 ${x} 42 Q${x+16} 42 ${x+17} 52 Q${x} 50 ${x-17} 54Z`),i%2?c.a:c.s],[P(`M${x-6} 44 l-3 7 M${x+2} 43 l-3 8 M${x+10} 45 l-3 6`),'none'])});
+    return{sh,an:[]}},
+  maki:c=>{const sh=[[R(8,62,104,16,3),c.b||K.board]];
+    for(const[x,y]of[[30,52],[60,48],[90,52]]){sh.push([C(x,y,15),c.s],[C(x,y,12),c.m],[C(x-4,y-3,3),K.egg],[C(x+4,y-2,2.6),K.green],[C(x,y+4,2.8),K.carrot],[C(x+2,y-7,2.2),K.pink])}
+    return{sh,an:[]}},
+  spring:c=>({sh:[[E(60,70,56,18),c.b||K.plate],[R(16,36,88,20,10),c.m],[R(16,60,88,20,10),c.m]],fr:[[R(16,36,88,20,10),'rgba(250,246,236,.45)','nl'],[R(16,60,88,20,10),'rgba(250,246,236,.45)','nl']],
+    an:[[34,46],[54,46],[74,46],[90,46],[34,70],[54,70],[74,70],[90,70],[44,46],[64,70]]}),
+  pasta:c=>({sh:[[E(60,66,54,20),c.b||K.plate],[P('M24 64 Q26 42 58 40 Q90 40 96 62 Q60 76 24 64Z'),c.m],
+    [P('M30 60 q8 -10 16 -2 t16 -4 t16 2 t14 -4'),'none'],[P('M34 52 q8 -8 16 0 t14 -2 t14 0'),'none'],[P('M40 46 q6 -6 12 0 t12 0 t10 0'),'none'],[P('M30 66 q10 -6 20 0 t20 0 t20 -2'),'none']],
+    an:[[46,50],[70,50],[58,58],[38,58],[80,56],[60,46],[50,64],[74,62]]}),
+  balls:c=>{const sh=[[P('M12 60 L22 84 L98 84 L108 60Z'),c.b||K.kraft]];
+    for(const[x,y]of[[34,56],[60,54],[86,56],[46,68],[74,68]])sh.push([C(x,y,12),c.m]);
+    if(c.s)sh.push([P('M24 54 l10 6 l10 -8 l10 8 l10 -8 l10 8 l10 -8 l10 8 l10 -6'),c.s,'sn']);
+    if(c.a)sh.push([P('M28 64 l12 -6 l12 6 l12 -6 l12 6 l12 -6 l10 5'),c.a,'sn']);
+    return{sh,an:[[34,50],[60,48],[86,50],[46,63],[74,63],[54,57],[68,57],[40,57]]}},
+  skewer:c=>{const sh=[[E(60,68,56,18),c.b||K.plate]];
+    if(c.s)sh.push([E(98,80,14,6),K.white],[E(98,79,10,4),c.s]);
+    for(const k of[0,1,2]){const y0=40+k*11;sh.push([P(`M8 ${y0+10} L112 ${y0-6}`),K.board,'st']);
+      for(const x of[30,48,66,84]){const y=Math.round(y0+10-(x-8)*16/104);sh.push([R(x-7,y-6,14,12,3,rot(-9,x,y)),c.m])}}
+    return{sh,an:[]}},
+  fried:c=>{const sh=[[P('M14 58 L24 88 L96 88 L106 58Z'),c.b||K.kraft]];
+    for(const[x,y]of[[34,52],[60,46],[84,54],[46,64],[74,64]])sh.push([P(`M${x-13} ${y} Q${x-14} ${y-10} ${x-4} ${y-11} Q${x+2} ${y-15} ${x+9} ${y-9} Q${x+15} ${y-4} ${x+12} ${y+4} Q${x+8} ${y+11} ${x-2} ${y+10} Q${x-12} ${y+10} ${x-13} ${y}Z`),c.m],[P(`M${x-5} ${y-3} l2 1 M${x+3} ${y+3} l2 -1`),'none']);
+    return{sh,an:[[34,48],[60,42],[84,50],[46,60],[74,60],[52,52],[70,50],[40,56],[78,56],[62,58]]}},
+  tri:c=>{const sh=[[E(60,68,54,18),c.b||K.plate]];if(c.s)sh.push([E(20,78,12,5),K.white],[E(20,77,9,3.5),c.s]);
+    for(const[x,y]of[[64,52],[40,60],[86,64]])sh.push([P(`M${x-15} ${y+8} L${x} ${y-16} L${x+15} ${y+8} Q${x} ${y+12} ${x-15} ${y+8}Z`),c.m],[P(`M${x-11} ${y+7} l2 -3 l2 3 l2 -3 l2 3 l2 -3 l2 3 l2 -3 l2 3 l2 -3 l2 3`),'none']);
+    return{sh,an:[]}},
+  sticks:c=>{const sh=[[E(56,74,52,14),c.b||K.plate]];
+    if(c.s)sh.push([P('M86 50 L88 80 Q98 85 108 80 L110 50Z'),K.white],[E(98,51,12,4),c.s]);
+    for(const y of[44,56,68])sh.push([R(14,y,74,10,5,rot(-12,50,y+5)),c.m],[P(`M18 ${y+5} L84 ${y+5}`,rot(-12,50,y+5)),'none']);
+    return{sh,an:[[30,48],[48,44],[66,40],[30,60],[50,56],[70,52],[36,72],[56,68],[74,64],[22,62]]}},
+  salad:c=>({sh:[[P('M10 48 Q14 82 60 84 Q106 82 110 48Z'),c.b||K.bowl],[P('M20 62 Q60 74 100 62'),'none'],[E(60,48,50,12),'#c9d8b0']],
+    an:[[40,45],[60,41],[80,45],[30,50],[50,51],[70,51],[90,50],[44,40],[76,40],[60,48],[36,43],[84,43],[54,45],[66,47]]}),
+  dip:c=>{const sh=[[E(60,64,54,20),c.b||K.plate],[E(60,60,42,15),c.m],[P('M40 60 Q60 48 80 60 Q60 68 46 60'),'none']];
+    if(c.s)sh.push([E(60,58,10,4),c.s,'nl']);
+    const fr=c.a?[[16,58],[104,58],[26,78],[94,78]].map(([x,y])=>[P(`M${x-8} ${y+5} L${x} ${y-9} L${x+8} ${y+5}Z`),c.a]):[];
+    return{sh,fr,an:[[46,55],[74,56],[60,65],[52,59],[68,62],[40,62],[80,62]]}},
+  slice:c=>({sh:[[E(60,80,54,12),c.b||K.plate],[P('M22 42 L70 32 L100 44 L52 56Z'),c.a],
+    [P('M52 56 L100 44 L100 68 L52 80Z'),c.m],[P('M52 62 L100 50 L100 54 L52 66Z'),c.s,'nl'],[P('M52 72 L100 60 L100 64 L52 76Z'),c.s,'nl'],
+    [P('M22 42 L52 56 L52 80 L22 66Z'),c.m],[P('M22 48 L52 62 L52 66 L22 52Z'),c.s,'nl'],[P('M22 58 L52 72 L52 76 L22 62Z'),c.s,'nl'],
+    [P('M52 64 L100 52 M52 74 L100 62 M22 50 L52 64 M22 60 L52 74'),'none']],
+    an:[[46,44],[66,40],[80,44],[56,48],[40,45],[70,47],[60,40],[86,45]]}),
+  cup:c=>({sh:[[P('M34 20 L86 20 L78 90 L42 90Z'),'#dfe8ea'],[P('M36 34 L84 34 L78 88 L42 88Z'),c.m],...(c.a?[[P('M66 36 L80 6 L85 8 L71 38Z'),c.a]]:[]),[E(60,20,26,4),'none'],[P('M44 44 L46 80'),'none']],
+    an:[[52,30],[60,28]]}),
+  mug:c=>({sh:[[E(60,84,42,8),K.white],[P('M88 48 Q104 48 102 60 Q100 72 86 70'),c.b||'#ece4d6','st'],[P('M30 42 L90 42 Q90 82 60 82 Q30 82 30 42Z'),c.b||'#ece4d6'],[E(60,42,30,6),c.m],
+    [P('M50 32 q-4 -5 0 -10 t0 -10'),'none'],[P('M68 32 q-4 -5 0 -10 t0 -10'),'none']],an:[[60,42]]}),
+  cone:c=>({sh:[[P('M40 52 L80 52 L60 96Z'),K.bread],[P('M47 60 L67 82 M54 54 L73 66 M73 58 L53 84 M64 53 L46 68'),'none'],[C(48,44,14),c.m],[C(72,44,14),c.s],[C(60,27,13),c.a]],
+    an:[[60,18],[50,38],[70,40]]}),
+  onigiri:c=>({sh:[[P('M60 16 Q68 16 94 64 Q100 80 84 80 L36 80 Q20 80 26 64 Q52 16 60 16Z'),c.m],[P('M44 58 L76 58 L78 80 L42 80Z'),c.s]],
+    an:[[50,40],[62,30],[70,46],[56,48],[44,50],[76,52],[60,40]]}),
+  corn:c=>{const sh=[[P('M8 66 L30 58'),K.board,'st'],[E(64,48,46,15,rot(-14,64,48)),c.m]];
+    const an=[];for(let i=0;i<9;i++)for(const j of[-1,0,1]){const x=28+i*9,y=Math.round(48+(64-x)*.25+j*8);if(Math.abs(j)===1&&(i===0||i===8))continue;sh.push([C(x,y,2.4),'#e2b951','nl']);an.push([x+3,y+3])}
+    if(c.s)sh.push([P('M28 58 l8 -14 l8 14 l8 -14 l8 14 l8 -14 l8 14 l8 -14 l8 14 l8 -14 l6 8'),c.s,'sn']);
+    return{sh,an}},
+  crescent:c=>({sh:[[E(60,80,50,10),c.b||K.plate],[P('M12 66 Q16 40 40 33 Q60 26 80 33 Q104 40 108 66 Q98 60 90 62 Q82 46 60 45 Q38 46 30 62 Q22 60 12 66Z'),c.m],
+    [P('M38 35 Q44 46 44 56 M60 28 Q62 38 60 46 M82 35 Q76 46 76 56 M24 50 Q30 52 32 60 M96 50 Q90 52 88 60'),'none']],an:[]}),
+  burger:c=>({sh:[[P('M18 66 Q18 80 60 80 Q102 80 102 66Z'),c.m],[P('M16 62 Q20 54 60 54 Q100 54 104 62 Q100 68 60 66 Q20 68 16 62Z'),c.s],
+    [P('M20 56 Q30 50 40 56 Q50 50 60 56 Q70 50 80 56 Q90 50 100 56'),c.a,'st'],[P('M18 52 Q20 22 60 22 Q100 22 102 52Z'),c.m]],
+    an:[[44,34],[60,30],[76,34],[52,42],[70,42],[36,44]]}),
+};
+const MASK='M-10 0 L130 8 L-10 20 L130 30 L-10 42 L130 52 L-10 64 L130 74 L-10 86 L130 96 L-10 108';
+let illN=0;
+function ill(d,extra=''){
+  const [m,s,a,b]=d.cols.split(',').map(v=>!v||v==='-'?null:(K[v]||v));
+  const T=TPL[d.tpl]({m,s,a,b});const rnd=seeded(d.id);
+  const shapes=[...T.sh];const an=T.an||[];
+  const tops=d.tops?d.tops.split(',').flatMap(t=>{const[tp,col]=t.split(':');const[type,n]=tp.split('*');return Array(+n||1).fill([type,K[col]||col])}):[];
+  tops.forEach(([type,col],i)=>{if(!an.length)return;const[x,y]=an[i%an.length];const j=i>=an.length?6:1.5;shapes.push(...topShapes(type,x+(rnd()-.5)*j*2,y+(rnd()-.5)*j,col,(rnd()-.5)*70))});
+  shapes.push(...(T.fr||[]));
+  const colG=shapes.map(([el,f,fl])=>f==='none'?'':(fl==='st'||fl==='sn')?`${el} fill="none" stroke="${f}" stroke-width="3.4" stroke-linecap="round"/>`:`${el} fill="${f}"/>`).join('');
+  const lnG=shapes.filter(s=>s[2]!=='nl'&&s[2]!=='sn').map(([el])=>`${el} fill="none"/>`).join('');
+  const id='mk'+(++illN);
+  return `<svg class="ill ${extra}" viewBox="0 0 120 100" aria-hidden="true"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="-10" y="-10" width="140" height="120"><path class="rv" pathLength="1" d="${MASK}" stroke="#fff" stroke-width="24" fill="none"/></mask></defs><g class="col" mask="url(#${id})"><g filter="url(#grain)" transform="translate(1.3 1.1)">${colG}</g></g><g class="ln" filter="url(#wob)">${lnG}</g></svg>`;
+}
+
+/* =====================================================================
+   STAMPS
+   ===================================================================== */
+function poly(n,r,deg){const p=[];for(let i=0;i<n;i++){const t=(deg+i*360/n)*Math.PI/180;p.push((50+r*Math.cos(t)).toFixed(1)+','+(50+r*Math.sin(t)).toFixed(1))}return p.join(' ')}
+function frame(shape,ink,dashed){
+  const s=`stroke="${ink}" fill="none"`;
+  switch(shape){
+    case'oval':return`<ellipse cx="50" cy="50" rx="48" ry="38" ${s} stroke-width="3.2"/><ellipse cx="50" cy="50" rx="42" ry="32" ${s} stroke-width="1.1"/>`;
+    case'rect':return`<rect x="4" y="13" width="92" height="74" rx="5" ${s} stroke-width="3.2"/><rect x="9" y="18" width="82" height="64" rx="2" ${s} stroke-width="1.1"/>`;
+    case'hex':return`<polygon points="${poly(6,48,0)}" ${s} stroke-width="3.2"/><polygon points="${poly(6,42,0)}" ${s} stroke-width="1.1"/>`;
+    case'octa':return`<polygon points="${poly(8,47,22.5)}" ${s} stroke-width="3.2"/><polygon points="${poly(8,41,22.5)}" ${s} stroke-width="1.1"/>`;
+    case'cog':return`<circle cx="50" cy="50" r="45" ${s} stroke-width="6" stroke-dasharray="4 3"/><circle cx="50" cy="50" r="38" ${s} stroke-width="1.1"/>`;
+    default:return`<circle cx="50" cy="50" r="46" ${s} stroke-width="3.2"${dashed?' stroke-dasharray="7 4"':''}/><circle cx="50" cy="50" r="40" ${s} stroke-width="1.1"/>`;
+  }
+}
+const short=(s,n)=>{s=String(s||'');return s.length>n?s.slice(0,n-1)+'…':s};
+function stampBody(r,ink,shape,top,bot){
+  const date=(r.date||'').replace(/-/g,'.');
+  const kind=r.type==='home'?'家厨 · HOME':'外食 · DINE';
+  return frame(shape,ink)+
+    `<text x="50" y="35" text-anchor="middle" font-size="8.5" letter-spacing="1.3" fill="${ink}" font-family="Special Elite,Courier New,monospace">${esc(top)}</text>`+
+    `<path d="M24 41 H76 M24 61 H76" stroke="${ink}" stroke-width=".8"/>`+
+    `<text x="50" y="55" text-anchor="middle" font-size="11.5" fill="${ink}" font-family="Special Elite,Courier New,monospace">${esc(date)}</text>`+
+    `<text x="50" y="73" text-anchor="middle" font-size="${String(bot).length>5?9:10.5}" fill="${ink}" font-family="ZCOOL XiaoWei,Songti SC,serif">${esc(short(bot,6))}</text>`+
+    `<text x="50" y="83" text-anchor="middle" font-size="6.5" letter-spacing=".5" fill="${ink}" font-family="Special Elite,Courier New,monospace">${kind}</text>`+
+    (r.challenge?`<text x="50" y="25" text-anchor="middle" font-size="6.5" fill="${ink}" font-family="Special Elite,monospace">★ CHALLENGE ★</text>`:'');
+}
+function stampSVG(r){
+  const f=`url(#ink${(r.seed||0)%4})`;let g;
+  if(r.kind==='dish'){const d=DMAP[r.dishId],c=CMAP[d.c];g=`<g filter="${f}" opacity=".9">${stampBody(r,c.ink,c.shape,c.en,d.zh)}</g>`}
+  else if(r.kind==='fusion'){const[a,b]=r.countries.map(x=>CMAP[x]);
+    g=`<g filter="${f}" opacity=".9"><g clip-path="url(#cL)">${stampBody(r,a.ink,'circle','FUSION',r.name)}</g><g clip-path="url(#cR)">${stampBody(r,b.ink,'circle','FUSION',r.name)}</g></g>`}
+  else{const ink='#6d5a8a';g=`<g filter="${f}" opacity=".9">${frame('circle',ink,true)}<text x="50" y="62" text-anchor="middle" font-size="40" fill="${ink}" font-family="Special Elite,serif">?</text><text x="50" y="30" text-anchor="middle" font-size="7.5" letter-spacing="1" fill="${ink}" font-family="Special Elite,monospace">${esc((r.date||'').replace(/-/g,'.'))}</text><text x="50" y="80" text-anchor="middle" font-size="9" fill="${ink}" font-family="ZCOOL XiaoWei,serif">${esc(short(r.name,7))}</text></g>`}
+  const gold=r.cheapNew?`<g filter="url(#grain)"><circle cx="86" cy="16" r="12" fill="#d8b44e"/><circle cx="86" cy="16" r="9.5" fill="none" stroke="#8a6a1c" stroke-width=".8"/><text x="86" y="19" text-anchor="middle" font-size="7.5" fill="#5a420e" font-family="Special Elite,monospace">≤$10</text></g>`:'';
+  return `<svg class="stamp" viewBox="-6 -6 112 112" aria-hidden="true">${g}${gold}</svg>`;
+}
+
+/* =====================================================================
+   PHOTO → colored-pencil sketch (all local, in canvas)
+   ===================================================================== */
+async function toSketch(file){
+  const img=await new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=URL.createObjectURL(file)});
+  const MAX=380,sc=Math.min(1,MAX/Math.max(img.width,img.height));
+  const w=Math.round(img.width*sc),h=Math.round(img.height*sc);
+  const cv=document.createElement('canvas');cv.width=w;cv.height=h;const x=cv.getContext('2d');
+  x.drawImage(img,0,0,w,h);URL.revokeObjectURL(img.src);
+  const id=x.getImageData(0,0,w,h),p=id.data,N=w*h;
+  const g=new Float32Array(N);for(let i=0;i<N;i++)g[i]=.299*p[i*4]+.587*p[i*4+1]+.114*p[i*4+2];
+  const bl=new Float32Array(N);// 3x3 blur to calm noise
+  for(let yy=1;yy<h-1;yy++)for(let xx=1;xx<w-1;xx++){let s=0;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++)s+=g[(yy+dy)*w+xx+dx];bl[yy*w+xx]=s/9}
+  const mag=new Float32Array(N);let sum=0;
+  for(let yy=1;yy<h-1;yy++)for(let xx=1;xx<w-1;xx++){const i=yy*w+xx;
+    const gx=-bl[i-w-1]-2*bl[i-1]-bl[i+w-1]+bl[i-w+1]+2*bl[i+1]+bl[i+w+1];
+    const gy=-bl[i-w-1]-2*bl[i-w]-bl[i-w+1]+bl[i+w-1]+2*bl[i+w]+bl[i+w+1];
+    mag[i]=Math.hypot(gx,gy);sum+=mag[i]}
+  const thr=(sum/N)*1.9+6;const PA=[244,236,220],INK=[91,64,48];
+  for(let yy=0;yy<h;yy++)for(let xx=0;xx<w;xx++){const i=yy*w+xx,k=i*4;
+    let r=p[k],gg=p[k+1],b=p[k+2];const l=.299*r+.587*gg+.114*b;
+    r=l+(r-l)*.6;gg=l+(gg-l)*.6;b=l+(b-l)*.6;                       // soften saturation
+    r=r*.62+PA[0]*.38;gg=gg*.62+PA[1]*.38;b=b*.62+PA[2]*.38;        // pastel toward paper
+    const edge=Math.min(xx,yy,w-1-xx,h-1-yy);
+    let cov=(.68+Math.random()*.38)*Math.min(1,(edge-6-Math.random()*14)/16); // grainy, unfinished edges
+    cov=Math.max(0,Math.min(1,cov));
+    r=PA[0]+(r-PA[0])*cov;gg=PA[1]+(gg-PA[1])*cov;b=PA[2]+(b-PA[2])*cov;
+    if(mag[i]>thr&&edge>4){const t=Math.min(1,(mag[i]-thr)/thr*1.3)*.85*(.7+Math.random()*.3);
+      r=r*(1-t)+INK[0]*t;gg=gg*(1-t)+INK[1]*t;b=b*(1-t)+INK[2]*t}
+    p[k]=r;p[k+1]=gg;p[k+2]=b}
+  x.putImageData(id,0,0);
+  return cv.toDataURL('image/jpeg',.8);
+}
+
+/* =====================================================================
+   ACHIEVEMENTS
+   ===================================================================== */
+const ACH=[
+ {id:'first',ic:'✈️',name:'初次出境',desc:'解锁第一道外国菜',goal:1,cur:()=>DISHES.filter(d=>d.c!=='CN'&&unlocked(d.id)).length+S.records.filter(r=>r.kind==='fusion'&&r.countries.some(c=>c!=='CN')).length},
+ {id:'asia',ic:'🏮',name:'亚洲巡游',desc:'吃遍 5 个亚洲国家',goal:5,cur:()=>ASIA.filter(c=>visited().has(c)).length},
+ {id:'spicy',ic:'🌶️',name:'无辣不欢',desc:'解锁 10 道辣味菜',goal:10,cur:()=>DISHES.filter(d=>d.fl.includes('辣')&&unlocked(d.id)).length},
+ {id:'fan',ic:'💌',name:'忠实粉丝',desc:'同一道菜记录 10 次',goal:10,cur:()=>Math.max(0,...DISHES.map(d=>recsOf(d.id).length))},
+ {id:'cheap',ic:'🪙',name:'穷鬼美食家',desc:'累计 5 次 $10 以内吃到新菜',goal:5,cur:()=>S.records.filter(r=>r.cheapNew).length},
+ {id:'brave',ic:'⚔️',name:'勇者',desc:'接受并完成 10 次随机挑战',goal:10,cur:()=>S.challengesDone||0},
+ {id:'chef',ic:'🍳',name:'家厨达人',desc:'盖 5 个家厨章',goal:5,cur:()=>S.records.filter(r=>r.type==='home').length},
+ {id:'world',ic:'🌏',name:'环游世界',desc:`护照里的 ${COUNTRIES.length} 个国家都去过`,goal:COUNTRIES.length,cur:()=>COUNTRIES.filter(c=>visited().has(c.id)).length},
+];
+const achDone=()=>new Set(ACH.filter(a=>a.cur()>=a.goal).map(a=>a.id));
+
+/* =====================================================================
+   VIEWS
+   ===================================================================== */
+const app=$('#app');
+function challengeBanner(){
+  if(!S.challenge||!DMAP[S.challenge])return'';const d=DMAP[S.challenge];
+  return `<div class="banner"><span style="font-size:22px">⚔️</span><div class="t">进行中的挑战：<b>${esc(d.zh)}</b> ${CMAP[d.c].flag}<br><span class="muted" style="font-size:12px">吃到之后盖章就算完成</span></div><button class="btn sm red" data-act="stamp" data-id="${d.id}">盖章</button></div>`;
+}
+function vCover(){
+  const n=S.records.length;
+  return `<div class="cover" id="cover"><div class="book">
+    <div class="rep foil">REPUBLIC OF APPETITE</div>
+    <div>
+      <svg class="emblem" viewBox="0 0 120 120" fill="none" stroke="#d9b660" stroke-width="2.2" stroke-linecap="round">
+        <circle cx="60" cy="60" r="52"/><circle cx="60" cy="60" r="46" stroke-width="1"/>
+        <path d="M30 62 Q32 90 60 92 Q88 90 90 62Z"/><path d="M26 62 H94"/>
+        <path d="M44 54 q-4 -6 0 -12 t0 -12 M60 52 q-4 -6 0 -12 t0 -12 M76 54 q-4 -6 0 -12 t0 -12" stroke-width="1.6"/>
+        <path d="M70 70 L98 34 M76 72 L102 38" stroke-width="2"/>
+        <path d="M14 60 H22 M98 60 H106" stroke-width="1"/>
+      </svg>
+      <h1 class="foil" style="margin-top:14px">美食护照</h1>
+      <div class="en foil">FOOD PASSPORT</div>
+    </div>
+    <div>
+      <button class="openbtn" data-act="open">翻开护照 →</button>
+      <div class="cnt foil">${n?`${n} STAMPS INSIDE`:'NO STAMPS YET'}</div>
+    </div>
+  </div></div>`;
+}
+function vIndex(){
+  const v=visited(),un=DISHES.filter(d=>unlocked(d.id)).length;
+  const special=S.records.filter(r=>r.kind!=='dish');
+  return `<div class="page">
+   <header class="hd"><div class="small tw">REPUBLIC OF APPETITE · 美食共和国</div><h1>美食护照</h1>
+    <p class="poem">Every new dish is a border crossing.</p>
+    <div class="sum">已解锁 <b>${un}</b>/${DISHES.length} 道菜 · <b>${v.size}</b> 个国家 · <b>${S.records.length}</b> 个章</div></header>
+   ${challengeBanner()}
+   ${REGIONS.map(rg=>`<h3 class="rg">${rg}</h3><div class="cgrid">${COUNTRIES.filter(c=>c.region===rg).map(ccard).join('')}</div>`).join('')}
+   <h3 class="rg">番外页</h3>
+   <div class="cgrid"><a class="ccard special" href="#/c/X"><div class="fl">❓</div><div class="nm">混血 & 神秘</div><div class="en">FUSION · MYSTERY</div><div class="pg">${special.length} 个章</div></a></div>
+  </div>`;
+}
+function ccard(c){
+  const[u,n]=countryProgress(c.id);const last=S.records.filter(r=>recCountries(r).includes(c.id)).pop();
+  return `<a class="ccard" href="#/c/${c.id}" style="--c:${c.ink}">${last?`<div class="ghost">${stampSVG(last)}</div>`:''}
+   <div class="fl">${c.flag}</div><div class="nm">${c.zh}</div><div class="en">${c.en}</div>
+   <div class="pg">${u} / ${n}</div><div class="bar"><i style="width:${u/n*100}%"></i></div></a>`;
+}
+function dishCard(d){
+  const u=unlocked(d.id),rs=recsOf(d.id),ph=u&&photoOf(d.id);
+  return `<button class="dish ${u?'':'locked'} ${S.challenge===d.id?'challenge':''}" data-act="dish" data-id="${d.id}" id="card-${d.id}">
+    <div class="iw">${ph?`<img src="${ph}" alt="">`:ill(d)}</div>
+    <div class="dn">${esc(d.zh)} <span class="ic">${d.cheap?'💸':''}${d.home?'🏠':''}</span></div>
+    <div class="de">${esc(d.en)}</div>
+    ${u?`<div class="ms">${stampSVG(rs[rs.length-1])}</div>${rs.length>1?`<div class="cnt">×${rs.length}</div>`:''}`:''}
+  </button>`;
+}
+function stampsWall(recs){
+  if(!recs.length)return`<div class="empty">这一页还空着，等你来盖第一个章。</div>`;
+  return recs.slice().sort((a,b)=>(a.date||'').localeCompare(b.date||'')).map(r=>`<div class="st" data-act="rec" data-id="${r.id}" style="transform:rotate(${r.rot}deg) translate(${r.dx}px,${r.dy}px)">${stampSVG(r)}</div>`).join('');
+}
+function vCountry(cid){
+  if(cid==='X')return vSpecial();
+  const c=CMAP[cid];if(!c)return vIndex();
+  const[u,n]=countryProgress(cid);const recs=S.records.filter(r=>recCountries(r).includes(cid));
+  const all=DISHES.filter(d=>d.c===cid),foods=all.filter(d=>!d.drink),drinks=all.filter(d=>d.drink);
+  return `<div class="page" style="--c:${c.ink}">
+   <div class="topbar"><a href="#/">← 护照</a><span class="tw small">VISA · ${c.id} · ${c.region}</span></div>
+   <header class="chd"><div class="fl">${c.flag}</div><h1>${c.zh}</h1><div class="en">${c.en}</div>
+    <div class="prog">${c.zh} <b>${u}</b> / ${n}</div><div class="bar"><i style="width:${u/n*100}%"></i></div>
+    <p class="poem">"${esc(c.poem)}"</p>
+    ${c.syd?`<div class="syd">📍 悉尼平价去处：${c.syd.map(esc).join(' · ')}</div>`:''}
+   </header>
+   ${S.challenge&&DMAP[S.challenge]?.c===cid?challengeBanner():''}
+   <h3 class="rg">🍽️ 菜品 · ${foods.filter(d=>unlocked(d.id)).length} / ${foods.length}</h3>
+   <div class="dgrid">${foods.map(dishCard).join('')}</div>
+   ${drinks.length?`<h3 class="rg">☕ 饮料 · ${drinks.filter(d=>unlocked(d.id)).length} / ${drinks.length}</h3><div class="dgrid">${drinks.map(dishCard).join('')}</div>`:''}
+   ${shopsHTML(cid)}
+   <section class="visa"><h3>签证页</h3><div class="vsub">${recs.length} STAMPS</div><div class="stamps">${stampsWall(recs)}</div></section>
+  </div>`;
+}
+function vSpecial(){
+  const fus=S.records.filter(r=>r.kind==='fusion'),mys=S.records.filter(r=>r.kind==='mystery');
+  return `<div class="page">
+   <div class="topbar"><a href="#/">← 护照</a><span class="tw small">EXTRA PAGES</span></div>
+   <header class="chd"><div class="fl">❓</div><h1>混血 & 神秘</h1><div class="en">FUSION · MYSTERY</div>
+    <p class="poem">"Not everything fits on a map."</p></header>
+   <section class="visa"><h3>混血章</h3><div class="vsub">TWO COUNTRIES, ONE BITE</div><div class="stamps">${stampsWall(fus)}</div></section>
+   <section class="visa"><h3>神秘章</h3><div class="vsub">TO BE IDENTIFIED</div><div class="stamps">${stampsWall(mys)}</div>
+    ${mys.length?`<p class="muted" style="text-align:center;font-size:13px">点一下问号章，查到是哪道菜后可以重新归类。</p>`:''}</section>
+   <div class="row" style="justify-content:center;margin-top:18px"><a class="btn" href="#/find">🔍 去识别 / 盖新章</a></div>
+  </div>`;
+}
+
+// ---- challenge ----
+const CF={region:'all',want:'',no:[],cheap:false,home:false,cur:null};
+function pool(){
+  return DISHES.filter(d=>!unlocked(d.id)
+    &&(CF.region==='all'||CMAP[d.c].region===CF.region||d.c===CF.region)
+    &&(!CF.want||d.fl.some(t=>t.includes(CF.want)))
+    &&!CF.no.some(n=>d.fl.some(t=>t.includes(n)))
+    &&(!CF.cheap||d.cheap)&&(!CF.home||d.home));
+}
+function vChallenge(){
+  const p=pool();const d=CF.cur&&DMAP[CF.cur];
+  return `<div class="page">
+   <header class="hd"><div class="small tw">RANDOM CHALLENGE</div><h1>今天试什么？</h1><p class="poem">Be brave. It's only lunch.</p></header>
+   ${challengeBanner()}
+   <div class="panel">
+    <h3>筛选</h3>
+    <label class="f">地区 / 国家</label>
+    <select class="inp" data-cf="region"><option value="all">全世界</option>
+     ${REGIONS.map(r=>`<option value="${r}" ${CF.region===r?'selected':''}>${r}</option>`).join('')}
+     ${COUNTRIES.map(c=>`<option value="${c.id}" ${CF.region===c.id?'selected':''}>${c.flag} ${c.zh}</option>`).join('')}</select>
+    <label class="f">想要的味道</label>
+    <div class="row" style="gap:6px;margin-top:4px">${['',...FLAVORS].map(f=>`<button class="chip ${CF.want===f?'on':''}" data-act="want" data-v="${f}">${f||'随便'}</button>`).join('')}</div>
+    <label class="f">今天不想吃</label>
+    <div class="row" style="gap:6px;margin-top:4px">${['辣','麻','甜','酸','奶香','烟熏'].map(f=>`<button class="chip no ${CF.no.includes(f)?'on':''}" data-act="no" data-v="${f}">不要${f}</button>`).join('')}</div>
+    <div class="row" style="gap:6px;margin-top:10px">
+     <button class="chip ${CF.cheap?'on':''}" data-act="cfb" data-v="cheap">💸 只要平价</button>
+     <button class="chip ${CF.home?'on':''}" data-act="cfb" data-v="home">🏠 能在家做</button></div>
+    <p class="muted" style="font-size:12.5px;margin:10px 0 0">符合条件、还没吃过的菜：${p.length} 道</p>
+   </div>
+   <div class="draw">
+    <div style="margin-top:16px"><button class="btn pri" data-act="draw" style="font-size:17px;padding:10px 26px">🎲 ${d?'再抽一次':'抽一道'}</button></div>
+    ${d?`<div class="card flipin" id="drawcard">
+      <div style="max-width:220px;margin:0 auto">${ill(d,'locked')}</div>
+      <div class="tw small">${CMAP[d.c].flag} ${CMAP[d.c].en}</div>
+      <h2 style="font-size:26px">${esc(d.zh)}</h2><div class="tw muted" style="font-size:13px">${esc(d.en)}</div>
+      <div style="display:flex;justify-content:center;margin-top:8px">${tagsHTML(d.fl)}</div>
+      <p style="font-size:13.5px;margin:10px 0 0">🧺 ${esc(d.ing)}</p>
+      <p style="font-size:12.5px;margin:6px 0 0" class="muted">${d.cheap?'💸 平价 ':''}${d.home?'🏠 可以自己在家做 ':''}${PICKS[d.id]?'· 📍 '+esc(PICKS[d.id][0])+' '+PICKS[d.id][1]:(CMAP[d.c].syd?'· 📍 '+esc(CMAP[d.c].syd[0]):'')}</p>
+      <div class="row" style="justify-content:center;margin-top:12px">
+       ${S.challenge===d.id?`<span class="tw" style="color:var(--red)">⚔️ 已接受</span>`:`<button class="btn red" data-act="accept" data-id="${d.id}">⚔️ 接受挑战</button>`}
+       <button class="btn" data-act="dish" data-id="${d.id}">看看详情</button></div>
+     </div>`:(!p.length?`<div class="empty">没有符合条件的菜了——要么你都吃过了（厉害），要么放宽一下筛选。</div>`:'')}
+   </div>
+  </div>`;
+}
+
+// ---- search / identify ----
+const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d').replace(/[\s'’\-·.]/g,'');
+function lev(a,b){const m=a.length,n=b.length;if(!m)return n;if(!n)return m;let prev=Array.from({length:n+1},(_,i)=>i);
+  for(let i=1;i<=m;i++){const cur=[i];for(let j=1;j<=n;j++)cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));prev=cur}return prev[n]}
+const CJK=/[㐀-鿿]/;
+function score(q,key){
+  if(!key)return 0;if(key===q)return 100;
+  if(key.includes(q))return 85-Math.min(20,(key.length-q.length));
+  if(q.includes(key)&&key.length>=2)return 40+30*key.length/q.length;
+  if(CJK.test(q)){const ks=new Set(key);let hit=0;for(const ch of new Set(q))if(ks.has(ch))hit++;return hit?hit/Math.max(new Set(q).size,ks.size)*65:0}
+  let d=lev(q,key);// also slide a window over longer keys so "chiken rice" finds "hainanese chicken rice"
+  for(let i=0;i+q.length<=key.length;i++)d=Math.min(d,lev(q,key.slice(i,i+q.length)));
+  const sim=1-d/Math.max(q.length,3);return sim>0.45?sim*70:0;
+}
+function search(qs){
+  const q=norm(qs);if(!q)return[];
+  return DISHES.map(d=>{const keys=[d.zh,d.en,...d.alias.split(' ')].map(norm);return{d,s:Math.max(...keys.map(k=>score(q,k)))}})
+    .filter(x=>x.s>=40).sort((a,b)=>b.s-a.s).slice(0,8);
+}
+let lastQ='';
+function resultsHTML(q){
+  const rs=search(q);
+  if(!q.trim())return`<p class="muted" style="font-size:13px;margin-top:10px">试试：叻沙、冬阴功、烤肉卷、pho、tacco、chiken rice……</p>`;
+  if(!rs.length)return`<div class="empty">词典里没找到「${esc(q)}」<br>可以盖个混血章或神秘章 ↓</div>`;
+  return `<ul class="res">${rs.map(({d})=>`<li data-act="dish" data-id="${d.id}"><div class="th ${unlocked(d.id)?'':'locked'}">${ill(d)}</div><div class="t"><b>${esc(d.zh)}</b> <span class="tw muted" style="font-size:12px">${esc(d.en)}</span><br><span style="font-size:12.5px">${CMAP[d.c].flag} ${CMAP[d.c].zh} · ${d.fl.join(' ')}</span></div>${unlocked(d.id)?'<span class="tw small">✓</span>':''}</li>`).join('')}</ul>`;
+}
+function vFind(){
+  return `<div class="page">
+   <header class="hd"><div class="small tw">CUSTOMS · 菜名识别</div><h1>这是哪国菜？</h1><p class="poem">Tell me what you ate. I'll find its passport.</p></header>
+   <div class="panel"><input class="inp" id="q" placeholder="输入菜名，中英文都行，打错也没关系" value="${esc(lastQ)}" autocomplete="off">
+    <div id="qres">${resultsHTML(lastQ)}</div></div>
+   <div class="panel"><h3>还是找不到？</h3>
+    <p class="muted" style="font-size:13px;margin:0 0 10px">融合菜盖两国各半的<b>混血章</b>；实在不知道是哪的，先盖个<b>神秘章 ❓</b>，以后查到再归类。</p>
+    <div class="row"><button class="btn" data-act="fusion">🧬 盖混血章</button><button class="btn" data-act="mystery">❓ 盖神秘章</button></div></div>
+  </div>`;
+}
+
+// ---- stats ----
+function vStats(){
+  const v=visited(),recs=S.records;const priced=recs.filter(r=>r.price!=null&&r.price!=='');
+  const spent=priced.reduce((s,r)=>s+Number(r.price),0);const done=achDone();
+  const rows=COUNTRIES.map(c=>{const rs=recs.filter(r=>recCountries(r).includes(c.id));return{c,n:rs.length,s:rs.reduce((t,r)=>t+(Number(r.price)||0)/recCountries(r).length,0)}}).filter(x=>x.n);
+  return `<div class="page">
+   <header class="hd"><div class="small tw">LAST PAGE · 旅行总结</div><h1>护照最后一页</h1></header>
+   <div class="bigline">你用 <b>${money(spent)}</b><br>吃遍了 <b>${v.size}</b> 个国家</div>
+   <p class="poem" style="text-align:center">${v.size?'Cheap tickets, real journeys.':'Your first stamp is one meal away.'}</p>
+   <div class="grid3">
+    <div class="stat"><b>${recs.length}</b><span>盖章总数</span></div>
+    <div class="stat"><b>${DISHES.filter(d=>unlocked(d.id)).length}</b><span>解锁菜品</span></div>
+    <div class="stat"><b>${priced.length?money(spent/priced.length):'—'}</b><span>平均每章</span></div>
+    <div class="stat"><b>${recs.filter(r=>r.type!=='home').length}</b><span>🍽️ 外食章</span></div>
+    <div class="stat"><b>${recs.filter(r=>r.type==='home').length}</b><span>🏠 家厨章</span></div>
+    <div class="stat"><b>${recs.filter(r=>r.cheapNew).length}</b><span>🪙 ≤$10 新菜</span></div>
+   </div>
+   ${rows.length?`<div class="panel"><h3>各国花费</h3><table class="ct">${rows.map(x=>`<tr><td>${x.c.flag} ${x.c.zh}</td><td>${x.n} 章</td><td>${money(x.s)}</td></tr>`).join('')}</table></div>`:''}
+   <div class="panel"><h3>🏅 成就</h3>
+    ${ACH.map(a=>{const c=Math.min(a.cur(),a.goal);return`<div class="ach ${done.has(a.id)?'done':''}"><div class="ic">${a.ic}</div><div class="t"><b>${a.name}</b>${a.id==='cheap'?' <span class="goldbadge">金色徽章</span>':''}<div>${a.desc}</div></div><div class="n">${c}/${a.goal}</div></div>`}).join('')}
+   </div>
+   <div class="panel"><h3>💾 备份 / 同步</h3>
+    <p class="muted" style="font-size:13px;margin:0">${syncState==='synced'?'✅ 记录已同步到你的 Claude 账号，手机和电脑打开同一个链接看到的是同一份。':'记录只存在这个浏览器里。换浏览器、清数据或无痕模式会丢失——记得时不时导出一份。'}</p>
+    <div class="row" style="margin-top:10px"><button class="btn sm" data-act="export">导出文本</button><button class="btn sm" data-act="download">下载 .json</button><button class="btn sm" data-act="importOpen">导入</button></div>
+    <div id="bk"></div>
+   </div>
+   <div class="row" style="justify-content:center;margin-top:18px"><a class="btn sm" href="#" data-act="cover">合上护照</a></div>
+  </div>`;
+}
+
+/* =====================================================================
+   MODALS
+   ===================================================================== */
+const modal=$('#modal'),mbody=$('#mbody');
+function openModal(html){mbody.innerHTML=html;modal.hidden=false;modal.querySelector('.sheet').scrollTop=0}
+function closeModal(){modal.hidden=true;mbody.innerHTML='';pendingPhoto=null}
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+
+function openDish(id){
+  const d=DMAP[id],c=CMAP[d.c],u=unlocked(id),rs=recsOf(id),ph=photoOf(id);
+  openModal(`<div class="dm">
+   <div class="dm-ill ${u?'':'locked'}">${ph?`<img src="${ph}" alt="">`:ill(d)}</div>
+   <h2>${esc(d.zh)}</h2><div class="en">${esc(d.en)}</div>
+   <dl class="kv">
+    <dt>所属国家</dt><dd><a href="#/c/${c.id}" data-act="close">${c.flag} ${c.zh}</a> · ${c.region}</dd>
+    <dt>味道</dt><dd>${tagsHTML(d.fl)}</dd>
+    <dt>主要食材</dt><dd>${esc(d.ing)}</dd>
+    <dt>标签</dt><dd>${d.cheap?'💸 平价 ':''}${d.home?'🏠 可在家做 ':''}${!d.cheap&&!d.home?'<span class="muted">偶尔奢侈一下</span>':''}</dd>
+    ${c.syd?`<dt>悉尼</dt><dd>📍 ${c.syd.map(esc).join(' · ')}</dd>`:''}
+   </dl>
+   <div class="fact">💡 ${esc(d.fact)}</div>
+   ${PICKS[id]?`<h3 style="margin-top:18px;font-size:16px">📍 推荐去这家吃</h3>${shopRow([...PICKS[id].slice(0,4),'',PICKS[id][4]])}`:''}
+   ${shopsForDish(id).filter(s=>!PICKS[id]||s[0]!==PICKS[id][0]).length?`<p class="muted" style="font-size:13px;margin:10px 0 0">附近还有</p>${shopsForDish(id).filter(s=>!PICKS[id]||s[0]!==PICKS[id][0]).map(shopRow).join('')}`:''}
+   ${S.challenge===id?`<div class="banner"><span>⚔️</span><div class="t">这是你当前的挑战！</div></div>`:''}
+   <div class="row" style="justify-content:center;margin-top:16px"><button class="btn pri" data-act="stamp" data-id="${id}">🖋️ ${u?'再盖一个章':'吃到了！盖章'}</button></div>
+   ${rs.length?`<h3 style="margin-top:20px;font-size:16px">盖章记录 · ${rs.length}</h3><ul class="recs">${rs.slice().reverse().map(recLi).join('')}</ul>`:''}
+  </div>`);
+}
+const recLine=r=>[r.date,r.price!=null&&r.price!==''?money(r.price):'',r.place,r.note].filter(Boolean).map(esc).join(' · ');
+const recLi=r=>`<li><div class="s">${stampSVG(r)}</div><div class="t">${recLine(r)}${r.type==='home'?' 🏠':''}${r.cheapNew?' <span class="goldbadge">穷鬼美食家</span>':''}</div><button data-act="delrec" data-id="${r.id}">删除</button></li>`;
+
+let pendingPhoto=null,stampCtx=null;
+function placeList(cids){
+  const all=[...new Set(COUNTRIES.flatMap(c=>c.syd||[]))];
+  const pref=[...(stampCtx?.dishId&&PICKS[stampCtx.dishId]?[PICKS[stampCtx.dishId][0]]:[]),...cids.flatMap(c=>[...countryShops(c).map(e=>e.s[0]),...(CMAP[c]?.syd||[])])];
+  return `<datalist id="places">${[...new Set([...pref,...all])].map(p=>`<option value="${esc(p)}">`).join('')}</datalist>`;
+}
+function openStamp(ctx){
+  stampCtx=ctx;pendingPhoto=null;
+  let head='',cids=[];
+  if(ctx.kind==='dish'){const d=DMAP[ctx.dishId];cids=[d.c];head=`<h2 style="text-align:center;font-size:24px">${CMAP[d.c].flag} ${esc(d.zh)}</h2><div class="tw muted" style="text-align:center">${esc(d.en)}</div>`}
+  else if(ctx.kind==='fusion'){head=`<h2 style="text-align:center;font-size:24px">🧬 混血章</h2>
+    <label class="f">菜名</label><input class="inp" name="name" required placeholder="例：韩式炸鸡汉堡">
+    <div class="two"><div><label class="f">国家 A</label><select class="inp" name="ca">${COUNTRIES.map(c=>`<option value="${c.id}">${c.flag} ${c.zh}</option>`).join('')}</select></div>
+    <div><label class="f">国家 B</label><select class="inp" name="cb">${COUNTRIES.map((c,i)=>`<option value="${c.id}" ${i===1?'selected':''}>${c.flag} ${c.zh}</option>`).join('')}</select></div></div>`}
+  else head=`<h2 style="text-align:center;font-size:24px">❓ 神秘章</h2><label class="f">你怎么叫它？</label><input class="inp" name="name" required placeholder="例：夜市那个绿色的饼">`;
+  openModal(`<form id="stampForm">${head}
+    <div class="two"><div><label class="f">日期</label><input class="inp" type="date" name="date" value="${today()}" required></div>
+    <div><label class="f">花了多少（$）</label><input class="inp" type="number" name="price" min="0" step="0.5" inputmode="decimal" placeholder="8"></div></div>
+    <label class="f">印章类型</label>
+    <div class="seg" id="seg"><button type="button" class="on" data-t="out">🍽️ 外食章</button><button type="button" data-t="home">🏠 家厨章</button></div>
+    <label class="f">在哪吃的</label><input class="inp" name="place" list="places" placeholder="例：Cabramatta / 我家厨房">${placeList(cids)}
+    <label class="f">一句评价</label><input class="inp" name="note" maxlength="60" placeholder="例：汤头好到想喝完">
+    <label class="f">拍张照？会在本地变成彩铅插画（可选）</label>
+    <input class="inp" type="file" accept="image/*" id="photo">
+    <div class="preview" id="pv"></div>
+    <div class="row" style="justify-content:center;margin-top:18px"><button class="btn pri" type="submit" style="font-size:17px;padding:10px 30px">咚！盖章</button></div>
+  </form>`);
+  $('#seg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('#seg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b))});
+  $('#photo').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;$('#pv').innerHTML='<span class="tw muted">削铅笔中…</span>';
+    try{pendingPhoto=await toSketch(f);$('#pv').innerHTML=`<img src="${pendingPhoto}" alt="">`}catch(err){$('#pv').innerHTML='<span class="muted">这张图读不出来，换一张试试。</span>'}});
+}
+function submitStamp(form){
+  const fd=new FormData(form);const before=achDone();
+  const type=$('#seg .on').dataset.t;
+  const priceRaw=fd.get('price');const price=priceRaw===''?null:Math.max(0,Number(priceRaw));
+  const r={id:uid(),t:Date.now(),kind:stampCtx.kind,date:fd.get('date')||today(),price,place:(fd.get('place')||'').trim(),note:(fd.get('note')||'').trim(),type,
+    rot:Math.round((Math.random()-.5)*34),dx:Math.round((Math.random()-.5)*10),dy:Math.round((Math.random()-.5)*12),seed:Math.floor(Math.random()*1000)};
+  let first=false,goto='#/c/X';
+  if(r.kind==='dish'){r.dishId=stampCtx.dishId;first=!unlocked(r.dishId);goto='#/c/'+DMAP[r.dishId].c;
+    if(S.challenge===r.dishId){r.challenge=true;S.challenge=null;S.challengesDone=(S.challengesDone||0)+1}}
+  else{r.name=(fd.get('name')||'').trim()||'无名之味';first=true;
+    if(r.kind==='fusion'){r.countries=[fd.get('ca'),fd.get('cb')];if(r.countries[0]===r.countries[1]){toast('混血章要选两个不同的国家哦');return}}}
+  if(price!=null&&price<=10&&first)r.cheapNew=true;
+  if(pendingPhoto)r.photo=pendingPhoto;
+  S.records.push(r);
+  if(!save()){S.records.pop();if(r.challenge){S.challenge=r.dishId;S.challengesDone--}return}
+  remote.put(r);if(r.challenge)remote.meta();
+  closeModal();
+  stampFX(r,()=>{
+    pendingAnim=first&&r.kind==='dish'&&!r.photo?r.dishId:null;
+    if(location.hash===goto)route();else location.hash=goto;
+    const after=achDone();ACH.filter(a=>after.has(a.id)&&!before.has(a.id)).forEach((a,i)=>setTimeout(()=>toast(`🏅 成就解锁：${a.name}`),400+i*2800));
+    if(r.cheapNew)setTimeout(()=>toast('🪙 $10 以内吃到新菜！金色徽章 +1'),200);
+    if(r.challenge)setTimeout(()=>toast('⚔️ 挑战完成！'),100);
+  });
+}
+function stampFX(r,done){
+  const fx=document.createElement('div');fx.className='fx';fx.style.setProperty('--r',r.rot+'deg');
+  fx.innerHTML=`<div class="big">${stampSVG(r)}</div><div class="dong">咚！</div>`;document.body.appendChild(fx);
+  app.classList.remove('thud');void app.offsetWidth;app.classList.add('thud');
+  try{navigator.vibrate&&navigator.vibrate(40)}catch(e){}
+  setTimeout(()=>{fx.classList.add('out');done()},1100);setTimeout(()=>fx.remove(),1650);
+}
+function openRec(id){
+  const r=S.records.find(x=>x.id===id);if(!r)return;
+  if(r.kind==='dish')return openDish(r.dishId);
+  openModal(`<div style="max-width:180px;margin:0 auto">${stampSVG(r)}</div>
+   <h2 style="text-align:center;font-size:24px;margin-top:6px">${esc(r.name)}</h2>
+   <p style="text-align:center" class="muted">${r.kind==='fusion'?r.countries.map(c=>CMAP[c].flag+' '+CMAP[c].zh).join(' × '):'❓ 未知国籍'}</p>
+   ${r.photo?`<div class="dm-ill"><img src="${r.photo}" alt=""></div>`:''}
+   <p style="text-align:center">${recLine(r)}</p>
+   ${r.kind==='mystery'?`<div class="panel"><h3>查到是什么了？</h3><input class="inp" id="rq" placeholder="搜菜名" value="${esc(r.name)}"><div id="rres"></div></div>`:''}
+   <div class="row" style="justify-content:center;margin-top:14px"><button class="btn sm" data-act="delrec" data-id="${r.id}">删除这个章</button></div>`);
+  if(r.kind==='mystery'){const upd=()=>{const rs=search($('#rq').value);$('#rres').innerHTML=rs.length?`<ul class="res">${rs.map(({d})=>`<li data-act="reclass" data-id="${r.id}" data-d="${d.id}"><div class="th">${ill(d)}</div><div class="t"><b>${esc(d.zh)}</b><br><span style="font-size:12.5px">${CMAP[d.c].flag} ${CMAP[d.c].zh}</span></div><span class="btn sm">归类</span></li>`).join('')}</ul>`:'<p class="muted" style="font-size:13px">没有匹配的菜。</p>'};
+    $('#rq').addEventListener('input',upd);upd()}
+}
+
+/* =====================================================================
+   ROUTER + ACTIONS
+   ===================================================================== */
+let pendingAnim=null;
+function route(keep){
+  const h=location.hash.replace(/^#/,'');const nav=$('#nav');let key='index',html;
+  if(!h){html=vCover();key=null}
+  else if(h.startsWith('/c/')){html=vCountry(h.slice(3));key='index'}
+  else if(h==='/challenge'){html=vChallenge();key='challenge'}
+  else if(h==='/find'){html=vFind();key='find'}
+  else if(h==='/stats'){html=vStats();key='stats'}
+  else html=vIndex();
+  app.innerHTML=html;nav.hidden=!key;
+  nav.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.dataset.nav===key));
+  if(!keep)window.scrollTo(0,0);
+  if(key==='find'){const q=$('#q');q.addEventListener('input',()=>{lastQ=q.value;$('#qres').innerHTML=resultsHTML(q.value)})}
+  if(pendingAnim){const card=$('#card-'+pendingAnim);pendingAnim=null;
+    if(card){card.classList.add('anim');card.scrollIntoView({block:'center',behavior:'smooth'})}}
+}
+// In-page "tap again to confirm": browser confirm() dialogs are silently blocked in some viewers
+function armed(t,label){
+  if(t.dataset.armed==='1')return true;
+  const old=t.innerHTML;t.dataset.armed='1';t.textContent=label;t.classList.add('armed');
+  setTimeout(()=>{if(t.isConnected&&t.dataset.armed==='1'){t.dataset.armed='';t.innerHTML=old;t.classList.remove('armed')}},3500);
+  return false;
+}
+const ACT={
+  open:()=>{$('#cover').classList.add('leaving');setTimeout(()=>location.hash='#/',450)},
+  cover:(t,e)=>{e.preventDefault();location.hash=''},
+  close:()=>closeModal(),
+  dish:t=>openDish(t.dataset.id),
+  stamp:t=>openStamp({kind:'dish',dishId:t.dataset.id}),
+  fusion:()=>openStamp({kind:'fusion'}),
+  mystery:()=>openStamp({kind:'mystery'}),
+  rec:t=>openRec(t.dataset.id),
+  delrec:t=>{if(!armed(t,'再点一次确认删除'))return;S.records=S.records.filter(r=>r.id!==t.dataset.id);save();remote.del(t.dataset.id);closeModal();route();toast('已删除这个章')},
+  reclass:t=>{const r=S.records.find(x=>x.id===t.dataset.id);r.kind='dish';r.dishId=t.dataset.d;save();remote.put(r);closeModal();toast(`❓ → ${DMAP[r.dishId].zh}，已归类`);location.hash='#/c/'+DMAP[r.dishId].c},
+  want:t=>{CF.want=t.dataset.v;route()},
+  no:t=>{const v=t.dataset.v;CF.no=CF.no.includes(v)?CF.no.filter(x=>x!==v):[...CF.no,v];route()},
+  cfb:t=>{CF[t.dataset.v]=!CF[t.dataset.v];route()},
+  draw:()=>{const p=pool();if(!p.length){CF.cur=null;route();return}
+    const opts=p.length>1?p.filter(d=>d.id!==CF.cur):p;CF.cur=opts[Math.floor(Math.random()*opts.length)].id;route();
+    setTimeout(()=>$('#drawcard')?.scrollIntoView({block:'center',behavior:'smooth'}),50)},
+  accept:t=>{if(S.challenge&&S.challenge!==t.dataset.id&&!armed(t,`再点一次：放弃「${DMAP[S.challenge].zh}」`))return;
+    S.challenge=t.dataset.id;save();remote.meta();toast('⚔️ 挑战已接受！吃到之后记得盖章');route()},
+  export:()=>{$('#bk').innerHTML=`<textarea class="inp" id="bkt" readonly>${esc(JSON.stringify(S))}</textarea><div class="row" style="margin-top:6px"><button class="btn sm" data-act="copy">复制</button></div>`;$('#bkt').select()},
+  copy:()=>{const t=$('#bkt');t.select();(navigator.clipboard?navigator.clipboard.writeText(t.value):Promise.reject()).then(()=>toast('已复制'),()=>{document.execCommand('copy');toast('已复制')})},
+  download:async()=>{const dl=window.claude?.use?await claude.use('downloads'):null;
+    if(dl){try{await dl.save({filename:`food-passport-${today()}.json`,data:JSON.stringify(S)})}catch(e){}return}
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download=`food-passport-${today()}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)},
+  importOpen:()=>{$('#bk').innerHTML=`<textarea class="inp" id="bki" placeholder="把导出的文本粘贴到这里"></textarea><div class="row" style="margin-top:6px"><input type="file" accept=".json,application/json" id="bkf" style="font-size:13px"><button class="btn sm pri" data-act="doImport">导入（覆盖当前记录）</button></div>`;
+    $('#bkf').addEventListener('change',async e=>{const f=e.target.files[0];if(f)$('#bki').value=await f.text()})},
+  doImport:t=>{try{const s=JSON.parse($('#bki').value);if(!s||!Array.isArray(s.records))throw 0;
+    s.records=s.records.filter(r=>r&&r.id&&(r.kind!=='dish'||DMAP[r.dishId])&&(r.kind!=='fusion'||(Array.isArray(r.countries)&&r.countries.every(c=>CMAP[c]))));
+    if(!armed(t,`再点一次：用 ${s.records.length} 个章覆盖现在的 ${S.records.length} 个`))return;
+    const old=S.records.map(r=>r.id);S=Object.assign({challenge:null,challengesDone:0},s);S.records.forEach((r,k)=>{if(!r.t)r.t=k});save();toast('导入成功');route();
+    if(REMOTE)(async()=>{for(const id of old)await remote.del(id);for(const r of S.records)await remote.put(r);await remote.meta()})()}catch(e){toast('格式不对，导入失败')}},
+};
+document.addEventListener('click',e=>{const t=e.target.closest('[data-act]');if(!t)return;const f=ACT[t.dataset.act];if(f){f(t,e)}});
+document.addEventListener('change',e=>{if(e.target.dataset.cf){CF[e.target.dataset.cf]=e.target.value;route()}});
+document.addEventListener('submit',e=>{if(e.target.id==='stampForm'){e.preventDefault();submitStamp(e.target)}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeModal()});
+window.addEventListener('hashchange',()=>{closeModal();route()});
+route();
+initSync();
+
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+</script>
+</body>
+</html>
