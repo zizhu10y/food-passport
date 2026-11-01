@@ -112,7 +112,8 @@ hr.dash{border:0;border-top:1.5px dashed var(--faint);margin:22px 0}
 /* ---------- illustration ---------- */
 .ill{width:100%;height:auto;display:block;overflow:visible}
 .ill .ln{stroke:var(--ink);stroke-width:1.25;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.locked .ill .col,.ill.locked .col{display:none}
+.locked .ill .col,.ill.locked .col,.locked .ill .ln2,.ill.locked .ln2{display:none}
+.ill .ln2{stroke-width:.7;stroke-opacity:.38}
 .locked .ill .ln,.ill.locked .ln{stroke:var(--faint);stroke-dasharray:2.4 2.6}
 .ill .rv{stroke-dasharray:1 1;stroke-dashoffset:0}
 .anim .ill .rv{animation:paint 2.2s ease-in-out .35s both}
@@ -274,6 +275,11 @@ table.ct td:last-child,table.ct td:nth-child(2){text-align:right;font-family:var
     <filter id="ink1" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="23" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.6 2.15" result="a"/><feComposite in="SourceGraphic" in2="a" operator="in" result="c"/><feTurbulence type="turbulence" baseFrequency=".045" seed="9" result="t"/><feDisplacementMap in="c" in2="t" scale="3" xChannelSelector="R" yChannelSelector="G"/></filter>
     <filter id="ink2" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="41" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.9" result="a"/><feComposite in="SourceGraphic" in2="a" operator="in" result="c"/><feTurbulence type="turbulence" baseFrequency=".06" seed="17" result="t"/><feDisplacementMap in="c" in2="t" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
     <filter id="ink3" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" seed="57" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.8 2.3" result="a"/><feComposite in="SourceGraphic" in2="a" operator="in" result="c"/><feTurbulence type="turbulence" baseFrequency=".05" seed="31" result="t"/><feDisplacementMap in="c" in2="t" scale="3.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+    <!-- pencil shading: diagonal hatch, denser toward the lower right of each shape, plus a soft highlight upper left -->
+    <pattern id="hatch" patternUnits="userSpaceOnUse" width="2.6" height="2.6" patternTransform="rotate(38)"><line x1="0" y1="0" x2="0" y2="2.6" stroke="#3a2618" stroke-width=".75" stroke-opacity=".55"/></pattern>
+    <linearGradient id="shg" x1="0" y1="0" x2=".7" y2="1"><stop offset=".38" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".95"/></linearGradient>
+    <mask id="shm" maskContentUnits="objectBoundingBox"><rect width="1" height="1" fill="url(#shg)"/></mask>
+    <radialGradient id="hl" cx=".33" cy=".27" r=".5"><stop offset="0" stop-color="#fffaf0" stop-opacity=".6"/><stop offset="1" stop-color="#fffaf0" stop-opacity="0"/></radialGradient>
     <clipPath id="cL" clipPathUnits="userSpaceOnUse"><rect x="-10" y="-10" width="60" height="120"/></clipPath>
     <clipPath id="cR" clipPathUnits="userSpaceOnUse"><rect x="50" y="-10" width="60" height="120"/></clipPath>
   </defs>
@@ -1148,7 +1154,7 @@ function flat(c,ring){
   return{sh,an};
 }
 const TPL={
-  bowl:c=>({sh:[[E(60,86,17,3.5),c.b||K.bowl],[P('M12 46 Q14 84 60 86 Q106 84 108 46Z'),c.b||K.bowl],[P('M22 64 Q60 76 98 64'),'none'],[E(60,46,48,12),c.m||K.soup],
+  bowl:c=>({sh:[[E(60,86,17,3.5),c.b||K.bowl],[P('M12 46 Q14 84 60 86 Q106 84 108 46 A48 12 0 0 0 12 46Z'),c.b||K.bowl],[P('M22 64 Q60 76 98 64'),'none'],[E(60,46,48,12),c.m||K.soup],
     ...(c.s?[[P('M24 47 q5 -5 10 0 t10 0 t10 0 t10 0 t10 0 t10 0 t10 0'),c.s,'st'],[P('M32 52 q5 -4 10 0 t10 0 t10 0 t10 0 t10 0'),c.s,'st']]:[]),
     [P('M48 28 q-4 -5 0 -10 t0 -10'),'none'],[P('M70 30 q-4 -5 0 -10 t0 -10'),'none']],
     an:[[44,43],[74,43],[60,49],[34,47],[86,47],[58,39],[48,52],[72,52],[40,40],[80,40]]}),
@@ -1202,7 +1208,7 @@ const TPL={
     if(c.s)sh.push([P('M86 50 L88 80 Q98 85 108 80 L110 50Z'),K.white],[E(98,51,12,4),c.s]);
     for(const y of[44,56,68])sh.push([R(14,y,74,10,5,rot(-12,50,y+5)),c.m],[P(`M18 ${y+5} L84 ${y+5}`,rot(-12,50,y+5)),'none']);
     return{sh,an:[[30,48],[48,44],[66,40],[30,60],[50,56],[70,52],[36,72],[56,68],[74,64],[22,62]]}},
-  salad:c=>({sh:[[P('M10 48 Q14 82 60 84 Q106 82 110 48Z'),c.b||K.bowl],[P('M20 62 Q60 74 100 62'),'none'],[E(60,48,50,12),'#c9d8b0']],
+  salad:c=>({sh:[[P('M10 48 Q14 82 60 84 Q106 82 110 48 A50 12 0 0 0 10 48Z'),c.b||K.bowl],[P('M20 62 Q60 74 100 62'),'none'],[E(60,48,50,12),'#c9d8b0']],
     an:[[40,45],[60,41],[80,45],[30,50],[50,51],[70,51],[90,50],[44,40],[76,40],[60,48],[36,43],[84,43],[54,45],[66,47]]}),
   dip:c=>{const sh=[[E(60,64,54,20),c.b||K.plate],[E(60,60,42,15),c.m],[P('M40 60 Q60 48 80 60 Q60 68 46 60'),'none']];
     if(c.s)sh.push([E(60,58,10,4),c.s,'nl']);
@@ -1242,8 +1248,11 @@ function ill(d,extra=''){
   shapes.push(...(T.fr||[]));
   const colG=shapes.map(([el,f,fl])=>f==='none'?'':(fl==='st'||fl==='sn')?`${el} fill="none" stroke="${f}" stroke-width="3.4" stroke-linecap="round"/>`:`${el} fill="${f}"/>`).join('');
   const lnG=shapes.filter(s=>s[2]!=='nl'&&s[2]!=='sn').map(([el])=>`${el} fill="none"/>`).join('');
+  // only the dish and main food get shading; small toppings stay clean so their colors read
+  const solid=T.sh.filter(([,f,fl])=>f!=='none'&&fl!=='st'&&fl!=='sn'&&fl!=='nl');
+  const shadeG=solid.map(([el])=>`${el} fill="url(#hatch)" mask="url(#shm)"/>`).join('')+solid.map(([el])=>`${el} fill="url(#hl)"/>`).join('');
   const id='mk'+(++illN);
-  return `<svg class="ill ${extra}" viewBox="0 0 120 100" aria-hidden="true"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="-10" y="-10" width="140" height="120"><path class="rv" pathLength="1" d="${MASK}" stroke="#fff" stroke-width="24" fill="none"/></mask></defs><g class="col" mask="url(#${id})"><g filter="url(#grain)" transform="translate(1.3 1.1)">${colG}</g></g><g class="ln" filter="url(#wob)">${lnG}</g></svg>`;
+  return `<svg class="ill ${extra}" viewBox="0 0 120 100" aria-hidden="true"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="-10" y="-10" width="140" height="120"><path class="rv" pathLength="1" d="${MASK}" stroke="#fff" stroke-width="24" fill="none"/></mask></defs><g class="col" mask="url(#${id})"><g filter="url(#grain)" transform="translate(1.3 1.1)">${colG}</g><g transform="translate(1.3 1.1)">${shadeG}</g></g><g class="ln ln2" filter="url(#wob)" transform="translate(.8 .6)">${lnG}</g><g class="ln" filter="url(#wob)">${lnG}</g></svg>`;
 }
 
 /* =====================================================================
