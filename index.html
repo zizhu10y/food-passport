@@ -1344,7 +1344,7 @@ function endChallenge(result){
 function checkExpired(){
   if(!S.challenge||!S.chDue||today()<=S.chDue)return;
   const d=DMAP[S.challenge];endChallenge('fail');save();remote.meta();
-  setTimeout(()=>toast(`⏰「${d?d.zh:'这道菜'}」没赶上期限，记一次失败。成就一个不少，再战一次吧！`,4200),300);
+  setTimeout(()=>toast(`⏰「${d?d.zh:'这道菜'}」没赶上期限，记一次失败。`),300);
 }
 function chStats(){
   const log=S.chLog||[];const win=log.filter(x=>x.r==='win').length,fail=log.filter(x=>x.r==='fail').length,quit=log.filter(x=>x.r==='quit').length;
