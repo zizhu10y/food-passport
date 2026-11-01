@@ -4663,11 +4663,11 @@ function vSpecial(){
 }
 
 // ---- challenge ----
-const CF={region:'all',want:'',no:[],cheap:false,home:false,cur:null,due:'2'};
+const CF={region:'all',want:[],no:[],cheap:false,home:false,cur:null,due:'2'};
 function pool(){
   return DISHES.filter(d=>!unlocked(d.id)
     &&(CF.region==='all'||CMAP[d.c].region===CF.region||d.c===CF.region)
-    &&(!CF.want||d.fl.some(t=>t.includes(CF.want)))
+    &&CF.want.every(w=>d.fl.some(t=>t.includes(w)))
     &&!CF.no.some(n=>d.fl.some(t=>t.includes(n)))
     &&(!CF.cheap||d.cheap)&&(!CF.home||d.home));
 }
@@ -4687,8 +4687,8 @@ function vChallenge(){
     <select class="inp" data-cf="region"><option value="all">全世界</option>
      ${REGIONS.map(r=>`<option value="${r}" ${CF.region===r?'selected':''}>${r}</option>`).join('')}
      ${COUNTRIES.map(c=>`<option value="${c.id}" ${CF.region===c.id?'selected':''}>${c.flag} ${c.zh}</option>`).join('')}</select>
-    <label class="f">想要的味道</label>
-    <div class="row" style="gap:6px;margin-top:4px">${['',...FLAVORS].map(f=>`<button class="chip ${CF.want===f?'on':''}" data-act="want" data-v="${f}">${f||'随便'}</button>`).join('')}</div>
+    <label class="f">想要的味道 <span class="muted" style="font-size:12px">可以多选，比如酸 + 辣</span></label>
+    <div class="row" style="gap:6px;margin-top:4px">${['',...FLAVORS].map(f=>`<button class="chip ${f?(CF.want.includes(f)?'on':''):(CF.want.length?'':'on')}" data-act="want" data-v="${f}">${f||'随便'}</button>`).join('')}</div>
     <label class="f">今天不想吃</label>
     <div class="row" style="gap:6px;margin-top:4px">${['辣','麻','甜','酸','奶香','烟熏'].map(f=>`<button class="chip no ${CF.no.includes(f)?'on':''}" data-act="no" data-v="${f}">不要${f}</button>`).join('')}</div>
     <div class="row" style="gap:6px;margin-top:10px">
@@ -4928,8 +4928,8 @@ const ACT={
   rec:t=>openRec(t.dataset.id),
   delrec:t=>{if(!armed(t,'再点一次确认删除'))return;S.records=S.records.filter(r=>r.id!==t.dataset.id);save();remote.del(t.dataset.id);closeModal();route();toast('已删除这个章')},
   reclass:t=>{const r=S.records.find(x=>x.id===t.dataset.id);r.kind='dish';r.dishId=t.dataset.d;save();remote.put(r);closeModal();toast(`❓ → ${DMAP[r.dishId].zh}，已归类`);location.hash='#/c/'+DMAP[r.dishId].c},
-  want:t=>{CF.want=t.dataset.v;route()},
-  no:t=>{const v=t.dataset.v;CF.no=CF.no.includes(v)?CF.no.filter(x=>x!==v):[...CF.no,v];route()},
+  want:t=>{const v=t.dataset.v;CF.want=!v?[]:CF.want.includes(v)?CF.want.filter(x=>x!==v):[...CF.want,v];if(v)CF.no=CF.no.filter(x=>x!==v);route(true)},
+  no:t=>{const v=t.dataset.v;CF.no=CF.no.includes(v)?CF.no.filter(x=>x!==v):[...CF.no,v];CF.want=CF.want.filter(x=>x!==v);route(true)},
   cfb:t=>{CF[t.dataset.v]=!CF[t.dataset.v];route()},
   draw:()=>{const p=pool();if(!p.length){CF.cur=null;route();return}
     const opts=p.length>1?p.filter(d=>d.id!==CF.cur):p;CF.cur=opts[Math.floor(Math.random()*opts.length)].id;route();
