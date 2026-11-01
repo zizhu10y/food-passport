@@ -1398,6 +1398,132 @@ function artSVG(items,extra){
   return `<svg class="ill hi ${extra}" viewBox="0 0 240 200" aria-hidden="true"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="-20" y="-20" width="280" height="240"><path class="rv" pathLength="1" d="${MASK}" transform="scale(2)" stroke="#fff" stroke-width="24" fill="none"/></mask></defs>${out}</svg>`;
 }
 
+/* ---------- Australia ---------- */
+// café plate: plain white with a soft grey rim; toast slice helper; sprinkles
+const aCafe=(cx,cy,rx,ry)=>aPlate(cx,cy,rx,ry,'#faf9f6',null);
+const aToast=(x,y,w,h,a,top)=>[[aRc(x-w/2,y-h/2,w,h,8,a),'#c9822a',''],[aRc(x-w/2+4,y-h/2+4,w-8,h-8,6,a),'#f2d8a0',''],aWash(aRc(x-w/2+4,y,w-8,h/2-4,4,a),'#d9a860',.5),...(top||[])];
+const aSprinkles=(r,n,x0,y0,w,h)=>[Array.from({length:n},()=>{const x=(x0+r()*w).toFixed(1),y=(y0+r()*h).toFixed(1);return`<rect x="${x}" y="${y}" width="3.4" height="1.4" rx=".7" transform="rotate(${Math.round(r()*180)} ${x} ${y})" fill="${['#e8508a','#3aa0e0','#f6d020','#5ac05a','#f08a2a','#a060e0','#fbf8f0'][Math.floor(r()*7)]}"/>`}).join(''),null,'raw'];
+
+ART.meatpie=()=>{const r=aSeed(1753);
+  return[aShadow(118,176,96,12),[aRc(26,128,184,44,6),'#f2e6cc',''],aWash(aRc(26,152,184,20,6),'#c9b88a',.6),
+    [aP('M52 126 L58 152 Q110 164 162 152 L168 126Z'),'#c98a3a',''],aClip('M52 126 L58 152 Q110 164 162 152 L168 126Z',`<path d="${Array.from({length:16},(_,i)=>`M${52+i*8} 124 l0 34`).join(' ')}" stroke="#8a5a1a" stroke-width="1.4"/>`),
+    [aE(110,126,58,16),'#e0a050',''],aWash(aE(118,130,40,9),'#a8601a',.6),aWash(aE(96,120,24,5),'#f6d090',.8),
+    aPen('M70 122 q10 6 20 0 t20 0 t20 0 t18 0',1,'#a8601a',.7),aGloss('M70 118 q30 -8 60 -6',2),
+    [`<g filter="url(#wc2)" opacity=".95"><path d="M88 118 q10 -8 22 -2 q10 6 22 -2 q8 -4 12 2" stroke="#c8201a" stroke-width="6" fill="none" stroke-linecap="round"/></g>`,null,'raw'],
+    [aP('M176 92 L196 92 L192 132 L180 132Z'),'#d8301a',''],[aRc(180,82,12,12,3),'#f2f0e6',''],aGloss('M180 98 l2 28',1.4)];
+};
+
+ART.sizzle=()=>{const r=aSeed(1759);
+  return[aShadow(116,146,96,8),
+    [aP('M28 136 L196 120 L204 132 L36 148Z'),'#f8f6f0',''],
+    [aP('M30 134 Q28 112 60 108 L184 96 Q210 96 210 114 Q210 128 186 132 L62 144 Q32 146 30 134Z'),'#fbf2dc',''],aWash(aP('M62 144 L186 132 Q208 128 210 118 Q196 126 184 126 L60 138 Q40 140 32 136 Q36 146 62 144Z'),'#d9b878',.6),
+    [aRc(46,104,152,16,8,-4.4),'#8a3a1a',''],aWash(aRc(46,112,152,8,4,-4.4),'#4a1404',.7),aPen('M60 108 l6 10 M84 106 l6 10 M108 104 l6 10 M132 102 l6 10 M156 100 l6 10',1.4,'#2a0804',.6),aGloss('M60 106 l100 -8',1.4),
+    [`<g stroke-linecap="round">${Array.from({length:10},()=>{const x=54+r()*130,y=100+r()*8;return`<path d="M${x.toFixed(1)} ${y.toFixed(1)} q6 -5 12 -1" stroke="#c8803a" stroke-width="2.6" fill="none"/><path d="M${x.toFixed(1)} ${(y-.6).toFixed(1)} q6 -5 12 -1" stroke="#f2c070" stroke-width="1" fill="none"/>`}).join('')}</g>`,null,'raw'],
+    [`<g filter="url(#wc2)" opacity=".95"><path d="M56 104 q20 -10 40 -4 t40 -4 t40 -4" stroke="#c8201a" stroke-width="4" fill="none" stroke-linecap="round"/></g>`,null,'raw'],
+    [aP('M196 60 L214 60 L212 98 L198 98Z'),'#d8301a',''],[aRc(200,52,10,10,3),'#f2f0e6','']];
+};
+
+ART.lamington=()=>{const r=aSeed(1777);
+  const cube=(x,y,s=1)=>[[aRc(x-18*s,y-12*s,36*s,28*s,4),'#7a3a1a',''],[aP(`M${x-18*s} ${y-12*s} L${x-8*s} ${y-20*s} L${x+28*s} ${y-20*s} L${x+18*s} ${y-12*s}Z`),'#8a4a2a',''],[aP(`M${x+18*s} ${y-12*s} L${x+28*s} ${y-20*s} L${x+28*s} ${y+8*s} L${x+18*s} ${y+16*s}Z`),'#5a2410',''],
+    [Array.from({length:40},()=>`<circle cx="${(x-18*s+r()*46*s).toFixed(1)}" cy="${(y-20*s+r()*36*s).toFixed(1)}" r="1.1" fill="#fbf8ec"/>`).join(''),null,'raw']];
+  const cut=(x,y)=>[...cube(x,y,1.05),[aRc(x-16,y-10,32,24,2),'#f6e2a8',''],[aRc(x-16,y-1,32,4,1),'#c8203a',''],[Array.from({length:10},()=>`<circle cx="${(x-14+r()*28).toFixed(1)}" cy="${(y-8+r()*20).toFixed(1)}" r=".7" fill="#e8c880"/>`).join(''),null,'raw']];
+  return[aShadow(118,178,96,12),...aCafe(116,150,98,24),...cube(78,134),...cube(126,128),...cut(150,150),...cube(96,158,.9),
+    [aE(196,108,12,8),'#f6f2ea',''],[aP('M184 108 Q186 118 196 120 Q206 118 208 108'),'#f6f2ea',''],[aE(196,109,10,6),'#c8203a','nl']];
+};
+
+ART.avotoast=()=>{const r=aSeed(1783);
+  const smash=[[aP('M58 126 Q70 110 116 108 Q164 108 176 128 Q168 142 116 146 Q66 146 58 126Z'),'#a8d060',''],
+    aClip('M58 126 Q70 110 116 108 Q164 108 176 128 Q168 142 116 146 Q66 146 58 126Z',`<g filter="url(#wc2)"><ellipse cx="100" cy="124" rx="40" ry="10" fill="#d8ec90" opacity=".8"/><ellipse cx="140" cy="132" rx="30" ry="6" fill="#6a9a2a" opacity=".6"/></g>`)];
+  return[aShadow(118,178,104,12),...aCafe(118,150,104,28),
+    ...aToast(118,134,140,46,-4,smash),
+    [aC(118,124,11),'#fbfaf2',''],[aC(118,124,6),'#f7a51c',''],aWash(aC(119,125,3.4),'#e2741a',.7),[aE(116,121,1.8,1),null,'hl'],
+    ...Array.from({length:10},()=>[aE((70+r()*96).toFixed(1),(114+r()*26).toFixed(1),3,1.8),'#fbf6ea','sm']),
+    ...Array.from({length:6},()=>[aRc(70+r()*96,114+r()*26,4,4,1),'#e0402a','sm']),
+    [Array.from({length:40},()=>`<circle cx="${(66+r()*104).toFixed(1)}" cy="${(112+r()*30).toFixed(1)}" r=".8" fill="${r()<.5?'#c8301a':'#2a2a24'}"/>`).join(''),null,'raw'],
+    ...aCilantro(r,6,72,112,90,26),...aLime(196,164,-10,1).map(x=>x[1]==='#7cc03a'?[x[0],'#f2e070',x[2]]:x)];
+};
+
+ART.fairybread=()=>{const r=aSeed(1787);
+  const tri=(x,y,a)=>[[aP(`M${x-26} ${y+14} L${x+26} ${y+14} L${x} ${y-18}Z`,a,x,y),'#d9a860',''],[aP(`M${x-21} ${y+11} L${x+21} ${y+11} L${x} ${y-13}Z`,a,x,y),'#fbf2d0',''],
+    aWash(aP(`M${x-21} ${y+11} L${x+21} ${y+11} L${x} ${y-13}Z`,a,x,y),'#fbe8a0',.6),
+    [`<g transform="rotate(${a} ${x} ${y})">`+aSprinkles(r,34,x-18,y-10,36,20)[0]+`</g>`,null,'raw']];
+  return[aShadow(118,178,100,12),...aCafe(116,150,100,26),
+    ...tri(70,140,-8),...tri(116,132,180),...tri(160,140,8),...tri(94,158,186),...tri(140,158,-6),aSprinkles(r,14,40,160,150,10)];
+};
+
+ART.pavlova=()=>{const r=aSeed(1789);
+  return[aShadow(118,178,100,12),...aCafe(116,152,100,24),
+    [aP('M46 148 Q42 108 116 100 Q190 108 186 148 Q160 160 116 160 Q72 160 46 148Z'),'#fbf6ea',''],aWash(aP('M116 158 Q180 156 184 132 Q172 150 116 152Z'),'#e8dcc8',.7),
+    aPen('M56 140 q6 -12 4 -24 M80 150 q4 -16 2 -30 M150 150 q4 -16 2 -30 M176 140 q4 -12 0 -22',.8,'#d9ccb0',.8),
+    [aP('M60 112 Q70 92 116 90 Q162 92 172 112 Q150 122 116 122 Q82 122 60 112Z'),'#fffdf8',''],
+    ...[[90,98],[112,94],[136,98],[124,106],[100,108],[150,106]].map(([x,y],i)=>[[aC(x,y,7),['#d8203a','#8a3ab8','#f2d040','#d8203a','#5aa83a','#e8608a'][i],''],[aE(x-2,y-2,1.8,1),null,'hl']]).flat(),
+    ...[[80,104],[160,102]].map(([x,y])=>[[aP(`M${x-8} ${y+3} Q${x} ${y-8} ${x+8} ${y+3}Z`),'#f8c020',''],[aP(`M${x-5} ${y+2} Q${x} ${y-4} ${x+5} ${y+2}Z`),'#5a3a1a','nl']]).flat(),
+    ...[[104,90,-20],[140,92,20]].map(([x,y,a])=>aBasilLeaf(x,y,a,.8)).flat()];
+};
+
+ART.hsp=()=>{const r=aSeed(1801);
+  return[aShadow(118,178,100,12),
+    [aP('M30 112 L46 168 L190 168 L206 112Z'),'#e8ecee',''],aGloss('M40 120 L52 162',2.4),aWash(aP('M118 168 L190 168 L206 112 L196 116Z'),'#a8b0b8',.5),
+    ...Array.from({length:30},()=>{const x=44+r()*148,y=108+r()*30,a=Math.round(r()*180);return[aRc(x-12,y-3,24,6,2,a),'#f2c050','sm']}),
+    ...Array.from({length:16},()=>{const x=50+r()*136,y=98+r()*22;return[aP(`M${x-8} ${y+2} q4 -6 10 -4 q6 2 4 6 q-6 4 -14 -2z`),r()<.5?'#a85a2a':'#7a3a14','sm']}),
+    [`<g filter="url(#wc2)" opacity=".92"><path d="M46 106 q20 -8 40 0 t40 0 t40 0 t26 0" stroke="#c8201a" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M50 116 q20 -6 40 0 t40 0 t40 0" stroke="#fbf8f0" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M60 124 q20 -6 40 0 t40 0 t30 0" stroke="#f2b030" stroke-width="4" fill="none" stroke-linecap="round"/></g>`,null,'raw'],
+    [aP('M30 112 L206 112 L200 100 L36 100Z'),null,'']];
+};
+
+ART.vegemite=()=>{const r=aSeed(1811);
+  const blk=[[aRc(64,116,108,36,4,-4),'#3a1e10',''],aGloss('M70 124 l90 -6',1.4),aWash(aRc(80,120,60,10,4,-4),'#6a3a1e',.7)];
+  return[aShadow(118,178,104,12),...aCafe(118,150,104,28),...aToast(118,134,124,48,-4,blk),
+    [aRc(132,128,24,10,2,-4),'#fbf0b0',''],
+    [aP('M176 86 Q172 76 186 72 L210 72 Q222 76 218 86 L218 118 Q198 124 176 118Z'),'#5a2a14',''],[aRc(174,64,46,12,4),'#f6c020',''],
+    [aRc(178,90,38,16,2),'#f6c020',''],[aRc(180,94,34,8,1),'#c8201a',''],aGloss('M180 82 L182 114',1.6),
+    [aP('M40 166 L104 160 L106 164 L42 170Z'),'#c9ccd0','']];
+};
+
+ART.fishchips=()=>{const r=aSeed(1823);
+  return[aShadow(118,178,104,12),
+    [aP('M26 118 L42 168 L190 168 L208 118Z'),'#f2ecd8',''],aClip('M26 118 L42 168 L190 168 L208 118Z',`<path d="M26 130 L208 130 M30 142 L204 142" stroke="#2a5ab8" stroke-width="2" opacity=".5"/>`),aWash(aP('M118 168 L190 168 L208 118 L196 122Z'),'#c9b88a',.5),
+    ...Array.from({length:22},()=>{const x=54+r()*120,y=112+r()*26,a=Math.round(r()*180);return[aRc(x-12,y-3,24,6,2,a),'#f2c050','sm']}),
+    [aP('M60 116 Q58 92 110 88 Q170 86 182 106 Q184 122 150 126 Q100 130 60 116Z'),'#d9902a',''],aWash(aP('M66 118 Q110 132 178 112 Q170 124 150 126 Q100 130 66 118Z'),'#8a4a10',.75),
+    aPen(Array.from({length:20},()=>`M${70+r()*104} ${94+r()*26} q2 -2 4 0`).join(' '),1,'#7a3a08',.8),aGloss('M76 98 q30 -10 70 -8',2.2),
+    ...aLime(190,98,-30,1.1).map(x=>x[1]==='#7cc03a'?[x[0],'#f2e070',x[2]]:x),
+    ...aRamekin(54,98,14,4.6,10,'#f2f4e6'),...Array.from({length:8},()=>[aRc(46+r()*16,96+r()*4,2,1.4,.5),'#5aa83a','snl'])];
+};
+
+ART.timtam=()=>{const r=aSeed(1831);
+  const bar=(x,y,a)=>[[aRc(x-28,y-9,56,18,4,a),'#4a2410',''],[aRc(x-28,y-9,56,6,3,a),'#6a3a1e',''],aPen(`M${x-24} ${y-6} q6 2 12 0 t12 0 t12 0 t12 0`,.8,'#8a5a3a',.8),aGloss(`M${x-22} ${y-6} l30 0`,1.2)];
+  const bitten=[[aRc(118,140,56,18,4,6),'#4a2410',''],[aE(174,150,9,10),'#faf9f6',''],[aRc(162,142,8,14,1,6),'#c98a3a',''],[aRc(162,147,8,4,1,6),'#7a3a14',''],aGloss('M124 144 l30 3',1.2)];
+  return[aShadow(116,178,100,12),...aCafe(114,152,100,26),...bar(80,128,-8),...bar(96,148,4),...bar(132,124,10),...bitten,
+    [aP('M184 96 L206 96 L206 132 L184 132Z'),'#faf6f0',''],[aE(195,96,11,3),'#faf6f0',''],[aE(195,97,9,2.4),'#a8703a','nl'],[aP('M206 104 Q216 104 214 114 Q212 122 204 120'),null,'']];
+};
+
+ART.anzac=()=>{const r=aSeed(1847);
+  const bis=(x,y,s=1)=>[[aE(x,y,22*s,12*s),'#c9822a',''],aWash(aE(x+4*s,y+3*s,16*s,7*s),'#8a4a10',.65),aWash(aE(x-6*s,y-3*s,10*s,4*s),'#f2c070',.7),
+    [Array.from({length:14},()=>{const px=(x-16*s+r()*32*s).toFixed(1),py=(y-8*s+r()*16*s).toFixed(1);return`<ellipse cx="${px}" cy="${py}" rx="2" ry="1" transform="rotate(${Math.round(r()*180)} ${px} ${py})" fill="#e8c890" stroke="#8a5a2a" stroke-width=".3"/>`}).join(''),null,'raw']];
+  return[aShadow(118,178,100,12),[aRc(22,126,190,46,8),'#8a5a2a',''],aPen('M30 134 L204 134 M30 162 L204 162',.6,'#5a3010',.7),
+    ...bis(70,140),...bis(118,136),...bis(164,142),...bis(94,158,.9),...bis(142,160,.9),
+    [aRc(178,92,30,20,4),'#e8b030',''],aPen('M182 98 l22 0 M182 104 l22 0',.6,'#a87010',.8),[aE(193,92,15,3),'#f2c040','']];
+};
+
+ART.flatwhite=()=>{const r=aSeed(1861);
+  return[aShadow(116,174,82,12),[aE(112,164,62,12),'#faf9f6',''],aPen('M54 164 a58 10 0 0 0 116 0',.7,'#b8b0a0',.8),
+    [aP('M64 104 Q66 154 112 158 Q158 154 160 104'),'#faf9f6',''],aWash(aP('M112 156 Q156 152 158 116 Q150 148 112 150Z'),'#c9c0b0',.6),aGloss('M70 112 q2 22 14 36',2.6),
+    [aP('M160 112 Q180 112 178 128 Q176 140 158 138'),'#faf9f6',''],
+    [aE(112,104,48,12),'#faf9f6',''],[aE(112,105,43,10),'#b8743a','nl'],aWash(aE(112,106,30,7),'#8a4a1e',.5),
+    aClip(ellD(112,105,43,10),`<g fill="#fbf2e2" filter="url(#wc2)"><path d="M112 98 q-14 2 -12 8 q2 6 12 4 q10 2 12 -4 q2 -6 -12 -8Z"/><path d="M112 96 q-20 4 -22 10 q-2 6 22 9 q24 -3 22 -9 q-2 -6 -22 -10Z" fill="none" stroke="#fbf2e2" stroke-width="1.6"/><path d="M112 98 l0 16" stroke="#b8743a" stroke-width="1"/></g>`),
+    [aP('M148 164 L196 148 L198 152 L150 168Z'),'#c9ccd0',''],
+    [aRc(176,116,30,16,4,-6),'#d9a860',''],aPen('M180 122 l22 -2',.6,'#a8701a',.8)];
+};
+
+ART.parmi=()=>{const r=aSeed(1867);
+  return[aShadow(120,178,108,12),...aCafe(118,148,108,30),
+    [aP('M30 136 Q26 108 76 102 Q130 98 140 120 Q144 146 98 152 Q44 156 30 136Z'),'#d9902a',''],aWash(aP('M36 140 Q80 156 138 132 Q130 150 98 152 Q50 154 36 140Z'),'#8a4a10',.7),
+    [`<g filter="url(#wc2)"><path d="M40 128 Q42 108 80 106 Q124 104 130 120 Q132 138 96 142 Q50 146 40 128Z" fill="#d8401e"/></g>`,null,'raw'],
+    [`<g filter="url(#wc2)" opacity=".95"><path d="M48 124 q12 -12 26 -4 t26 -2 t24 2" stroke="#f6d870" stroke-width="9" fill="none" stroke-linecap="round"/></g>`,null,'raw'],
+    ...Array.from({length:8},()=>aWash(aE(54+r()*70,114+r()*20,4,2),'#b8601a',.75)),...aBasilLeaf(84,118,-20,.9),
+    ...Array.from({length:20},()=>{const x=148+r()*48,y=120+r()*30,a=Math.round(r()*180);return[aRc(x-12,y-3,24,6,2,a),'#f2c050','sm']}),
+    ...[[176,108,-20],[190,116,10],[166,112,30]].map(([x,y,a])=>aBasilLeaf(x,y,a,1)).flat(),...aLime(56,164,10,.9).map(x=>x[1]==='#7cc03a'?[x[0],'#f2e070',x[2]]:x)];
+};
+
 /* ---------- China ---------- */
 // broth / sauce surface inside a bowl: base wash plus clipped colour pools and extra markup
 const aBroth=(cx,cy,rx,ry,base,deep,light,extra='')=>[[aE(cx,cy,rx,ry),base,'nl'],
@@ -3197,6 +3323,164 @@ ART.knafeh=()=>{const r=aSeed(991);
     aGloss('M50 114 q50 -12 120 -8',2.6),aGloss('M70 124 q40 -6 80 -4',1.4),
     [aRc(150,120,48,30,4,-6),'#f08a2a',''],[aRc(150,138,48,12,2,-6),'#fbf2dc',''],aPen('M156 142 q10 4 18 0 t18 0',1.4,'#f6ecd0',.9),
     ...aKatori(206,100,18,5,'#e8b05a')];
+};
+
+/* ---------- Mexico ---------- */
+// molcajete: three-legged volcanic-stone bowl
+const aMolcajete=(cx,cy,rx,ry,depth)=>[aShadow(cx+3,cy+depth+8,rx+4,ry*.6),
+  ...[-.6,0,.6].map(k=>[aP(`M${cx+k*rx-7} ${cy+depth-4} L${cx+k*rx-5} ${cy+depth+8} L${cx+k*rx+5} ${cy+depth+8} L${cx+k*rx+7} ${cy+depth-4}Z`),'#4a4440','']),
+  [aP(`M${cx-rx} ${cy} Q${cx-rx+4} ${cy+depth} ${cx} ${cy+depth+ry*.4} Q${cx+rx-4} ${cy+depth} ${cx+rx} ${cy}`),'#5a5450',''],
+  [Array.from({length:30},(_,i)=>`<circle cx="${(cx-rx+8+(i*37)%(rx*2-16)).toFixed(1)}" cy="${(cy+4+(i*13)%depth).toFixed(1)}" r="1" fill="#2a2420"/>`).join(''),null,'raw'],
+  [aE(cx,cy,rx,ry),'#6a6460','']];
+// soft corn tortilla folded around a filling (side view of a taco)
+const aTaco=(x,y,a,fill,s=1)=>[[aP(`M${x-26*s} ${y+8*s} Q${x-26*s} ${y-22*s} ${x} ${y-24*s} Q${x+26*s} ${y-22*s} ${x+26*s} ${y+8*s}Z`,a,x,y),'#f2d890',''],
+  ...fill(x,y,s,a),
+  [aP(`M${x-26*s} ${y+8*s} Q${x-24*s} ${y-12*s} ${x} ${y-12*s} Q${x+24*s} ${y-12*s} ${x+26*s} ${y+8*s} Q${x} ${y+12*s} ${x-26*s} ${y+8*s}Z`,a,x,y),'#f6e2a0',''],
+  aWash(aP(`M${x-22*s} ${y+6*s} Q${x} ${y+10*s} ${x+22*s} ${y+6*s}`,a,x,y),'#c9a050',.6),
+  ...[0,1,2].map(i=>aWash(aE(x-12*s+i*12*s,y-2*s,3*s,1.6*s,a),'#a8701a',.6))];
+const aCilantroOnion=(r,n,x0,y0,w,h)=>[...aCilantro(r,n,x0,y0,w,h),...Array.from({length:n},()=>[aRc(x0+r()*w,y0+r()*h,3,3,.6),'#fbf8f0','sm'])];
+const aSalsa=(cx,cy,c='#c8301a')=>[...aMolcajete(cx,cy,20,6,12),[aE(cx,cy,17,4.6),c,'nl'],...[[cx-6,cy-1],[cx+4,cy+1]].map(([x,y])=>[aRc(x,y,3,3,.6),'#5aa83a','snl'])];
+
+ART.tacos=()=>{const r=aSeed(1619);
+  const pastor=(x,y,s,a)=>[...Array.from({length:6},()=>[aRc(x-18*s+r()*30*s,y-18*s+r()*8*s,6*s,4*s,1,a),r()<.5?'#c8501e':'#e8803a','sm']),
+    ...Array.from({length:3},()=>[aRc(x-14*s+r()*24*s,y-20*s+r()*6*s,4*s,4*s,.6),'#f6d24a','sm']),...aCilantroOnion(r,4,x-18*s,y-22*s,34*s,8*s)];
+  return[aShadow(118,178,104,12),...aTalavera(116,150,100,26),
+    ...aTaco(70,146,-6,pastor),...aTaco(116,140,4,pastor),...aTaco(162,146,10,pastor),
+    ...aLime(48,164,20,1),...aLime(194,166,-10,1),...aSalsa(206,110)];
+};
+
+ART.burrito=()=>{const r=aSeed(1621);
+  return[aShadow(118,178,104,12),...aTalavera(116,150,100,26),
+    [aRc(40,124,120,40,20,-8),'#f2d890',''],aWash(aRc(40,144,120,20,10,-8),'#c9a050',.6),...Array.from({length:6},()=>aWash(aE(54+r()*90,128+r()*24,5,2.4),'#a8701a',.6)),
+    aPen('M70 124 q4 20 0 40 M110 118 q4 20 0 40',.7,'#c9a050',.8),aGloss('M54 132 q40 -10 90 -12',1.6),
+    [aE(160,128,14,20,-8),'#f6e2a0',''],
+    aClip(ellD(160,128,11,17),`<rect x="146" y="108" width="28" height="40" fill="#8a4a1e"/>`+Array.from({length:22},()=>`<circle cx="${(150+r()*20).toFixed(1)}" cy="${(112+r()*32).toFixed(1)}" r="${(1.4+r()*1.6).toFixed(1)}" fill="${['#fbf8ec','#3a1a1a','#e0402a','#5aa83a','#f2c040','#7a3a14'][Math.floor(r()*6)]}"/>`).join('')),
+    ...aMolcajete(200,112,22,7,14),[aE(200,112,19,5),'#7cb83a','nl'],...aLime(186,166,0,1)];
+};
+
+ART.quesadilla=()=>{const r=aSeed(1627);
+  const q=(x,y,a)=>[[aP(`M${x-30} ${y+12} L${x+30} ${y+12} A30 30 0 0 0 ${x-30} ${y+12}Z`,a,x,y),'#f2c870',''],
+    ...Array.from({length:6},()=>aWash(aE(x-20+r()*40,y-6+r()*16,6,3,a),'#a8601a',.7)),
+    [aP(`M${x-30} ${y+12} L${x+30} ${y+12} L${x+30} ${y+16} L${x-30} ${y+16}Z`,a,x,y),'#f6d860',''],
+    [`<g transform="rotate(${a} ${x} ${y})" filter="url(#wc2)"><path d="M${x-26} ${y+16} q4 8 0 12 M${x-6} ${y+16} q3 6 0 10 M${x+16} ${y+16} q4 8 0 12" stroke="#f6d860" stroke-width="4" fill="none" stroke-linecap="round"/></g>`,null,'raw'],aGloss(`M${x-18} ${y} q14 -14 30 -10`,1.4)];
+  return[aShadow(118,178,104,12),...aTalavera(116,150,100,26),
+    ...q(80,134,-10),...q(140,130,8),...q(108,150,-2),
+    ...aSalsa(204,110),[aP('M184 156 q14 -8 26 0 q-12 10 -26 0Z'),'#fbf8f0','']];
+};
+
+ART.guacamole=()=>{const r=aSeed(1637);
+  const chip=(x,y,a)=>[[aP(`M${x-10} ${y+8} L${x} ${y-12} L${x+10} ${y+8}Z`,a,x,y),'#f2c050',''],aWash(aE(x,y+2,4,2,a),'#c8801a',.7),...Array.from({length:3},()=>[aC((x-4+r()*8).toFixed(1),(y-2+r()*8).toFixed(1),.7),'#fffef8','snl'])];
+  return[...aMolcajete(110,108,74,22,34),[aE(110,108,66,18),'#8ab838','nl'],
+    aClip(ellD(110,108,66,18),`<g filter="url(#wc2)"><ellipse cx="96" cy="104" rx="40" ry="9" fill="#b8d860" opacity=".8"/><ellipse cx="130" cy="114" rx="30" ry="6" fill="#5a8a1a" opacity=".6"/></g>`),
+    ...Array.from({length:10},()=>[aRc(60+r()*100,98+r()*20,4,4,1),'#e0402a','sm']),...Array.from({length:8},()=>[aRc(60+r()*100,98+r()*20,3,3,.6),'#fbf8f0','sm']),
+    ...aCilantro(r,8,66,96,90,20),[aC(110,106,5),'#7a5a2a',''],[aE(108,104,1.6,1),null,'hl'],
+    ...[[180,150,-20],[196,140,10],[202,160,30],[170,166,-40],[186,170,0]].map(([x,y,a])=>chip(x,y,a)).flat(),...aLime(40,160,20,1.1)];
+};
+
+ART.elote=()=>{const r=aSeed(1663);
+  const cob=(x,y,a)=>[[aRc(x-44,y-12,88,24,12,a),'#f2c840',''],
+    aClip(`M${x-44} ${y-12} h88 v24 h-88Z`,`<g transform="rotate(${a} ${x} ${y})">${Array.from({length:30},(_,i)=>`<ellipse cx="${x-40+(i%10)*9}" cy="${y-8+Math.floor(i/10)*8}" rx="3.6" ry="3.2" fill="#f8d850" stroke="#c99a1a" stroke-width=".5"/>`).join('')}</g>`),
+    [`<g transform="rotate(${a} ${x} ${y})" filter="url(#wc2)"><path d="M${x-40} ${y-8} q10 6 20 0 t20 0 t20 0 t20 0" stroke="#fbf8ec" stroke-width="5" fill="none" stroke-linecap="round" opacity=".9"/></g>`,null,'raw'],
+    [Array.from({length:20},()=>`<circle cx="${(x-38+r()*76).toFixed(1)}" cy="${(y-10+r()*20).toFixed(1)}" r="1" fill="#c8301a" transform="rotate(${a} ${x} ${y})"/>`).join(''),null,'raw'],
+    [aRc(x+42,y-3,30,6,2,a),'#d9b878','']];
+  return[aShadow(118,176,104,12),[aRc(16,124,208,46,8),'#4f9a3a',''],aPen('M24 132 L216 132',.6,'#2e6a22',.7),
+    ...cob(90,134,-10),...cob(116,154,-6),...aLime(196,140,-20,1.1),...aCilantro(r,6,40,120,120,40),
+    [Array.from({length:30},()=>`<rect x="${(40+r()*130).toFixed(1)}" y="${(120+r()*44).toFixed(1)}" width="2" height="2" fill="#fbf8ec"/>`).join(''),null,'raw']];
+};
+
+ART.enchiladas=()=>{const r=aSeed(1667);
+  return[aShadow(118,178,106,12),[aRc(16,116,200,58,10),'#b8603a',''],aWash(aRc(16,150,200,24,10),'#6a2a10',.6),[aRc(24,120,184,46,8),'#8a2a14','nl'],
+    ...[0,1,2,3].map(i=>[[aRc(30+i*44,122,40,40,14),'#e8b860',''],aWash(aRc(30+i*44,122,40,40,14),'#c8401e',.8)]).flat(),
+    [`<g filter="url(#wc2)" opacity=".92"><path d="M30 130 q20 -6 40 0 t40 0 t40 0 t40 0 M34 152 q20 -4 40 0 t40 0 t40 0 t40 0" stroke="#fbf6e6" stroke-width="5" fill="none" stroke-linecap="round"/></g>`,null,'raw'],
+    ...Array.from({length:14},()=>[aRc(34+r()*170,124+r()*36,3,3,.6),'#fbf8f0','sm']),...aCilantro(r,10,34,124,170,36),
+    ...Array.from({length:6},()=>[aE((40+r()*160).toFixed(1),(126+r()*32).toFixed(1),4,3),'#8ab838','sm'])];
+};
+
+ART.nachos=()=>{const r=aSeed(1669);
+  const chip=(x,y,a)=>[[aP(`M${x-14} ${y+10} L${x} ${y-16} L${x+14} ${y+10}Z`,a,x,y),'#f2c050',''],aWash(aE(x,y+4,6,2.4,a),'#c8801a',.7)];
+  return[aShadow(118,178,104,12),...aTalavera(116,150,100,26),
+    ...Array.from({length:14},()=>chip(46+r()*140,124+r()*32,Math.round(r()*180))).flat(),
+    [`<g filter="url(#wc2)" opacity=".92"><path d="M54 132 q20 -10 40 0 t40 0 t40 0 M60 148 q20 -8 40 0 t40 0 t40 0" stroke="#f6c830" stroke-width="6" fill="none" stroke-linecap="round"/></g>`,null,'raw'],
+    ...Array.from({length:10},()=>[aRc(50+r()*130,122+r()*34,4,4,1),'#e0402a','sm']),...Array.from({length:8},()=>[aC((50+r()*130).toFixed(1),(122+r()*34).toFixed(1),2.6),'#2a1a1a','sm']),
+    ...Array.from({length:6},()=>[aC((50+r()*130).toFixed(1),(122+r()*34).toFixed(1),2.8),'#5aa83a','sm']),
+    [aP('M100 124 q10 -10 22 -2 q-4 10 -22 2Z'),'#8ab838',''],[aP('M126 130 q8 -8 18 -2 q-6 8 -18 2Z'),'#fbf8f0',''],...aCilantro(r,6,60,120,110,30)];
+};
+
+ART.pozole=()=>{const r=aSeed(1693);
+  return[aShadow(134,184,84,10),...aBowl(120,98,96,27,72,'#f7f3ec','#2a5ab8'),
+    ...aBroth(120,96,88,24,'#c8401e','#8a1a08','#e8703a',aDrops(r,18,120,96,80,20,'#6a1004')),
+    ...Array.from({length:22},()=>[[aE((50+r()*140).toFixed(1),(84+r()*24).toFixed(1),4.4,3.6),'#fbf6e6',''],[aE((50+r()*140).toFixed(1),(84+r()*24).toFixed(1),1.4,.8),null,'hl']]).flat(),
+    ...[[96,88],[136,94]].map(([x,y])=>[[aP(`M${x-13} ${y} q4 -7 13 -6 q9 0 12 5 q-6 6 -13 4 q-8 2 -12 -3Z`),'#c8805a',''],aPen(`M${x-8} ${y-2} l14 0`,.6,'#e8b090',.8)]).flat(),
+    [`<g stroke-linecap="round">${Array.from({length:14},()=>{const x=150+r()*30,y=82+r()*14;return`<path d="M${x.toFixed(1)} ${y.toFixed(1)} l8 -2" stroke="#9ad06a" stroke-width="1.8"/>`}).join('')}</g>`,null,'raw'],
+    ...[[70,96],[180,100]].map(([x,y])=>[[aC(x,y,6),'#e888a8',''],[aC(x,y,3.6),'#fbf0f4','nl']]).flat(),...aLime(200,176,0,1.1),
+    aPen('M90 64 q-6 -8 0 -16 t0 -16 M150 60 q-6 -8 0 -16 t0 -16',1.1,'#a89277',.7)];
+};
+
+ART.horchata=()=>{const r=aSeed(1697);
+  return[...aGlass(100,60,170,34,26,[[72,'#f8f2e2'],[160,'#f2e6cc']],5,'#d8301a',r),
+    [Array.from({length:30},()=>`<circle cx="${(76+r()*48).toFixed(1)}" cy="${(74+r()*4).toFixed(1)}" r=".9" fill="#a8703a"/>`).join(''),null,'raw'],
+    ...[0,1,2].map(i=>[aRc(150+i*8,130+i*2,6,40,3,20),'#a8602a','']),
+    [aP('M160 172 Q176 162 196 168 Q194 178 176 180Z'),'#fbf6e6',''],...Array.from({length:12},()=>[aE((164+r()*28).toFixed(1),(168+r()*8).toFixed(1),2,1.2,Math.round(r()*180)),'#fbf8f0','sm'])];
+};
+
+ART.tamales=()=>{const r=aSeed(1699);
+  const t=(x,y,a,open)=>[[aP(`M${x-30} ${y} Q${x-36} ${y-14} ${x-20} ${y-16} L${x+20} ${y-16} Q${x+36} ${y-14} ${x+30} ${y} Q${x+36} ${y+14} ${x+20} ${y+16} L${x-20} ${y+16} Q${x-36} ${y+14} ${x-30} ${y}Z`,a,x,y),'#e8d8a0',''],
+    aPen(`M${x-24} ${y-14} q4 14 0 28 M${x-8} ${y-16} q3 16 0 32 M${x+8} ${y-16} q3 16 0 32 M${x+24} ${y-14} q4 14 0 28`,.6,'#a8905a',.8,a),
+    ...(open?[[aRc(x-18,y-10,36,20,8,a),'#f2d070',''],aWash(aRc(x-10,y-5,20,10,4,a),'#c8401e',.85),aGloss(`M${x-12} ${y-6} l14 0`,1.2)]:[])];
+  return[aShadow(118,178,104,12),...aTalavera(116,150,100,26),...t(76,138,-10,false),...t(150,134,8,true),...t(110,156,-4,false),...aSalsa(206,110,'#5aa83a')];
+};
+
+ART.mole=()=>{const r=aSeed(1709);
+  return[aShadow(122,178,104,12),...aTalavera(120,148,104,30),
+    ...aRiceDome(r,60,154,26,22,'#f2c890','#a8704a'),
+    [aP('M92 140 Q94 110 140 106 Q186 110 190 138 Q170 156 140 156 Q108 156 92 140Z'),'#4a1a0a',''],aWash(aP('M100 144 Q140 156 186 138 Q170 152 140 154Z'),'#2a0804',.8),
+    [aP('M112 132 Q116 112 144 112 Q170 116 168 134 Q150 144 132 142Z'),'#6a2a10',''],aGloss('M122 118 q12 -6 28 -4',2),aGloss('M106 132 q20 -6 44 -4',1.2),
+    [Array.from({length:30},()=>{const x=(98+r()*86).toFixed(1),y=(112+r()*38).toFixed(1);return`<ellipse cx="${x}" cy="${y}" rx="1.5" ry=".8" transform="rotate(${Math.round(r()*180)} ${x} ${y})" fill="#fbf2d8" stroke="#8a5a2a" stroke-width=".25"/>`}).join(''),null,'raw'],
+    ...[[204,150],[192,160]].map(([x,y])=>[[aE(x,y,10,4),'#e8e2f0',''],aPen(`M${x-7} ${y} a7 3 0 0 0 14 0`,.5,'#c87ab0',.9)]).flat()];
+};
+
+ART.chilaquiles=()=>{const r=aSeed(1721);
+  const chip=(x,y,a)=>[[aP(`M${x-12} ${y+8} L${x} ${y-12} L${x+12} ${y+8}Z`,a,x,y),'#e8a040',''],aWash(aP(`M${x-12} ${y+8} L${x} ${y-12} L${x+12} ${y+8}Z`,a,x,y),'#c8401e',.75)];
+  return[...aCazuela(118,136,92,26,22),
+    ...Array.from({length:18},()=>chip(46+r()*140,124+r()*24,Math.round(r()*180))).flat(),
+    ...aEgg(118,124,1.2),
+    [`<g filter="url(#wc2)" opacity=".9"><path d="M58 138 q20 -6 40 0 t40 0 t36 0" stroke="#fbf6e6" stroke-width="4" fill="none" stroke-linecap="round"/></g>`,null,'raw'],
+    ...Array.from({length:10},()=>[aRc(52+r()*130,124+r()*26,3,3,.6),'#fbf8f0','sm']),...aCilantro(r,8,52,124,130,26),
+    ...Array.from({length:6},()=>[aE((52+r()*130).toFixed(1),(124+r()*26).toFixed(1),4,3),'#8ab838','sm']),
+    ...[[176,112],[60,116]].map(([x,y])=>[[aE(x,y,8,3.4),'#e8e2f0',''],aPen(`M${x-6} ${y} a6 2.6 0 0 0 12 0`,.5,'#c87ab0',.9)]).flat()];
+};
+
+ART.birria=()=>{const r=aSeed(1723);
+  const fill=(x,y,s,a)=>[...Array.from({length:8},()=>[aRc(x-18*s+r()*30*s,y-18*s+r()*8*s,6*s,4*s,1,a),r()<.5?'#8a2a10':'#b8401e','sm']),...aCilantroOnion(r,3,x-16*s,y-22*s,30*s,6*s)];
+  const t=(x,y,a)=>[...aTaco(x,y,a,fill),aWash(aP(`M${x-24} ${y+6} Q${x} ${y+12} ${x+24} ${y+6} Q${x} ${y-10} ${x-24} ${y+6}Z`,a,x,y),'#c8401e',.7),aGloss(`M${x-14} ${y} q10 -6 22 -4`,1.4)];
+  return[aShadow(110,178,100,12),...aTalavera(108,150,96,26),...t(70,146,-6),...t(116,140,6),...t(150,150,14),
+    ...aBowl(204,112,28,8,26,'#c8603a',null,'#a8502a'),...aBroth(204,111,25,6.5,'#a8200e','#6a0a04','#d8401e',aDrops(r,6,204,111,20,5,'#4a0804')),...aCilantroOnion(r,2,194,108,20,4),
+    ...aLime(40,168,20,1)];
+};
+
+ART.tresleches=()=>{const r=aSeed(1733);
+  return[aShadow(116,178,90,10),[aE(116,166,82,16),'#faf6e8',''],aPen('M38 166 a78 14 0 0 0 156 0',.7,'#2a5ab8',.8),
+    [`<g filter="url(#wc2)" opacity=".8"><ellipse cx="116" cy="166" rx="64" ry="11" fill="#f6e8c8"/></g>`,null,'raw'],
+    ...aLayered(70,166,80,[[30,'#f6dc98'],[16,'#fbf6ea']],'#fbfaf2',r),
+    [`<g filter="url(#wc2)" opacity=".5"><path d="M74 140 q20 4 40 0 t36 0" stroke="#f2e0b0" stroke-width="4" fill="none"/></g>`,null,'raw'],
+    [Array.from({length:30},()=>`<circle cx="${(74+r()*84).toFixed(1)}" cy="${(116+r()*6).toFixed(1)}" r=".9" fill="#a8703a"/>`).join(''),null,'raw'],
+    ...[[100,110],[134,108]].map(([x,y])=>[[aC(x,y,6),'#d8203a',''],[aE(x-2,y-2,1.6,1),null,'hl'],aPen(`M${x} ${y-6} q2 -4 5 -4`,1,'#3f7a2a',1)]).flat(),
+    [aP('M176 166 L222 140 L224 144 L180 170Z'),'#c9ccd0','']];
+};
+
+ART.chilesnogada=()=>{const r=aSeed(1741);
+  return[aShadow(120,178,104,12),...aTalavera(118,148,104,30),
+    [aP('M42 140 Q40 112 90 104 Q150 98 186 112 Q206 124 194 140 Q170 156 110 156 Q56 156 42 140Z'),'#3f8a2a',''],aGloss('M60 116 q40 -12 90 -10',1.8),
+    [aP('M184 112 q10 -10 18 -18'),null,''],[aP('M180 110 q12 -12 22 -18 l2 4 q-10 6 -20 16Z'),'#5a7a2a',''],
+    [`<g filter="url(#wc2)"><path d="M50 128 Q60 104 110 104 Q160 104 182 124 Q180 146 120 150 Q60 150 50 128Z" fill="#fbf6ec"/></g>`,null,'raw'],
+    [Array.from({length:40},()=>{const x=(60+r()*120).toFixed(1),y=(108+r()*38).toFixed(1);return`<circle cx="${x}" cy="${y}" r="${(1.6+r()*1).toFixed(1)}" fill="#c8203a" stroke="#7a0a1a" stroke-width=".3"/>`}).join(''),null,'raw'],
+    ...[[90,118,-20],[130,112,10],[160,128,-30],[104,138,20]].map(([x,y,a])=>[aP(`M${x-6} ${y} Q${x} ${y-5} ${x+6} ${y} Q${x} ${y+4} ${x-6} ${y}Z`,a,x,y),'#2f8a2a','sm'])];
+};
+
+ART.jamaica=()=>{const r=aSeed(1747);
+  return[...aGlass(100,60,170,34,26,[[72,'#c8203a'],[160,'#a01a30']],5,'#f6f2ea',r),aWash(aE(100,74,30,5),'#e8506a',.8),
+    ...[[160,160],[176,166],[168,150],[186,156]].map(([x,y])=>[[aP(`M${x-8} ${y+4} Q${x-10} ${y-6} ${x} ${y-8} Q${x+10} ${y-6} ${x+8} ${y+4} Q${x} ${y+8} ${x-8} ${y+4}Z`),'#a01a30',''],aPen(`M${x-4} ${y} l8 0 M${x} ${y-4} l0 8`,.5,'#e8506a',.9)]).flat(),
+    ...aLime(196,176,-10,.9)];
 };
 
 /* ---------- Malaysia ---------- */
