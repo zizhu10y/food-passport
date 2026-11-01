@@ -1,5 +1,5 @@
 // Offline cache for 美食护照. Bump VERSION when the shell file list changes.
-const VERSION = 'fp-v2';
+const VERSION = 'fp-v3';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'favicon.png'];
 const FONT_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 

@@ -24,7 +24,12 @@ app_css = '''
 </style>'''
 
 boot = '''
-if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+// Offline service worker. When a new version takes over, reload once so the new drawings show right away.
+if('serviceWorker' in navigator){
+  const hadSW=!!navigator.serviceWorker.controller;let reloaded=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(hadSW&&!reloaded){reloaded=true;location.reload()}});
+  window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(reg=>{reg.update();document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')reg.update()})}).catch(()=>{}));
+}
 try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
 </script>
 </body>'''
