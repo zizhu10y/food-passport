@@ -14,14 +14,15 @@
 <meta name="apple-mobile-web-app-title" content="美食护照">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@chinese-fonts/lxgwwenkai@3.0.0/dist/LXGWWenKai-Medium/result.css" rel="stylesheet">
 <style>
 :root{
   --paper:#f4ecdc;--paper2:#ebdfc6;--paper3:#e2d3b5;
   --ink:#5b4030;--ink2:#8a6d55;--faint:#c4ad8f;
   --gold:#c9a24a;--cover:#4a1f24;--red:#b5483b;
   --tw:'Special Elite','American Typewriter','Courier New',monospace;
-  --hd:'ZCOOL KuaiLe','PingFang SC','Songti SC',sans-serif;
+  --hd:'LXGW WenKai Medium','Kaiti SC','STKaiti','KaiTi',serif;
   --bd:'Songti SC','STSong','Noto Serif SC','PingFang SC',serif;
   --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .24  0 0 0 0 .14  0 0 0 .11 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
@@ -4470,7 +4471,7 @@ function stampBody(r,ink,shape,top,bot){
     `<text x="50" y="35" text-anchor="middle" font-size="8.5" letter-spacing="1.3" fill="${ink}" font-family="Special Elite,Courier New,monospace">${esc(top)}</text>`+
     `<path d="M24 41 H76 M24 61 H76" stroke="${ink}" stroke-width=".8"/>`+
     `<text x="50" y="55" text-anchor="middle" font-size="11.5" fill="${ink}" font-family="Special Elite,Courier New,monospace">${esc(date)}</text>`+
-    `<text x="50" y="73" text-anchor="middle" font-size="${String(bot).length>5?9:10.5}" fill="${ink}" font-family="ZCOOL KuaiLe,PingFang SC,sans-serif">${esc(short(bot,6))}</text>`+
+    `<text x="50" y="73" text-anchor="middle" font-size="${String(bot).length>5?9:10.5}" fill="${ink}" font-family="'LXGW WenKai Medium',Kaiti SC,STKaiti,serif">${esc(short(bot,6))}</text>`+
     `<text x="50" y="83" text-anchor="middle" font-size="6.5" letter-spacing=".5" fill="${ink}" font-family="Special Elite,Courier New,monospace">${kind}</text>`+
     (r.challenge?`<text x="50" y="25" text-anchor="middle" font-size="6.5" fill="${ink}" font-family="Special Elite,monospace">★ CHALLENGE ★</text>`:'');
 }
@@ -4479,7 +4480,7 @@ function stampSVG(r){
   if(r.kind==='dish'){const d=DMAP[r.dishId],c=CMAP[d.c];g=`<g filter="${f}" opacity=".9">${stampBody(r,c.ink,c.shape,c.en,d.zh)}</g>`}
   else if(r.kind==='fusion'){const[a,b]=r.countries.map(x=>CMAP[x]);
     g=`<g filter="${f}" opacity=".9"><g clip-path="url(#cL)">${stampBody(r,a.ink,'circle','FUSION',r.name)}</g><g clip-path="url(#cR)">${stampBody(r,b.ink,'circle','FUSION',r.name)}</g></g>`}
-  else{const ink='#6d5a8a';g=`<g filter="${f}" opacity=".9">${frame('circle',ink,true)}<text x="50" y="62" text-anchor="middle" font-size="40" fill="${ink}" font-family="Special Elite,serif">?</text><text x="50" y="30" text-anchor="middle" font-size="7.5" letter-spacing="1" fill="${ink}" font-family="Special Elite,monospace">${esc((r.date||'').replace(/-/g,'.'))}</text><text x="50" y="80" text-anchor="middle" font-size="9" fill="${ink}" font-family="ZCOOL KuaiLe,PingFang SC,sans-serif">${esc(short(r.name,7))}</text></g>`}
+  else{const ink='#6d5a8a';g=`<g filter="${f}" opacity=".9">${frame('circle',ink,true)}<text x="50" y="62" text-anchor="middle" font-size="40" fill="${ink}" font-family="Special Elite,serif">?</text><text x="50" y="30" text-anchor="middle" font-size="7.5" letter-spacing="1" fill="${ink}" font-family="Special Elite,monospace">${esc((r.date||'').replace(/-/g,'.'))}</text><text x="50" y="80" text-anchor="middle" font-size="9" fill="${ink}" font-family="'LXGW WenKai Medium',Kaiti SC,STKaiti,serif">${esc(short(r.name,7))}</text></g>`}
   const gold=r.cheapNew?`<g filter="url(#grain)"><circle cx="86" cy="16" r="12" fill="#d8b44e"/><circle cx="86" cy="16" r="9.5" fill="none" stroke="#8a6a1c" stroke-width=".8"/><text x="86" y="19" text-anchor="middle" font-size="7.5" fill="#5a420e" font-family="Special Elite,monospace">≤$10</text></g>`:'';
   return `<svg class="stamp" viewBox="-6 -6 112 112" aria-hidden="true">${g}${gold}</svg>`;
 }
