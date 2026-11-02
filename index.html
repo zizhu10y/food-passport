@@ -112,11 +112,10 @@ hr.dash{border:0;border-top:1.5px dashed var(--faint);margin:22px 0}
 /* ---------- illustration ---------- */
 .ill{width:100%;height:auto;display:block;overflow:visible}
 .ill .ln{stroke:#4e2c1f;stroke-width:.85;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.locked .ill .col,.ill.locked .col,.locked .ill .thin,.ill.locked .thin{display:none}
-.locked .ill .ln,.ill.locked .ln{stroke:var(--faint);stroke-dasharray:2.4 2.6}
 .ill.hi .ln{stroke-width:1.5}.ill.hi .ln.thin{stroke-width:.7}
-.locked .ill.hi .ln,.ill.hi.locked .ln{stroke-dasharray:4.6 5;stroke-width:1.6}
-.locked .ill .bk,.ill.locked .bk{display:none}
+/* Not tasted yet: the same painting under a pale, washed-out filter; stamping it brings the full colour in */
+.locked .ill,.ill.locked{filter:saturate(.65) brightness(1.12) contrast(.8);opacity:.8}
+.locked .ill .ln,.ill.locked .ln{stroke:#8a6d55}
 .ill .rv{stroke-dasharray:1 1;stroke-dashoffset:0}
 .anim .ill .rv{animation:paint 2.2s ease-in-out .35s both}
 .anim .ill .ln{animation:inkin .8s ease both}
