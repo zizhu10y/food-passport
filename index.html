@@ -14,14 +14,14 @@
 <meta name="apple-mobile-web-app-title" content="美食护照">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
 <style>
 :root{
   --paper:#f4ecdc;--paper2:#ebdfc6;--paper3:#e2d3b5;
   --ink:#5b4030;--ink2:#8a6d55;--faint:#c4ad8f;
   --gold:#c9a24a;--cover:#4a1f24;--red:#b5483b;
   --tw:'Special Elite','American Typewriter','Courier New',monospace;
-  --hd:'Noto Serif SC','Songti SC','STSong',serif;
+  --hd:'ZCOOL KuaiLe','PingFang SC','Songti SC',sans-serif;
   --bd:'Songti SC','STSong','Noto Serif SC','PingFang SC',serif;
   --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .24  0 0 0 0 .14  0 0 0 .11 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
@@ -34,7 +34,7 @@ a{color:inherit}
 .page{max-width:620px;margin:0 auto;min-height:100vh;background:var(--paper) var(--noise);padding:18px 16px 110px;box-shadow:0 0 0 1px #cdbb9a,0 10px 40px rgba(60,40,20,.18);position:relative;overflow-x:hidden}
 .page::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 0,rgba(255,250,235,.55),transparent 60%),radial-gradient(ellipse at 50% 120%,rgba(170,130,80,.12),transparent 60%)}
 .page>*{position:relative}
-h1,h2,h3{font-family:var(--hd);font-weight:600;margin:0}
+h1,h2,h3{font-family:var(--hd);font-weight:400;margin:0}
 .small{font-size:12px;letter-spacing:.12em;color:var(--ink2)}
 .muted{color:var(--ink2)}
 .poem{font-family:var(--tw);color:var(--ink2);font-size:14px;margin:6px 0 0}
@@ -213,7 +213,7 @@ input[type=date].inp::-webkit-date-and-time-value{text-align:left}
 .res li:hover{background:rgba(255,252,243,.6)}
 .res .th{width:56px;flex:none}
 .res .t{flex:1}
-.res .t b{font-family:var(--hd);font-weight:600;font-size:17px}
+.res .t b{font-family:var(--hd);font-weight:400;font-size:17px}
 
 /* ---------- stats ---------- */
 .bigline{font-family:var(--tw);font-size:20px;text-align:center;line-height:1.6;margin:18px 0 6px}
@@ -226,7 +226,7 @@ input[type=date].inp::-webkit-date-and-time-value{text-align:left}
 .ach .ic{font-size:26px;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:2px dashed var(--faint);filter:grayscale(1);opacity:.55;flex:none}
 .ach.done .ic{filter:none;opacity:1;border:2px solid var(--gold);background:rgba(201,162,74,.12)}
 .ach .t{flex:1}
-.ach .t b{font-family:var(--hd);font-weight:600;font-size:16px}
+.ach .t b{font-family:var(--hd);font-weight:400;font-size:16px}
 .ach .t div{font-size:12.5px;color:var(--ink2)}
 .ach .n{font-family:var(--tw);font-size:13px}
 table.ct{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
@@ -251,7 +251,7 @@ table.ct td:last-child,table.ct td:nth-child(2){text-align:right;font-family:var
 .shop .r b{display:block;font-size:18px;color:var(--c,var(--ink))}
 .shop .r span{font-size:10.5px;color:var(--ink2)}
 .shop .t{flex:1;min-width:0}
-.shop .t b{font-family:var(--hd);font-weight:600;font-size:16px}
+.shop .t b{font-family:var(--hd);font-weight:400;font-size:16px}
 .shop .t .a{font-size:12.5px;color:var(--ink2)}
 .shop .t .n{font-size:12.5px;margin-top:2px}
 .shop .t .tags{margin-top:4px}
@@ -4470,7 +4470,7 @@ function stampBody(r,ink,shape,top,bot){
     `<text x="50" y="35" text-anchor="middle" font-size="8.5" letter-spacing="1.3" fill="${ink}" font-family="Special Elite,Courier New,monospace">${esc(top)}</text>`+
     `<path d="M24 41 H76 M24 61 H76" stroke="${ink}" stroke-width=".8"/>`+
     `<text x="50" y="55" text-anchor="middle" font-size="11.5" fill="${ink}" font-family="Special Elite,Courier New,monospace">${esc(date)}</text>`+
-    `<text x="50" y="73" text-anchor="middle" font-size="${String(bot).length>5?9:10.5}" fill="${ink}" font-family="Noto Serif SC,Songti SC,serif" font-weight="600">${esc(short(bot,6))}</text>`+
+    `<text x="50" y="73" text-anchor="middle" font-size="${String(bot).length>5?9:10.5}" fill="${ink}" font-family="ZCOOL KuaiLe,PingFang SC,sans-serif">${esc(short(bot,6))}</text>`+
     `<text x="50" y="83" text-anchor="middle" font-size="6.5" letter-spacing=".5" fill="${ink}" font-family="Special Elite,Courier New,monospace">${kind}</text>`+
     (r.challenge?`<text x="50" y="25" text-anchor="middle" font-size="6.5" fill="${ink}" font-family="Special Elite,monospace">★ CHALLENGE ★</text>`:'');
 }
@@ -4479,7 +4479,7 @@ function stampSVG(r){
   if(r.kind==='dish'){const d=DMAP[r.dishId],c=CMAP[d.c];g=`<g filter="${f}" opacity=".9">${stampBody(r,c.ink,c.shape,c.en,d.zh)}</g>`}
   else if(r.kind==='fusion'){const[a,b]=r.countries.map(x=>CMAP[x]);
     g=`<g filter="${f}" opacity=".9"><g clip-path="url(#cL)">${stampBody(r,a.ink,'circle','FUSION',r.name)}</g><g clip-path="url(#cR)">${stampBody(r,b.ink,'circle','FUSION',r.name)}</g></g>`}
-  else{const ink='#6d5a8a';g=`<g filter="${f}" opacity=".9">${frame('circle',ink,true)}<text x="50" y="62" text-anchor="middle" font-size="40" fill="${ink}" font-family="Special Elite,serif">?</text><text x="50" y="30" text-anchor="middle" font-size="7.5" letter-spacing="1" fill="${ink}" font-family="Special Elite,monospace">${esc((r.date||'').replace(/-/g,'.'))}</text><text x="50" y="80" text-anchor="middle" font-size="9" fill="${ink}" font-family="Noto Serif SC,Songti SC,serif" font-weight="600">${esc(short(r.name,7))}</text></g>`}
+  else{const ink='#6d5a8a';g=`<g filter="${f}" opacity=".9">${frame('circle',ink,true)}<text x="50" y="62" text-anchor="middle" font-size="40" fill="${ink}" font-family="Special Elite,serif">?</text><text x="50" y="30" text-anchor="middle" font-size="7.5" letter-spacing="1" fill="${ink}" font-family="Special Elite,monospace">${esc((r.date||'').replace(/-/g,'.'))}</text><text x="50" y="80" text-anchor="middle" font-size="9" fill="${ink}" font-family="ZCOOL KuaiLe,PingFang SC,sans-serif">${esc(short(r.name,7))}</text></g>`}
   const gold=r.cheapNew?`<g filter="url(#grain)"><circle cx="86" cy="16" r="12" fill="#d8b44e"/><circle cx="86" cy="16" r="9.5" fill="none" stroke="#8a6a1c" stroke-width=".8"/><text x="86" y="19" text-anchor="middle" font-size="7.5" fill="#5a420e" font-family="Special Elite,monospace">≤$10</text></g>`:'';
   return `<svg class="stamp" viewBox="-6 -6 112 112" aria-hidden="true">${g}${gold}</svg>`;
 }
