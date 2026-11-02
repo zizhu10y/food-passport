@@ -164,7 +164,8 @@ input[type=date].inp::-webkit-date-and-time-value{text-align:left}
 .modal[hidden]{display:none}
 .sheet{background:var(--paper) var(--noise);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:16px 16px 0 0;padding:20px 18px 28px;position:relative;animation:up .25s ease}
 @media(min-width:640px){.modal{align-items:center}.sheet{border-radius:12px}}
-.sheet .x{position:absolute;right:10px;top:8px;border:0;background:none;font-size:26px;cursor:pointer;color:var(--ink2);line-height:1}
+/* sticky so the × stays reachable after scrolling a long sheet; negative bottom margin keeps it out of the layout */
+.sheet .x{position:sticky;top:-8px;z-index:5;display:block;margin:-12px -8px -36px auto;width:36px;height:36px;border:0;border-radius:50%;background:rgba(244,236,220,.92);box-shadow:0 2px 8px rgba(60,35,20,.18);font-size:24px;cursor:pointer;color:var(--ink2);line-height:1;padding:0}
 @keyframes fade{from{opacity:0}}
 @keyframes up{from{transform:translateY(40px);opacity:0}}
 .dm-ill{max-width:280px;margin:0 auto;position:relative}
