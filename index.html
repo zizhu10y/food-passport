@@ -59,10 +59,10 @@ hr.dash{border:0;border-top:1.5px dashed var(--faint);margin:22px 0}
 .book .cnt{font-family:var(--tw);font-size:11px;letter-spacing:.15em;opacity:.7;margin-top:10px}
 /* Opens by itself: the book rises in, the foil catches the light, then the cover swings open */
 .cover{cursor:pointer}
-.cover .book{animation:rise .55s ease-out both}
-.cover .foil{background-size:220% 100%;animation:shine 1.1s .35s ease-in-out both}
-.cover.leaving{animation:tolight .5s .3s ease-in forwards}
-.cover.leaving .book{animation:flip .65s ease-in forwards;transform-origin:left center}
+.cover .book{animation:rise .35s ease-out both}
+.cover .foil{background-size:220% 100%;animation:shine .5s .15s ease-in-out both}
+.cover.leaving{animation:tolight .3s .15s ease-in forwards}
+.cover.leaving .book{animation:flip .4s ease-in forwards;transform-origin:left center}
 @keyframes rise{from{opacity:0;transform:translateY(16px) scale(.96)}}
 @keyframes shine{from{background-position:100% 0}to{background-position:0 0}}
 @keyframes flip{to{transform:perspective(900px) rotateY(-100deg);opacity:0}}
@@ -5050,11 +5050,11 @@ let pendingAnim=null;
 // The cover plays its opening animation on its own; tapping it just skips ahead.
 // replace() keeps the cover out of history, so Back doesn't land on it and re-open.
 function openCover(){const c=$('#cover');if(!c||c.classList.contains('leaving'))return;
-  c.classList.add('leaving');setTimeout(()=>{if(!location.hash)location.replace('#/')},650)}
+  c.classList.add('leaving');setTimeout(()=>{if(!location.hash)location.replace('#/')},400)}
 function route(keep){
   checkExpired();
   const h=location.hash.replace(/^#/,'');const nav=$('#nav');let key='index',html;
-  if(!h){html=vCover();key=null;setTimeout(openCover,1500)}
+  if(!h){html=vCover();key=null;setTimeout(openCover,600)}
   else if(h.startsWith('/c/')){html=vCountry(h.slice(3));key='index'}
   else if(h==='/challenge'){html=vChallenge();key='challenge'}
   else if(h==='/find'){html=vFind();key='find'}
