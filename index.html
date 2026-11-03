@@ -715,28 +715,39 @@ const RAW=[
 ['cafeaulait','FR','欧蕾咖啡','Café au Lait','mug','tea,-,-,-','','奶香','咖啡、热牛奶、大碗','法国人早餐用碗喝，方便把可颂泡进去。','ch','欧蕾 咖啡欧蕾 cafe au lait'],
 ['chocolatecaliente','ES','西班牙热巧克力','Chocolate Caliente','mug','choc,-,-,-','','甜 奶香','浓巧克力、牛奶、玉米淀粉','浓稠得像布丁，专门用来蘸吉事果。','ch','热巧克力 chocolate caliente hot chocolate'],
 ['jamaica','MX','洛神花水','Agua de Jamaica','cup','#b8485a,-,lime,-','','酸 甜','洛神花、糖、水、冰','墨西哥"agua fresca"三大经典口味之一，颜色像红宝石。','ch','洛神花水 agua de jamaica hibiscus'],
+['suanmeitang','CN','酸梅汤','Sour Plum Drink','cup','#7a2a1a,-,-,-','','酸 甜 烟熏','乌梅、山楂、陈皮、甘草、桂花、冰糖','老北京的夏天味道，配烤鸭、火锅最解腻。','ch','酸梅汤 酸梅 suanmeitang sour plum'],
+['ramune','JP','波子汽水','Ramune','cup','#cfeae6,-,-,-','','甜 清淡','汽水、糖、柠檬香料、玻璃珠','瓶口卡着一颗玻璃珠，要先用力把它按下去才能喝。','c','波子汽水 弹珠汽水 ramune'],
+['yujacha','KR','柚子茶','Yuja-cha','mug','#f2c84a,-,-,-','','甜 酸','柚子皮、蜂蜜或糖、热水','把柚子连皮切丝用糖腌成酱，冬天舀一勺冲热水。','ch','柚子茶 韩国柚子茶 yuja tea yujacha citron tea'],
+['anchan','TH','蝶豆花柠檬茶','Butterfly Pea Lemonade','cup','#2f52b8,-,-,-','','酸 甜 清淡','蝶豆花、柠檬、糖、冰','挤进柠檬汁的那一下，蓝色会变成紫色。','ch','蝶豆花 蝶豆花茶 butterfly pea anchan'],
+['buko','PH','椰青水','Buko Juice','cup','#eef2e2,-,-,-','','甜 清淡','嫩椰子水、椰肉丝、冰','街边直接劈开椰子插根吸管，也有加椰肉丝装杯卖的。','c','椰子水 椰青 buko juice coconut water'],
+['tongba','NP','通巴','Tongba','mug','#a8682a,-,-,-','','酸 甜 香','发酵小米、热水、竹筒、竹吸管','东部林布族的热小米酒，竹筒里的小米能续三四次热水。','','通巴 小米酒 tongba millet beer'],
+['jallab','LB','杰拉布','Jallab','cup','#4a1020,-,-,-','','甜 香','葡萄糖浆、椰枣糖浆、玫瑰水、松子、葡萄干、冰','夏天和斋月最受欢迎的冰饮，漂在上面的松子和葡萄干要一起吃。','ch','杰拉布 jallab'],
+['spritz','IT','阿佩罗橙光','Aperol Spritz','cup','#f0701a,-,-,-','','甜 微苦','阿佩罗、普罗塞克起泡酒、苏打水、橙片','威尼斯人下班后的 aperitivo，配一小碟橄榄和薯片。','h','阿佩罗 橙光 aperol spritz'],
+['diabolo','FR','薄荷汽水','Diabolo Menthe','cup','#3fb83a,-,-,-','','甜 清淡 香草','薄荷糖浆、柠檬汽水','法国咖啡馆里小孩和不喝酒的人最常点，绿得像宝石。','ch','薄荷汽水 diabolo menthe'],
+['cafedeolla','MX','陶罐咖啡','Café de Olla','mug','#b8603a,-,-,-','','甜 香','咖啡、肉桂、黑糖、陶罐','用陶罐慢慢煮，陶土的味道也是风味的一部分。','ch','陶罐咖啡 cafe de olla'],
+['llb','AU','柠檬青柠苦精','Lemon Lime & Bitters','cup','#f0a8a0,-,-,-','','酸 甜','柠檬汽水、青柠汁、安格斯图拉苦精、冰','澳洲酒吧里不喝酒的人的标配，粉色来自几滴苦精。','c','llb lemon lime bitters 柠檬青柠苦精'],
 ];
 
 // 每个国家按代表程度排序；"|" 后面是饮料
 const ORDER={
- CN:'pekingduck hotpot mapo xlb jiaozi kungpao lanzhou hongshaorou friedrice hargow charsiu dandan jianbing roujiamo malatang suancaiyu claypot shengjian tomatoegg congyou | hkmilktea doujiang',
- JP:'sushi ramen tempura sashimi sukiyaki udon onigiri soba takoyaki okonomiyaki gyudon karaage katsucurry unadon gyoza dorayaki | matchadrink',
- KR:'kimchi bibimbap bulgogi samgyeopsal kfc tteokbokki kimchijjigae naengmyeon samgyetang budaejjigae jajangmyeon kimbap japchae pajeon ramyeon hotteok | sikhye',
+ CN:'pekingduck hotpot mapo xlb jiaozi kungpao lanzhou hongshaorou friedrice hargow charsiu dandan jianbing roujiamo malatang suancaiyu claypot shengjian tomatoegg congyou | hkmilktea doujiang suanmeitang',
+ JP:'sushi ramen tempura sashimi sukiyaki udon onigiri soba takoyaki okonomiyaki gyudon karaage katsucurry unadon gyoza dorayaki | matchadrink ramune',
+ KR:'kimchi bibimbap bulgogi samgyeopsal kfc tteokbokki kimchijjigae naengmyeon samgyetang budaejjigae jajangmyeon kimbap japchae pajeon ramyeon hotteok | sikhye yujacha',
  VN:'pho banhmi goicuon bunbohue bunthitnuong comtam chagio banhxeo bunrieu banhcuon phoga che | caphe nuocmia',
- TH:'padthai tomyum greencurry somtam massaman krapow mangorice khaosoi tomkha panang khaopad boatnoodle mooping | thaitea',
+ TH:'padthai tomyum greencurry somtam massaman krapow mangorice khaosoi tomkha panang khaopad boatnoodle mooping | thaitea anchan',
  MY:'nasilemak laksa roticanai satay ckt hainan asamlaksa bakkutteh meegoreng kaya wantanmee rojak cendol | tehtarik milodino',
  ID:'nasigoreng rendang sateayam gadogado nasipadang bakso miegorengid soto tempeh sopbuntut martabak esteler | wedangjahe',
- PH:'adobo lechon sinigang sisig karekare pancit lumpia tapsilog tinola halohalo lecheflan | calamansi',
+ PH:'adobo lechon sinigang sisig karekare pancit lumpia tapsilog tinola halohalo lecheflan | calamansi buko',
  IN:'butterchicken biryani dosa thali samosa chana naan tandoori palakpaneer roganjosh daltadka paratha panipuri gulabjamun | chai lassi',
- NP:'momo dalbhat thukpa chowmeinnp sekuwa choila selroti chatamari jujudhau | chiya',
- LB:'hummus shawarma falafel tabbouleh manoushe kibbeh fattoush babaghanoush shishtawook kafta ful labneh warakenab mujaddara knafeh | limonana',
+ NP:'momo dalbhat thukpa chowmeinnp sekuwa choila selroti chatamari jujudhau | chiya tongba',
+ LB:'hummus shawarma falafel tabbouleh manoushe kibbeh fattoush babaghanoush shishtawook kafta ful labneh warakenab mujaddara knafeh | limonana jallab',
  TR:'doner kofte baklava lahmacun manti pide iskender menemen mercimek kahvalti simit gozleme balikekmek kumpir lokum | turkishcoffee cay ayran',
  GR:'moussaka souvlaki gyros horiatiki spanakopita tzatziki dolmades kalamari pastitsio avgolemono kleftiko saganaki gemista loukoumades galaktoboureko | frappe',
- IT:'margherita carbonara lasagna risotto tiramisu gelato bolognese pesto ossobuco ravioli caprese bruschetta arancini cannoli focaccia aglio | espresso',
- FR:'croissant bourguignon crepe onionsoup ratatouille confit escargot macaron quiche cremebrulee steakfrites bouillabaisse croque jambonbeurre | cafeaulait',
+ IT:'margherita carbonara lasagna risotto tiramisu gelato bolognese pesto ossobuco ravioli caprese bruschetta arancini cannoli focaccia aglio | espresso spritz',
+ FR:'croissant bourguignon crepe onionsoup ratatouille confit escargot macaron quiche cremebrulee steakfrites bouillabaisse croque jambonbeurre | cafeaulait diabolo',
  ES:'paella jamon tortilla churros gazpacho bravas pulpo croquetas gambas pantomate fabada cremacatalana padron bocadillo | chocolatecaliente sangria',
- MX:'tacos mole tamales guacamole enchiladas pozole chilaquiles burrito quesadilla elote birria chilesnogada tresleches nachos | horchata jamaica',
- AU:'meatpie sizzle pavlova lamington fishchips vegemite timtam hsp parmi anzac avotoast fairybread | flatwhite',
+ MX:'tacos mole tamales guacamole enchiladas pozole chilaquiles burrito quesadilla elote birria chilesnogada tresleches nachos | horchata jamaica cafedeolla',
+ AU:'meatpie sizzle pavlova lamington fishchips vegemite timtam hsp parmi anzac avotoast fairybread | flatwhite llb',
 };
 const RANK={},DRINKS=new Set();
 for(const c in ORDER){const[f,d='']=ORDER[c].split('|');f.trim().split(/\s+/).forEach((id,i)=>RANK[id]=i);d.trim().split(/\s+/).filter(Boolean).forEach((id,i)=>{RANK[id]=i;DRINKS.add(id)})}
@@ -1529,6 +1540,15 @@ ART.parmi=()=>{const r=aSeed(1867);
     ...[[176,108,-20],[190,116,10],[166,112,30]].map(([x,y,a])=>aBasilLeaf(x,y,a,1)).flat(),...aLime(56,164,10,.9).map(x=>x[1]==='#7cc03a'?[x[0],'#f2e070',x[2]]:x)];
 };
 
+ART.llb=()=>{const r=aSeed(1821);
+  return[aShadow(180,176,18,4),...aGlass(100,54,170,30,25,[[66,'#f6c8c0'],[130,'#f0a8a0']],5,'#e8483a',r),aWash(aE(100,68,26,4),'#fbe0d8',.9),
+    ...Array.from({length:14},()=>[`<circle cx="${(80+r()*40).toFixed(1)}" cy="${(74+r()*90).toFixed(1)}" r="${(.7+r()*1.2).toFixed(1)}" fill="none" stroke="#fff" stroke-width=".7"/>`,null,'raw']),
+    ...aLime(76,56,-30,1),[aC(116,106,9),'#f2e070',''],[aC(116,106,7),'#fbf2a0','nl'],
+    // bitters bottle with its oversized label
+    [aRc(168,112,24,62,4),'#5a2a10',''],[aRc(174,98,12,16,2),'#5a2a10',''],[aRc(173,90,14,10,2),'#e8b830',''],
+    [aRc(164,118,32,42,2),'#f8f2e0',''],aPen('M170 128 l20 0 M170 136 l16 0 M170 144 l20 0',.9,'#c82a1a',.9)];
+};
+
 /* ---------- China ---------- */
 // broth / sauce surface inside a bowl: base wash plus clipped colour pools and extra markup
 const aBroth=(cx,cy,rx,ry,base,deep,light,extra='')=>[[aE(cx,cy,rx,ry),base,'nl'],
@@ -1785,6 +1805,14 @@ ART.congyou=()=>{const r=aSeed(163);
     ...Array.from({length:22},()=>{const x=60+r()*120,y=104+r()*40,a=Math.round(r()*180);return[aRc(x,y,8,2.6,1,a),r()<.5?'#3a2a10':'#5a6a1a','snl']}),
     ...aScallions(r,8,70,104,100,30,'#46b02c'),aGloss('M60 118 q40 -14 100 -10',1.6),
     ...aChop(150,170,230,108),...aChop(160,176,236,116,'#a1552f')];
+};
+
+ART.suanmeitang=()=>{const r=aSeed(1801);
+  return[...aGlass(100,64,170,34,26,[[76,'#7a2a1a'],[150,'#5a1a10']],4,null,r),aWash(aE(100,78,30,5),'#a8442a',.8),
+    ...Array.from({length:14},()=>[aC((78+r()*44).toFixed(1),(74+r()*8).toFixed(1),(1.2+r()*.8).toFixed(1)),'#f2b83a','snl']),
+    // dried black plums and hawthorn slices beside the glass
+    ...[[160,160],[178,166],[170,150]].map(([x,y])=>[[aE(x,y,9,7),'#3a1a14',''],aPen(`M${x-5} ${y-2} q3 2 6 0 M${x-3} ${y+3} q3 -2 6 0`,.5,'#7a4a3a',.9),[aE(x-3,y-3,2,1),null,'hl']]).flat(),
+    ...[[196,158],[194,174]].map(([x,y])=>[[aE(x,y,8,4),'#c8401e',''],[aE(x,y,5,2.4),'#f2c890','nl'],[aC(x,y,1),'#7a2010','snl']]).flat()];
 };
 
 /* ---------- Spain ---------- */
@@ -2090,6 +2118,15 @@ ART.jambonbeurre=()=>{const r=aSeed(1499);
     [aP('M26 126 Q120 112 216 112 Q218 120 212 122 Q120 122 30 134Z'),'#fbf2dc',''],
     [`<g filter="url(#wc2)">${Array.from({length:8},(_,i)=>`<path d="M${36+i*22} ${126-i*1.6} q6 -8 16 -6 q8 2 6 8" fill="#f0a0a0" stroke="#c87a7a" stroke-width=".6"/>`).join('')}</g>`,null,'raw'],
     [aRc(30,122,176,3,1.5,-5),'#fbf0b0','']];
+};
+
+ART.diabolo=()=>{const r=aSeed(1817);
+  return[aShadow(172,178,18,4),...aGlass(96,50,170,28,24,[[62,'#7ad84a'],[120,'#3fb83a']],4,'#f6f2ea',r),aWash(aE(96,64,24,4),'#c8f0a0',.9),
+    ...Array.from({length:18},()=>[`<circle cx="${(76+r()*40).toFixed(1)}" cy="${(70+r()*94).toFixed(1)}" r="${(.7+r()*1.3).toFixed(1)}" fill="none" stroke="#f0fff0" stroke-width=".7"/>`,null,'raw']),
+    [aP('M80 56 q-6 -14 4 -18 q6 8 -4 18Z'),'#2f8a2a',''],[aP('M84 56 q2 -16 14 -14 q-2 10 -14 14Z'),'#3fa03a',''],
+    // bottle of mint syrup
+    [aP('M156 176 L156 112 Q156 100 164 96 L164 76 L176 76 L176 96 Q184 100 184 112 L184 176Z'),'#3f9a3a',''],[aRc(162,66,16,12,2),'#e8e2d0',''],
+    [aRc(158,124,24,26,2),'#f8f2e0',''],aPen('M162 132 l16 0 M162 138 l12 0',1,'#2f7a2a',.9),aGloss('M160 114 L160 168',2)];
 };
 
 /* ---------- Greece ---------- */
@@ -2722,6 +2759,17 @@ ART.aglio=()=>{const r=aSeed(1381);
     ...[[42,170],[34,162]].map(([x,y])=>[[aE(x,y,6,4),'#f6f2e2',''],aPen(`M${x-3} ${y-2} l0 4 M${x} ${y-3} l0 6`,.4,'#c9c0a0',.8)]).flat()];
 };
 
+ART.spritz=()=>{const r=aSeed(1815);
+  const bowl='M70 60 Q66 122 104 128 Q142 122 138 60Z';
+  return[aShadow(108,172,36,6),
+    ...aDish(182,166,24,6,'#f8f4ec'),...[[174,163],[186,166],[190,159]].map(([x,y])=>[[aE(x,y,5,3.6),'#6a8a2a',''],[aE(x-1.4,y-1.2,1.2,.7),null,'hl']]).flat(),
+    [aE(104,166,24,5),'#eef2f2',''],[aRc(101,126,6,40,2),'#eef2f2',''],
+    [aP(bowl),'#f4f6f4',''],aClip(bowl,`<rect x="60" y="74" width="90" height="60" fill="#f0701a" filter="url(#wc2)"/><rect x="60" y="74" width="90" height="10" fill="#f8a050" filter="url(#wc2)"/>`+Array.from({length:16},()=>`<circle cx="${(76+r()*56).toFixed(1)}" cy="${(80+r()*40).toFixed(1)}" r="${(.6+r()*1.2).toFixed(1)}" fill="none" stroke="#ffe0b0" stroke-width=".6"/>`).join('')),
+    ...[[82,80,-12],[106,82,14]].map(([x,y,a])=>[`<g filter="url(#wc2)" opacity=".85"><rect x="${x}" y="${y}" width="16" height="14" rx="3" transform="rotate(${a} ${x+8} ${y+7})" fill="#fbe0c0" stroke="#e8a060" stroke-width=".7"/></g>`,null,'raw']),
+    [aP('M112 106 A15 15 0 0 1 142 106 Z'),'#f08a1a',''],[aP('M115 106 A12 12 0 0 1 139 106 Z'),'#f8b84a','nl'],aPen('M127 106 L127 95 M127 106 L118 98 M127 106 L136 98',.5,'#d86a10',.9),
+    [aE(104,60,34,5),null,''],aGloss('M76 70 q-2 30 10 46',2.6),aGloss('M104 132 L104 160',1.2)];
+};
+
 /* ---------- Japan ---------- */
 ART.ramen=()=>{const r=aSeed(7);
   const naruto=(()=>{let d='';const cx=128,cy=112,n=16;for(let i=0;i<=n*2;i++){const t=i/(n*2)*Math.PI*2,q=i%2?9.6:11;d+=(i?'L':'M')+(cx+Math.cos(t)*q).toFixed(1)+' '+(cy+Math.sin(t)*q*.62).toFixed(1)}return d+'Z'})();
@@ -2941,6 +2989,18 @@ ART.dorayaki=()=>{const r=aSeed(59);
     ...cake(92,126,1),...cake(150,112,.9),
     [aP('M156 140 L196 132 L200 152 L160 160Z'),'#c9782a',''],[aP('M158 144 L196 136 L198 146 L160 152Z'),'#4a1e1e','nl'],aPen(Array.from({length:8},()=>`M${162+r()*32} ${142+r()*8} l1 0`).join(' '),1.4,'#8a4a4a',.9),
     [aE(206,92,18,6),'#3f7a4a',''],[aP('M188 92 Q190 118 206 120 Q222 118 224 92'),'#3f7a4a',''],[aE(206,93,15,4),'#b9d48a','nl'],aGloss('M192 98 q2 10 8 16',1.6)];
+};
+
+ART.ramune=()=>{const r=aSeed(1803);
+  const B='M80 166 Q80 174 104 174 Q128 174 128 166 L128 112 Q128 100 116 94 L115 88 Q124 82 120 70 L116 58 L92 58 L88 70 Q84 82 93 88 L92 94 Q80 100 80 112Z';
+  return[aShadow(108,176,40,6),
+    [aP(B),'#d8efec',''],aClip(B,`<rect x="76" y="100" width="56" height="80" fill="#b8e0dc" filter="url(#wc2)"/>`+Array.from({length:22},()=>`<circle cx="${(84+r()*40).toFixed(1)}" cy="${(104+r()*64).toFixed(1)}" r="${(.8+r()*1.8).toFixed(1)}" fill="none" stroke="#fff" stroke-width=".7"/>`).join('')),
+    [aRc(80,124,48,24,2),'#2a5ab8',''],aPen('M84 136 q5 -5 10 0 t10 0 t10 0 t10 0',1.2,'#fff',.95),
+    // the glass marble that seals the neck
+    [aC(104,78,8),'#eaf6f8',''],[aE(101,75,2.6,1.6),null,'hl'],
+    [aRc(90,42,28,18,4),'#3a7ac8',''],aPen('M94 50 L114 50',.8,'#bcd6f2',.9),
+    aGloss('M86 112 L86 160',2.6),aGloss('M90 66 L92 80',1.4),
+    [aP('M152 164 L168 150 Q174 146 178 152 Q180 158 172 162 L158 172Z'),'#3a7ac8',''],[aC(150,168,6),'#3a7ac8','']];
 };
 
 /* ---------- Korea ---------- */
@@ -3170,6 +3230,19 @@ ART.hotteok=()=>{const r=aSeed(257);
     [aRc(186,88,8,40,2,24),'#c9a46a','']];
 };
 
+ART.yujacha=()=>{const r=aSeed(1805);
+  return[aShadow(110,176,70,9),
+    [aP('M140 104 Q166 104 166 124 Q166 144 139 144'),null,''],[aP('M140 112 Q158 112 158 124 Q158 136 140 136'),null,''],
+    [aP('M66 84 L70 166 Q104 172 138 166 L142 84'),'#f2f4ee',''],
+    [aP('M67 96 L70 166 Q104 172 138 166 L141 96Z'),'#f2c84a','nl'],aWash(aE(104,96,37,6),'#f8dc7a',.9),
+    ...Array.from({length:14},()=>{const x=76+r()*56,y=104+r()*56,a=Math.round(r()*180);return[aRc(x.toFixed(1),y.toFixed(1),10,2,1,a),'#e89a1a','snl']}),
+    aGloss('M76 100 L80 158',2.6),[aE(104,84,38,7),null,''],
+    // jar of yuja marmalade with a spoon
+    aShadow(194,174,22,4),[aP('M176 132 L176 170 Q193 174 210 170 L210 132'),'#f8f4ea',''],[aP('M177 140 L177 170 Q193 174 209 170 L209 140Z'),'#f0b02a','nl'],
+    ...Array.from({length:8},()=>[aRc((180+r()*24).toFixed(1),(144+r()*22).toFixed(1),8,1.8,.9,Math.round(r()*180)),'#c8701a','snl']),
+    [aE(193,132,17,5),'#f8f4ea',''],[aP('M196 132 L210 96 L214 98 L202 132Z'),'#c9ccd0',''],aGloss('M181 142 L181 164',1.6)];
+};
+
 /* ---------- Lebanon ---------- */
 // shallow turquoise mezze bowl with a swirled dip, olive-oil pool and garnish
 function aMezze(r,cx,cy,rx,ry,fill,swirl,oil=true){
@@ -3330,6 +3403,14 @@ ART.knafeh=()=>{const r=aSeed(991);
     ...aKatori(206,100,18,5,'#e8b05a')];
 };
 
+ART.jallab=()=>{const r=aSeed(1813);
+  return[...aGlass(102,62,170,34,26,[[72,'#6a2030'],[150,'#4a1020']],6,null,r),aWash(aE(102,74,30,5),'#e8e0e8',.85),
+    ...Array.from({length:10},()=>[aE((80+r()*44).toFixed(1),(72+r()*6).toFixed(1),2.6,1.2,Math.round(r()*180)),'#f6e8c0','sm']),
+    ...Array.from({length:7},()=>[aE((80+r()*44).toFixed(1),(72+r()*6).toFixed(1),2.4,1.8),'#3a1020','sm']),
+    ...aDish(180,162,26,8,'#f6e8c0'),...Array.from({length:10},()=>[aE((166+r()*28).toFixed(1),(158+r()*7).toFixed(1),2.6,1.2,Math.round(r()*180)),'#e8d4a0','sm']),
+    [aP('M152 124 q4 -10 14 -8 q-2 8 -14 8Z'),'#e86a8a',''],[aP('M158 132 q8 -6 14 0 q-8 4 -14 0Z'),'#f0a0b8','']];
+};
+
 /* ---------- Mexico ---------- */
 // molcajete: three-legged volcanic-stone bowl
 const aMolcajete=(cx,cy,rx,ry,depth)=>[aShadow(cx+3,cy+depth+8,rx+4,ry*.6),
@@ -3486,6 +3567,19 @@ ART.jamaica=()=>{const r=aSeed(1747);
   return[...aGlass(100,60,170,34,26,[[72,'#c8203a'],[160,'#a01a30']],5,'#f6f2ea',r),aWash(aE(100,74,30,5),'#e8506a',.8),
     ...[[160,160],[176,166],[168,150],[186,156]].map(([x,y])=>[[aP(`M${x-8} ${y+4} Q${x-10} ${y-6} ${x} ${y-8} Q${x+10} ${y-6} ${x+8} ${y+4} Q${x} ${y+8} ${x-8} ${y+4}Z`),'#a01a30',''],aPen(`M${x-4} ${y} l8 0 M${x} ${y-4} l0 8`,.5,'#e8506a',.9)]).flat(),
     ...aLime(196,176,-10,.9)];
+};
+
+ART.cafedeolla=()=>{const r=aSeed(1819);
+  return[aShadow(110,176,66,9),
+    [aP('M142 104 Q166 104 164 124 Q162 142 138 140'),'#b8603a',''],[aP('M141 112 Q156 112 155 124 Q154 134 139 132'),'#fbf6ee','nl'],
+    [aP('M66 92 Q62 160 104 166 Q146 160 142 92Z'),'#b8603a',''],aWash(aP('M104 164 Q144 160 141 104 Q136 150 104 156Z'),'#7a3010',.7),
+    aPen('M74 112 q6 -6 12 0 t12 0 t12 0 t12 0 t12 0 t12 0',1.2,'#fbeee0',.9),...[[80,132],[96,136],[112,137],[128,135]].map(([x,y])=>[aC(x,y,2),'#fbeee0','snl']),
+    aGloss('M74 100 q-2 30 8 50',2.4),
+    [aE(104,92,38,9),'#b8603a',''],[aE(104,93,33,7),'#3a1a0a','nl'],aWash(aE(112,94,18,3),'#7a4a2a',.7),
+    // cinnamon stick and a cone of piloncillo
+    [aRc(150,170,50,6,3,-8),'#a8602a',''],aPen('M152 172 L198 166',.5,'#6a3010',.8),
+    [aP('M180 164 L194 128 L208 164Z'),'#8a4a14',''],aWash(aP('M194 128 L208 164 L198 164Z'),'#4a2008',.7),
+    aPen('M96 76 q-5 -7 0 -14 t0 -14 M114 74 q-5 -7 0 -14 t0 -14',1.1,'#a89277',.7)];
 };
 
 /* ---------- Malaysia ---------- */
@@ -3758,6 +3852,20 @@ ART.jujudhau=()=>{const r=aSeed(877);
     [aP('M168 150 L214 128 Q224 126 222 134 L174 158Z'),'#d9b878',''],[aE(166,152,10,5,-24),'#d9b878','']];
 };
 
+ART.tongba=()=>{const r=aSeed(1811);
+  return[aShadow(108,176,52,8),
+    [aP('M70 76 L72 166 Q104 174 136 166 L138 76Z'),'#a8682a',''],aWash(aP('M118 78 L136 76 L136 166 Q126 170 118 170Z'),'#6a3a10',.7),
+    aPen('M80 84 q2 40 0 76 M92 82 q2 40 0 80 M118 82 q2 40 0 80',.6,'#6a3a10',.6),
+    ...[96,148].map(y=>[aP(`M71 ${y} Q104 ${y+8} 137 ${y} L137 ${y+8} Q104 ${y+16} 71 ${y+8}Z`),'#d9a840','']),
+    aGloss('M76 90 L78 150',2.4),
+    [aE(104,76,34,8),'#a8682a',''],[aE(104,75,30,6.5),'#e8d8a8','nl'],
+    aClip(ellD(104,75,30,6.5),Array.from({length:50},()=>`<circle cx="${(76+r()*56).toFixed(1)}" cy="${(68+r()*12).toFixed(1)}" r="1.4" fill="${r()<.5?'#f6eccc':'#c9a86a'}"/>`).join('')),
+    // bamboo straw, closed at the bottom with side slits
+    [aP('M112 72 L130 18 L135 20 L118 74Z'),'#c9b06a',''],aPen('M120 56 l5 1 M124 44 l5 1',.8,'#7a6a2a',.9),
+    ...aDish(182,164,26,8,'#f2e4b8'),
+    ...Array.from({length:16},()=>[aC((166+r()*32).toFixed(1),(160+r()*7).toFixed(1),1.3),'#c9a86a','snl'])];
+};
+
 /* ---------- Philippines ---------- */
 const aCalamansi=(x,y,s=1)=>[[aC(x,y,6*s),'#7cc03a',''],[aC(x,y,4.6*s),'#f2e070','nl'],aPen(`M${x-3*s} ${y} l6 0 M${x} ${y-3*s} l0 6 M${x-2*s} ${y-2*s} l4 4 M${x+2*s} ${y-2*s} l-4 4`,.4,'#c9a83a',.9)];
 const aBayLeaf=(x,y,a)=>[[aP(`M${x-10} ${y} Q${x} ${y-6} ${x+10} ${y} Q${x} ${y+5} ${x-10} ${y}Z`,a,x,y),'#6a8a3a',''],aPen(`M${x-9} ${y} L${x+9} ${y}`,.5,'#c9d8a0',.9)];
@@ -3891,6 +3999,15 @@ ART.lecheflan=()=>{const r=aSeed(683);
     aPen(Array.from({length:14},()=>`M${64+r()*112} ${120+r()*20} l1 0`).join(' '),1.2,'#f9e090',.9),
     [aE(120,112,62,16),'#c8701a',''],aWash(aE(130,114,44,10),'#8a3a08',.75),aWash(aE(104,108,22,5),'#f0a040',.8),aGloss('M80 108 q20 -8 50 -8',2.4),aGloss('M150 114 q10 -2 16 -6',1.2),
     [`<g filter="url(#wc2)" opacity=".9"><path d="M64 116 q4 10 2 18 M96 124 q3 8 2 14 M150 124 q3 8 2 14 M174 118 q3 8 2 14" stroke="#a8501a" stroke-width="3" fill="none" stroke-linecap="round"/></g>`,null,'raw']];
+};
+
+ART.buko=()=>{const r=aSeed(1809);
+  return[aShadow(104,176,74,9),
+    [aP('M46 164 Q34 116 64 86 L128 86 Q158 116 146 164 Q96 182 46 164Z'),'#5a9a32',''],aWash(aP('M120 90 Q150 120 142 166 Q120 174 110 172 Q136 130 120 90Z'),'#2f6a1a',.7),aGloss('M60 104 q-10 24 -6 50',3),
+    [aP('M64 86 L70 70 L122 70 L128 86 Q96 96 64 86Z'),'#e8ddb0',''],[aE(96,70,26,6),'#f6f0d8',''],[aE(96,70,12,3),'#dfeed6','nl'],
+    [aP('M98 70 L118 26 L123 28 L104 72Z'),'#e8483a',''],
+    ...aGlass(184,120,172,18,14,[[128,'#eef2e2']],0,null,r),
+    ...Array.from({length:8},()=>[aRc((172+r()*20).toFixed(1),(132+r()*32).toFixed(1),7,2,1,Math.round(r()*180)),'#fffef8','snl'])];
 };
 
 /* ---------- Thailand ---------- */
@@ -4037,6 +4154,13 @@ ART.mooping=()=>{const r=aSeed(433);
       ...[50,82,114,146,178].map(x=>{const y=y0+16-(x-20)*22/198;return[[aRc(x-12,y-9,24,18,5,-6),'#b8501e',''],aWash(aRc(x-12,y+1,24,8,4,-6),'#6a2008',.8),aPen(`M${x-8} ${y-6} l4 12 M${x} ${y-7} l4 12 M${x+8} ${y-7} l3 11`,1.2,'#3a1004',.6),aGloss(`M${x-8} ${y-6} l10 -1`,1.2)]}).flat()]}).flat(),
     [aP('M172 72 Q174 56 194 54 Q214 56 216 72 L212 92 Q194 98 176 92Z'),'#c9a46a',''],aPen('M176 66 l36 0 M176 76 l36 0 M178 86 l32 0 M184 58 l0 34 M194 56 l0 38 M204 58 l0 34',.6,'#8a6a3a',.8),
     [aE(194,58,16,5),'#fbf7ee','']];
+};
+
+ART.anchan=()=>{const r=aSeed(1807);
+  return[...aGlass(100,62,170,34,26,[[74,'#a85ac8'],[108,'#7050c4'],[140,'#2f52b8']],5,'#f6f2ea',r),aWash(aE(100,76,30,5),'#c890e0',.8),
+    [aC(132,70,12),'#f2e070',''],[aC(132,70,9.5),'#fbf2a0','nl'],aPen('M124 70 l16 0 M132 62 l0 16 M126 64 l12 12 M138 64 l-12 12',.5,'#c9a83a',.9),
+    // butterfly pea flowers
+    ...[[164,166,-20],[188,156,30],[184,178,0]].map(([x,y,a])=>[[aP(`M${x} ${y} Q${x-12} ${y-14} ${x} ${y-16} Q${x+12} ${y-14} ${x} ${y}Z`,a,x,y),'#2a3ab0',''],[aP(`M${x} ${y} Q${x-5} ${y-7} ${x} ${y-9} Q${x+5} ${y-7} ${x} ${y}Z`,a,x,y),'#f2f0f8','nl'],[aP(`M${x-1.4} ${y-1} l1.4 -4 l1.4 4z`,a,x,y),'#f2d040','snl']]).flat()];
 };
 
 /* ---------- Turkey ---------- */
