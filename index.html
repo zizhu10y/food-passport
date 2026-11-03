@@ -4702,8 +4702,12 @@ function vChallenge(){
      <button class="chip ${CF.home?'on':''}" data-act="cfb" data-v="home">🏠 能在家做</button></div>
     <p class="muted" style="font-size:12.5px;margin:10px 0 0">符合条件、还没吃过的菜：${p.length} 道</p>
    </div>
-   <div class="draw">
-    <div style="margin-top:16px"><button class="btn pri" data-act="draw" style="font-size:17px;padding:10px 26px">🎲 ${d?'再抽一次':'抽一道'}</button></div>
+   <div class="draw" id="drawbox">${drawHTML(p,d)}</div>
+  </div>`;
+}
+// Just the draw button + card, so a re-draw can swap it without rebuilding the page
+function drawHTML(p,d){
+  return `    <div style="margin-top:16px"><button class="btn pri" data-act="draw" style="font-size:17px;padding:10px 26px">🎲 ${d?'再抽一次':'抽一道'}</button></div>
     ${d?`<div class="card flipin" id="drawcard" data-act="dish" data-id="${d.id}">
       <div style="max-width:220px;margin:0 auto">${ill(d,'locked')}</div>
       <div class="tw small">${CMAP[d.c].flag} ${CMAP[d.c].en}</div>
@@ -4715,9 +4719,7 @@ function vChallenge(){
       <div class="row" style="justify-content:center;margin-top:10px">
        ${S.challenge===d.id?`<span class="tw" style="color:var(--red)">⚔️ 已接受</span>`:`<button class="btn red" data-act="accept" data-id="${d.id}">⚔️ 接受挑战</button>`}</div>
       <div class="muted" style="font-size:11.5px;margin-top:8px">点卡片看详情</div>
-     </div>`:(!p.length?`<div class="empty">没有符合条件的菜了——要么你都吃过了（厉害），要么放宽一下筛选。</div>`:'')}
-   </div>
-  </div>`;
+     </div>`:(!p.length?`<div class="empty">没有符合条件的菜了——要么你都吃过了（厉害），要么放宽一下筛选。</div>`:'')}`;
 }
 
 // ---- search / identify ----
@@ -4944,14 +4946,15 @@ const ACT={
   want:t=>{const v=t.dataset.v;CF.want=!v?[]:CF.want.includes(v)?CF.want.filter(x=>x!==v):[...CF.want,v];if(v)CF.no=CF.no.filter(x=>x!==v);route(true)},
   no:t=>{const v=t.dataset.v;CF.no=CF.no.includes(v)?CF.no.filter(x=>x!==v):[...CF.no,v];CF.want=CF.want.filter(x=>x!==v);route(true)},
   cfb:t=>{CF[t.dataset.v]=!CF[t.dataset.v];route()},
-  draw:()=>{const p=pool();if(!p.length){CF.cur=null;route();return}
-    const opts=p.length>1?p.filter(d=>d.id!==CF.cur):p;CF.cur=opts[Math.floor(Math.random()*opts.length)].id;route();
-    setTimeout(()=>$('#drawcard')?.scrollIntoView({block:'center',behavior:'smooth'}),50)},
+  draw:()=>{const p=pool();if(!p.length){CF.cur=null;$('#drawbox').innerHTML=drawHTML(p,null);return}
+    const opts=p.length>1?p.filter(d=>d.id!==CF.cur):p;CF.cur=opts[Math.floor(Math.random()*opts.length)].id;
+    $('#drawbox').innerHTML=drawHTML(p,DMAP[CF.cur]);
+    $('#drawcard').scrollIntoView({block:'nearest',behavior:'smooth'})},
   accept:t=>{if(S.challenge&&S.challenge!==t.dataset.id&&!armed(t,`再点一次：放弃「${DMAP[S.challenge].zh}」`))return;
     endChallenge('quit');S.challenge=t.dataset.id;S.chFrom=today();S.chDue=dueDate(CF.due);save();remote.meta();
     toast(S.chDue?`⚔️ 挑战已接受！${S.chDue===today()?'今天':S.chDue.slice(5).replace('-','/')+' 前'}吃到就算赢`:'⚔️ 挑战已接受！吃到之后记得盖章');route(true)},
   quit:t=>{if(!armed(t,'确认放弃'))return;endChallenge('quit');save();remote.meta();toast('已放弃。没关系，换一道再来！');route(true)},
-  due:t=>{CF.due=t.dataset.v;route(true)},
+  due:t=>{CF.due=t.dataset.v;t.parentNode.querySelectorAll('[data-act=due]').forEach(b=>b.classList.toggle('on',b===t))},
   export:()=>{$('#bk').innerHTML=`<textarea class="inp" id="bkt" readonly>${esc(JSON.stringify(S))}</textarea><div class="row" style="margin-top:6px"><button class="btn sm" data-act="copy">复制</button></div>`;$('#bkt').select()},
   copy:()=>{const t=$('#bkt');t.select();(navigator.clipboard?navigator.clipboard.writeText(t.value):Promise.reject()).then(()=>toast('已复制'),()=>{document.execCommand('copy');toast('已复制')})},
   download:async()=>{const dl=window.claude?.use?await claude.use('downloads'):null;
