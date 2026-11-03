@@ -4940,7 +4940,6 @@ function vStats(){
     <div class="row" style="margin-top:10px"><button class="btn sm" data-act="export">导出文本</button><button class="btn sm" data-act="download">下载 .json</button><button class="btn sm" data-act="importOpen">导入</button></div>
     <div id="bk"></div>
    </div>
-   <div class="row" style="justify-content:center;margin-top:18px"><a class="btn sm" href="#" data-act="cover">📖 重看开场动画</a></div>
   </div>`;
 }
 
@@ -5092,7 +5091,6 @@ function armed(t,label){
 }
 const ACT={
   open:openCover,
-  cover:(t,e)=>{e.preventDefault();location.hash=''},
   close:()=>closeModal(),
   dish:t=>openDish(t.dataset.id),
   stamp:t=>openStamp({kind:'dish',dishId:t.dataset.id}),
