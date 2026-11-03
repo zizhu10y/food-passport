@@ -4819,9 +4819,10 @@ function vSpecial(){
 }
 
 // ---- challenge ----
-const CF={region:'all',want:[],no:[],cheap:false,home:false,cur:null,due:'2'};
+const CF={kind:'food',region:'all',want:[],no:[],cheap:false,home:false,cur:null,due:'2'};
 function pool(){
   return DISHES.filter(d=>!unlocked(d.id)
+    &&(CF.kind==='all'||!d.drink===(CF.kind==='food'))
     &&(CF.region==='all'||CMAP[d.c].region===CF.region||d.c===CF.region)
     &&CF.want.every(w=>d.fl.some(t=>t.includes(w)))
     &&!CF.no.some(n=>d.fl.some(t=>t.includes(n)))
@@ -4845,6 +4846,8 @@ function vChallenge(){
 function filtersHTML(p){
   return `
     <h3>筛选</h3>
+    <label class="f">抽什么</label>
+    <div class="seg">${[['food','🍽️ 菜品'],['drink','☕ 饮料'],['all','都行']].map(([k,l])=>`<button class="${CF.kind===k?'on':''}" data-act="kind" data-v="${k}">${l}</button>`).join('')}</div>
     <label class="f">地区 / 国家</label>
     <select class="inp" data-cf="region"><option value="all">全世界</option>
      ${REGIONS.map(r=>`<option value="${r}" ${CF.region===r?'selected':''}>${r}</option>`).join('')}
@@ -4856,7 +4859,7 @@ function filtersHTML(p){
     <div class="row" style="gap:6px;margin-top:10px">
      <button class="chip ${CF.cheap?'on':''}" data-act="cfb" data-v="cheap">💸 只要平价</button>
      <button class="chip ${CF.home?'on':''}" data-act="cfb" data-v="home">🏠 能在家做</button></div>
-    <p class="muted" style="font-size:12.5px;margin:10px 0 0">符合条件、还没吃过的菜：${p.length} 道</p>`;
+    <p class="muted" style="font-size:12.5px;margin:10px 0 0">符合条件、还没吃过的${{food:'菜',drink:'饮料',all:'菜和饮料'}[CF.kind]}：${p.length} ${CF.kind==='drink'?'种':'道'}</p>`;
 }
 function refreshFilters(){const p=pool();$('#cfbox').innerHTML=filtersHTML(p);if(!CF.cur)$('#drawbox').innerHTML=drawHTML(p,null)}
 // Just the draw button + card, so a re-draw can swap it without rebuilding the page
@@ -5101,6 +5104,7 @@ const ACT={
   reclass:t=>{const r=S.records.find(x=>x.id===t.dataset.id);r.kind='dish';r.dishId=t.dataset.d;save();remote.put(r);closeModal();toast(`❓ → ${DMAP[r.dishId].zh}，已归类`);location.hash='#/c/'+DMAP[r.dishId].c},
   want:t=>{const v=t.dataset.v;CF.want=!v?[]:CF.want.includes(v)?CF.want.filter(x=>x!==v):[...CF.want,v];if(v)CF.no=CF.no.filter(x=>x!==v);refreshFilters()},
   no:t=>{const v=t.dataset.v;CF.no=CF.no.includes(v)?CF.no.filter(x=>x!==v):[...CF.no,v];CF.want=CF.want.filter(x=>x!==v);refreshFilters()},
+  kind:t=>{CF.kind=t.dataset.v;refreshFilters()},
   cfb:t=>{CF[t.dataset.v]=!CF[t.dataset.v];refreshFilters()},
   draw:()=>{const p=pool();if(!p.length){CF.cur=null;$('#drawbox').innerHTML=drawHTML(p,null);return}
     const opts=p.length>1?p.filter(d=>d.id!==CF.cur):p;CF.cur=opts[Math.floor(Math.random()*opts.length)].id;
