@@ -61,8 +61,8 @@ hr.dash{border:0;border-top:1.5px dashed var(--faint);margin:22px 0}
 .cover{cursor:pointer}
 .cover .book{animation:rise .35s ease-out both}
 .cover .foil{background-size:220% 100%;animation:shine .5s .15s ease-in-out both}
-.cover.leaving{animation:tolight .3s .15s ease-in forwards}
-.cover.leaving .book{animation:flip .4s ease-in forwards;transform-origin:left center}
+.cover.leaving{animation:tolight .45s .3s ease-in forwards}
+.cover.leaving .book{animation:flip .75s ease-in-out forwards;transform-origin:left center}
 @keyframes rise{from{opacity:0;transform:translateY(16px) scale(.96)}}
 @keyframes shine{from{background-position:100% 0}to{background-position:0 0}}
 @keyframes flip{to{transform:perspective(900px) rotateY(-100deg);opacity:0}}
@@ -5050,7 +5050,7 @@ let pendingAnim=null;
 // The cover plays its opening animation on its own; tapping it just skips ahead.
 // replace() keeps the cover out of history, so Back doesn't land on it and re-open.
 function openCover(){const c=$('#cover');if(!c||c.classList.contains('leaving'))return;
-  c.classList.add('leaving');setTimeout(()=>{if(!location.hash)location.replace('#/')},400)}
+  c.classList.add('leaving');setTimeout(()=>{if(!location.hash)location.replace('#/')},750)}
 function route(keep){
   checkExpired();
   const h=location.hash.replace(/^#/,'');const nav=$('#nav');let key='index',html;
