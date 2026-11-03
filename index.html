@@ -152,6 +152,7 @@ textarea.inp{font-family:var(--tw);font-size:12px;min-height:110px}
 .seg{display:flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden;margin-top:4px}
 .seg button{flex:1;border:0;background:transparent;padding:7px;cursor:pointer}
 .seg button.on{background:var(--ink);color:var(--paper)}
+.ctabs{margin:22px 0 12px}.ctabs button{font-size:14px;padding:8px 4px;white-space:nowrap}.ctabs+div>.shops{margin-top:0;border-top:0;padding-top:0}.ctabs+div>.shops h3{display:none}.ctabs+div>.shops .vsub{text-align:center}.ctabs small{opacity:.7;font-size:12px;margin-left:2px}
 .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 @media(max-width:480px){.two{grid-template-columns:minmax(0,1fr);gap:0}}
 /* iOS Safari gives date inputs a fixed intrinsic width that overflows grid cells */
@@ -4766,11 +4767,20 @@ function stampsWall(recs){
   if(!recs.length)return`<div class="empty">这一页还空着，等你来盖第一个章。</div>`;
   return recs.slice().sort((a,b)=>(a.date||'').localeCompare(b.date||'')).map(r=>`<div class="st" data-act="rec" data-id="${r.id}" style="transform:rotate(${r.rot}deg) translate(${r.dx}px,${r.dy}px)">${stampSVG(r)}</div>`).join('');
 }
+let ctab='food',ctabC=null;
+function ctabBody(cid){
+  if(ctab==='shop')return shopsHTML(cid);
+  return `<div class="dgrid">${DISHES.filter(d=>d.c===cid&&!d.drink===(ctab==='food')).map(dishCard).join('')}</div>`;
+}
 function vCountry(cid){
   if(cid==='X')return vSpecial();
   const c=CMAP[cid];if(!c)return vIndex();
   const[u,n]=countryProgress(cid);const recs=S.records.filter(r=>recCountries(r).includes(cid));
   const all=DISHES.filter(d=>d.c===cid),foods=all.filter(d=>!d.drink),drinks=all.filter(d=>d.drink);
+  // Dishes and drinks sit behind two tabs; a new country starts on dishes, a fresh stamp opens its own tab
+  if(ctabC!==cid){ctabC=cid;ctab='food'}
+  if(pendingAnim&&DMAP[pendingAnim]?.c===cid)ctab=DMAP[pendingAnim].drink?'drink':'food';
+  if(!drinks.length&&ctab==='drink')ctab='food';
   return `<div class="page" style="--c:${c.ink}">
    <div class="topbar"><a href="#/">← 护照</a><span class="tw small">VISA · ${c.id} · ${c.region}</span></div>
    <header class="chd"><div class="fl">${c.flag}</div><h1>${c.zh}</h1><div class="en">${c.en}</div>
@@ -4779,10 +4789,8 @@ function vCountry(cid){
     ${c.syd?`<div class="syd">📍 悉尼平价去处：${c.syd.map(esc).join(' · ')}</div>`:''}
    </header>
    ${S.challenge&&DMAP[S.challenge]?.c===cid?challengeBanner():''}
-   <h3 class="rg">🍽️ 菜品 · ${foods.filter(d=>unlocked(d.id)).length} / ${foods.length}</h3>
-   <div class="dgrid">${foods.map(dishCard).join('')}</div>
-   ${drinks.length?`<h3 class="rg">☕ 饮料 · ${drinks.filter(d=>unlocked(d.id)).length} / ${drinks.length}</h3><div class="dgrid">${drinks.map(dishCard).join('')}</div>`:''}
-   ${shopsHTML(cid)}
+   <div class="seg ctabs">${[['food','🍽️ 菜品',foods],['drink','☕ 饮料',drinks],['shop','📍 去哪吃']].filter(([k,,ds])=>!ds||ds.length).map(([k,l,ds])=>`<button class="${ctab===k?'on':''}" data-act="ctab" data-v="${k}">${l}${ds?` <small>${ds.filter(d=>unlocked(d.id)).length}/${ds.length}</small>`:''}</button>`).join('')}</div>
+   <div id="ctabbox">${ctabBody(cid)}</div>
    <section class="visa"><h3>签证页</h3><div class="vsub">${recs.length} STAMPS</div><div class="stamps">${stampsWall(recs)}</div></section>
   </div>`;
 }
@@ -5085,6 +5093,8 @@ const ACT={
     endChallenge('quit');S.challenge=t.dataset.id;S.chFrom=today();S.chDue=dueDate(CF.due);save();remote.meta();
     toast(S.chDue?`⚔️ 挑战已接受！${S.chDue===today()?'今天':S.chDue.slice(5).replace('-','/')+' 前'}吃到就算赢`:'⚔️ 挑战已接受！吃到之后记得盖章');route(true)},
   quit:t=>{if(!armed(t,'确认放弃'))return;endChallenge('quit');save();remote.meta();toast('已放弃。没关系，换一道再来！');route(true)},
+  ctab:t=>{ctab=t.dataset.v;t.parentNode.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===t));
+    $('#ctabbox').innerHTML=ctabBody(ctabC)},
   due:t=>{CF.due=t.dataset.v;t.parentNode.querySelectorAll('[data-act=due]').forEach(b=>b.classList.toggle('on',b===t))},
   export:()=>{$('#bk').innerHTML=`<textarea class="inp" id="bkt" readonly>${esc(JSON.stringify(S))}</textarea><div class="row" style="margin-top:6px"><button class="btn sm" data-act="copy">复制</button></div>`;$('#bkt').select()},
   copy:()=>{const t=$('#bkt');t.select();(navigator.clipboard?navigator.clipboard.writeText(t.value):Promise.reject()).then(()=>toast('已复制'),()=>{document.execCommand('copy');toast('已复制')})},
